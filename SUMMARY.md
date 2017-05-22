@@ -1,51 +1,49 @@
 # Summary
 
 * [介紹](README.md)
-* README
-* Adding seo tags
-* Ar single table inheritance
-* Caching
-* Canonical urls
-* Cookies
-* Csrf
-* Dependencies
-* Enable pretty urls
-* Forms activeform js
-* Forms captcha
-* Forms uploading files
-* Forms validator multiple attributes
-* Handling trailing slash in urls
-* I18n selecting application language
-* I18n using ids as translation source
-* I18n using yandex as translation source
-* Ide autocompletion
-* Incoming post
-* Logging problems and solutions
-* Mvc
-* Pagination pretty urls
-* Performance cron
-* Performance hhvm
-* Preface
-* Processing text
-* Response formats
-*  Response post processing
-* Reusing views via partials
-* Scaling
-* Security rbac
-* Solid
-* Sql injection
-* Structure asset processing with grunt
-* Structure backend frontend modules
-* Structure collections
-* Structure global functions
-* Switching themes
-* Urls variable number of parameters
-* Using custom migration template
-* Using redirects
-* Using slugs
-* Using yii in third party apps
-* Working with multiple records
-* Xss
-
-
+* [README](readme.md)
+* [Adding seo tags](adding-seo-tags.md)
+* [Ar single table inheritance](ar-single-table-inheritance.md)
+* [Caching](caching.md)
+* [Canonical urls](canonical-urls.md)
+* [Cookies](cookies.md)
+* [Csrf](csrf.md)
+* [Dependencies](dependencies.md)
+* [Enable pretty urls](enable-pretty-urls.md)
+* [Forms activeform js](forms-activeform-js.md)
+* [Forms captcha](forms-captcha.md)
+* [Forms uploading files](forms-uploading-files.md)
+* [Forms validator multiple attributes](forms-validator-multiple-attributes.md)
+* [Handling trailing slash in urls](handling-trailing-slash-in-urls.md)
+* [I18n selecting application language](i18n-selecting-application-language.md)
+* [I18n using ids as translation source](i18n-using-ids-as-translation-source.md)
+* [I18n using yandex as translation source](i18n-using-yandex-as-translation-source.md)
+* [Ide autocompletion](ide-autocompletion.md)
+* [Incoming post](incoming-post.md)
+* [Logging problems and solutions](logging-problems-and-solutions.md)
+* [Mvc](mvc.md)
+* [Pagination pretty urls](pagination-pretty-urls.md)
+* [Performance cron](performance-cron.md)
+* [Performance hhvm](performance-hhvm.md)
+* [Preface](preface.md)
+* [Processing text](processing-text.md)
+* [Response formats](response-formats.md)
+* [Response post processing](response-post-processing.md)
+* [Reusing views via partials](reusing-views-via-partials.md)
+* [Scaling](scaling.md)
+* [Security rbac](security-rbac.md)
+* [Solid](solid.md)
+* [Sql injection](sql-injection.md)
+* [Structure asset processing with grunt](structure-asset-processing-with-grunt.md)
+* [Structure backend frontend modules](structure-backend-frontend-modules.md)
+* [Structure collections](structure-collections.md)
+* [Structure global functions](structure-global-functions.md)
+* [Switching themes](switching-themes.md)
+* [Urls variable number of parameters](urls-variable-number-of-parameters.md)
+* [Using custom migration template](using-custom-migration-template.md)
+* [Using redirects](using-redirects.md)
+* [Using slugs](using-slugs.md)
+* [Using yii in third party apps](using-yii-in-third-party-apps.md)
+* [Working with multiple records](working-with-multiple-records.md)
+* [Xss](xss.md)
 
