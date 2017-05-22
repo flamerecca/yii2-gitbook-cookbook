@@ -1,3 +1,10 @@
-# My Awesome Book
+# Yii 2.0 cookbook 中文翻譯
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+翻譯自
+
+[https://yii2-cookbook.readthedocs.io/](https://yii2-cookbook.readthedocs.io/)
+
+
+
+
+
