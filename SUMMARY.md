@@ -1,7 +1,6 @@
 # Summary
 
 * [介紹](README.md)
-* [README](readme.md)
 * [Adding seo tags](adding-seo-tags.md)
 * [Ar single table inheritance](ar-single-table-inheritance.md)
 * [Caching](caching.md)
@@ -46,4 +45,6 @@
 * [Using yii in third party apps](using-yii-in-third-party-apps.md)
 * [多筆紀錄的處理（Working With Multiple Records）](working-with-multiple-records.md)
 * [跨網站指令碼（XSS）](xss.md)
+
+
 
