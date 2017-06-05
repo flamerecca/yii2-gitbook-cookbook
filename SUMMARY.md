@@ -44,6 +44,6 @@
 * [Using redirects](using-redirects.md)
 * [Using slugs](using-slugs.md)
 * [Using yii in third party apps](using-yii-in-third-party-apps.md)
-* [Working with multiple records](working-with-multiple-records.md)
+* [多筆紀錄的處理（Working With Multiple Records）](working-with-multiple-records.md)
 * [跨網站指令碼（XSS）](xss.md)
 

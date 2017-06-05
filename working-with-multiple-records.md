@@ -1,6 +1,6 @@
-# Working With Multiple Records {#working-with-multiple-records}
+# 多筆紀錄的處理（Working With Multiple Records） {#working-with-multiple-records}
 
-Sometimes one request can create or affect several records in one or more tables in such cases its advisable to follow[ACID](https://en.wikipedia.org/wiki/ACID)properties. Yii2 supports transactions, isolation levels, and allow you to validate data independently.
+Sometimes one request can create or affect several records in one or more tables in such cases its advisable to follow [ACID](https://en.wikipedia.org/wiki/ACID) 的特性。Yii2 supports transactions, isolation levels, and allow you to validate data independently.
 
 For example when creating a credit, you also need to store the credit references and files associated to the credit.
 
@@ -92,15 +92,15 @@ The steps followed in the example.
 
 In this case we are assuming the controller already checked the user credentials using filter and at the action its enough to check if the petition is using the`post`method.
 
-2. Create the models and load the user data to them
+1. Create the models and load the user data to them
 
 While there is only one credit, there might be many files and references
 
-3.  Start the transaction
+1. Start the transaction
 
-Its important to start the transaction at this point since some validations like`unique`and`exist`might be necessary so we start the transaction here to avoid \[Reading Phenomena\] \(https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Read\_phenomena\).
+Its important to start the transaction at this point since some validations like`unique`and`exist`might be necessary so we start the transaction here to avoid \[Reading Phenomena\] \([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Read\_phenomena\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Read_phenomena\)\).
 
-You should also notice that we created the transaction using`yii\db\Transaction::SERIALIZABLE`which is the highest \[isolation level\] \(https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Isolation\_levels\).
+You should also notice that we created the transaction using`yii\db\Transaction::SERIALIZABLE`which is the highest \[isolation level\] \([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Isolation\_levels\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels\)\).
 
 4 Validate all the models
 
@@ -132,7 +132,7 @@ After this you can include any success logic like redirects or new renders.
 
 ## Operations Triggered by Events {#operations-triggered-by-events}
 
-Lets say you have two models`Credit`with attributes`id`and`amount`, and a`CreditPayment`model with attributes`credit_id`and`amount`. You want to update the`Credit`amount when a related`CreditPayment`is created.
+假設你有兩個模型：`Credit` 模型，包含`id`和`amount`兩個參數；還有一個`CreditPayment`模型，包含 `credit_id`和`amount`參數。 當你建立`CreditPayment`時，希望能同時更新`Credit`的amount：
 
 ```php
 class CreditPayment extends ActiveRecord
@@ -159,7 +159,6 @@ class CreditPayment extends ActiveRecord
         return $this->hasOne(Credit::className(), ['id' => 'credit_id']);
     }
 }
-
 ```
 
 If any exception is thrown in this method, then the payment will be saved but it won't affect the amount on the credit.
