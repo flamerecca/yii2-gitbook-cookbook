@@ -1,4 +1,4 @@
-# 跨網站指令碼（XSS {#xss}
+# 跨網站指令碼（XSS） {#xss}
 
 跨網站指令碼（Cross-site scripting，XSS） is a web application vulnerability caused by insufficient output escaping. It allows attacker to inject JavaScript code into your site pages. For example, if your website has comments, an attacker may add the following text as a comment:
 
@@ -47,7 +47,6 @@ echo
  HtmlPurifier::process(
 $data
 );
-
 ```
 
 > 備註: HtmlPurifier isn't fast so consider caching what's produced by`HtmlPurifier`not to call it too often.
