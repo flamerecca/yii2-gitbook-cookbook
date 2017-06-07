@@ -97,20 +97,15 @@ The steps followed in the example.
 
 3. Start the transaction  
    Its important to start the transaction at this point since some validations like`unique`and`exist`might be necessary so we start the transaction here to avoid \[Reading Phenomena\] \([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Read\_phenomena\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Read_phenomena%29%29.  
-   You should also notice that we created the transaction using`yii\db\Transaction::SERIALIZABLE`which is the highest [isolation level] %28[https://en.wikipedia.org/wiki/Isolation_%28database_systems\)\#Isolation\_levels\]\([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Isolation\_levels\)\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29\)\).
+   You should also notice that we created the transaction using`yii\db\Transaction::SERIALIZABLE`which is the highest [isolation level] %28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels\)\]\([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Isolation\_levels\)\)\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29\)\).
 
 4. Validate all the models  
-   Its important to validate them all to show the user all the validation errors if necessary. Using an`if`statement like this
+   Its important to validate them all to show the user all the validation errors if necessary. Using an`if`statement like this  
+   `if ($model->validate() && Model::validateMultiple(...))`  
+   Is simpler to understand but if the first validation fails the second one won't be executed.  
+   Also notice that we are not going to validate`credit_id`on the files and references since the credit has not been created yet.
 
-```php
-if ($model->validate() && Model::validateMultiple(...))
-```
-
-Is simpler to understand but if the first validation fails the second one won't be executed.
-
-Also notice that we are not going to validate`credit_id`on the files and references since the credit has not been created yet.
-
-4.1 if the validations fail, end the transaction with a`rollBack()`just in case any validation had updated anything
+4.1.  if the validations fail, end the transaction with a`rollBack()`just in case any validation had updated anything
 
 The action will then render the view and if you are using something like`ActiveForm`the user will see all the validation errors.
 
