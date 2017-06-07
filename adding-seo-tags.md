@@ -60,7 +60,7 @@ $this->registerMetaTag([
 
 All registered meta tags will be rendered inside layout in place of`$this->head()`call.
 
-Note that when the same tag is registered twice it's rendered twice. For example, description meta tag that is registered both in layout and a view is rendered twice. Usually it's not good for SEO. In order to avoid it you can specify key as the second argument of`registerMetaTag`:
+這邊需要注意的是，如果我們對同一個標籤登記不只一次，那麼每一次。that when the same tag is registered twice it's rendered twice. For example, description meta tag that is registered both in layout and a view is rendered twice. 舉例來說，如果我們layout裡面登記了一個description，，這樣通常對 SEO 不好。要避免這個狀況，我們可以在`registerMetaTag()`的第二個參數，加上對應的key：
 
 ```php
 $this->registerMetaTag([
@@ -74,5 +74,5 @@ $this->registerMetaTag([
 ], 'description');
 ```
 
-In this case later second call will overwrite first call and description will be set to "Description 2".
+這樣的話，In this case later second call will overwrite first call and description will be set to "Description 2".
 
