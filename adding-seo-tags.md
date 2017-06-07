@@ -1,4 +1,4 @@
-# 加入 SEO 標籤（Adding SEO tags） {#adding-seo-tags}
+# 加入 搜尋引擎最佳化標籤（Adding SEO tags） {#adding-seo-tags}
 
 Organic search is an excellent traffic source. In order to get it you have to make a lot of small steps to improve your project.
 
@@ -8,31 +8,31 @@ Let's review how to add SEO-related metadata to your pages.
 
 ## Title {#title}
 
-設置title非常簡單，在 controller 裡面是：
+設置title非常簡單，在控制器（controller）裡面是：
 
 ```php
 \Yii::$app->view->title = 'title set inside controller';
 ```
 
-Inside a view:
+在視圖（view）裡面則是：
 
 ```php
 $this->title = 'Title from view';
 ```
 
-> Note: Setting`$this->title`in layout will override value which is set for concrete view so don't do it.
+> 備註：Setting`$this->title`in layout will override value which is set for concrete view so don't do it.
 
-It's a good idea to have default title so inside layout you can have something like the following:
+有預設 title 通常是個好主意，所以可以在layout裡面這樣寫：
 
 ```php
-$this->title = $this->title ? $this->title : 'default title';
+$this->title = $this->title ? $this->title : '預設 title';
 ```
 
 ## Description 和 Keywords {#description-and-keywords}
 
 There are no dedicated view parameters for`keywords`or`description`. Since these are meta tags and you should set them by`registerMetaTag()`method.
 
-Inside controller action:
+在控制器（controller）裡面是：
 
 ```php
 \Yii::$app->view->registerMetaTag([
@@ -43,10 +43,9 @@ Inside controller action:
     'name' => 'keywords',
     'content' => 'Keywords set inside controller',
 ]);
-
 ```
 
-Inside a view:
+在視圖（view）裡面是：
 
 ```php
 $this->registerMetaTag([
@@ -73,7 +72,6 @@ $this->registerMetaTag([
     'name' => 'description',
     'content' => 'Description 2',
 ], 'description');
-
 ```
 
 In this case later second call will overwrite first call and description will be set to "Description 2".
