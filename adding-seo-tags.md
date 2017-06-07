@@ -30,7 +30,7 @@ $this->title = $this->title ? $this->title : '預設 title';
 
 ## Description 和 Keywords {#description-and-keywords}
 
-There are no dedicated view parameters for`keywords`or`description`. Since these are meta tags and you should set them by`registerMetaTag()`method.
+Yii內`keywords`和`description` 沒有對應的參數。因為這兩個在網頁上都是meta標籤，所以我們應該使用`registerMetaTag()`函式。
 
 在控制器（controller）裡面是：
 
