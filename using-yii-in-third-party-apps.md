@@ -6,13 +6,11 @@
 
 這邊，我們教你如何一邊用之前的PHP程式，一邊使用Yii 的功能
 
-In this recipe you'll learn how to use Yii features in an existing PHP application.
-
 ## 如何達成 {#how-to-do-it}
 
-首先，我們需要安裝Yii。 Since existing legacy application already takes care about routing, we don't need any application template. 
+首先，我們需要安裝Yii。因為原本的網頁程式就有自己的routing，所以我們不需要應用程式的樣板。
 
-我們從`composer.json`開始。可以使用原本的檔案或者直接建立：
+我們用composer進行安裝，從`composer.json`開始。可以使用原本的檔案或者直接建立：
 
 ```js
 {
@@ -43,7 +41,7 @@ In this recipe you'll learn how to use Yii features in an existing PHP applicati
 
 > 備註：Yii 程式所在的資料夾，不應該可以從網頁存取。可以放在webroot之外，或者設定存取權限拒絕該資料夾的存取
 
-Now create a file that will initialize Yii。這邊我們命名為`yii_init.php`：
+再來，我們建立一個初始化Yii 所用的程式碼。這邊我們命名為`yii_init.php`：
 
 ```php
 <?php
@@ -93,7 +91,7 @@ return [
 ];
 ```
 
-That's it. You can require the file and mix Yii code into your legacy app:
+就這樣，現在我們可以使用原來的程式，並一併使用Yii的功能：
 
 ```php
 // 遺留程式碼
@@ -111,5 +109,5 @@ echo Html::encode($post->title);
 
 ## 運作原理 {#how-it-works}
 
-在`yii_init.php`裡面， are including framework classes and composer autoloading. Important part there is that`->run()`method isn't called like it's done in normal Yii application. That means that we're skipping routing, running controller etc. Legacy app already doing it.
+在`yii_init.php`裡面， 我們包含了Yii框架的類別，以及composer的autoloading。一個重點是，因為要跳過Yii自己的routing跟controller，這邊不像傳統的Yii程式這樣呼叫`->run()`。
 
