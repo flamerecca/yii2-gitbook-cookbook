@@ -2,7 +2,7 @@
 
 * [Introduction](readme.md)
 * [介紹](README.md)
-* [Adding seo tags](adding-seo-tags.md)
+* [加入 SEO 標籤（Adding SEO tags）](adding-seo-tags.md)
 * [Ar single table inheritance](ar-single-table-inheritance.md)
 * [Caching](caching.md)
 * [Canonical urls](canonical-urls.md)
