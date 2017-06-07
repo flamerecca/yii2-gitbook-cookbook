@@ -1,4 +1,4 @@
-# 加入 搜尋引擎最佳化標籤（Adding SEO tags） {#adding-seo-tags}
+# 加入搜尋引擎最佳化標籤（Adding SEO tags） {#adding-seo-tags}
 
 Organic search is an excellent traffic source. In order to get it you have to make a lot of small steps to improve your project.
 
