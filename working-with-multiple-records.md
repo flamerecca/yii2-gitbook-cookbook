@@ -97,7 +97,7 @@ The steps followed in the example.
 
 3. 開始交易  
    Its important to start the transaction at this point since some validations like`unique`and`exist`might be necessary so we start the transaction here to avoid \[Reading Phenomena\] \([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Read\_phenomena](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Read_phenomena%29%29.  
-   You should also notice that we created the transaction using`yii\db\Transaction::SERIALIZABLE`which is the highest [isolation level] %28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29\)\)\([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Isolation\_levels\)\)\)\)\)\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29\)\).
+   You should also notice that we created the transaction using`yii\db\Transaction::SERIALIZABLE`which is the highest [isolation level] %28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29\)\]\([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Isolation\_levels\)\)\)\)\)\)\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29%29\)\).
 
 4. 驗證模型  
    Its important to validate them all to show the user all the validation errors if necessary. Using an`if`statement like this  
@@ -148,7 +148,7 @@ class CreditPayment extends ActiveRecord
 }
 ```
 
-如果出現任何例外（exception），payment 本身會被儲存，但是If any exception is thrown in this method, then the payment will be saved but it won't affect the amount on the credit.
+如果出現任何例外（exception），payment 本身會被儲存，但是不影響credit的amount。
 
 We can encapsulate all the operation on a transaction very simply using the method`yii\db\ActiveRecord::transactions()`
 
