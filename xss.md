@@ -1,6 +1,6 @@
 # 跨網站指令碼（XSS） {#xss}
 
-跨網站指令碼（Cross-site scripting，XSS），是因為輸出時檢查不充分，導致網站的安全漏洞。這類漏洞允許攻擊者在網頁內注入JavaScript程式。舉例來說，如果你的網站允許使用者留評論，攻擊者可能會留下： 
+跨網站指令碼（Cross-site scripting，XSS），是因為輸出時檢查不充分，導致網站的安全漏洞。這類漏洞允許攻擊者在網頁內注入JavaScript程式。舉例來說，如果你的網站允許使用者留評論，攻擊者可能會留下：
 
 ```js
 <script>
@@ -44,9 +44,8 @@ echo $data;
 
 如果你收到的資料可能有HTML，那會比較麻煩。Yii 有內建的[HtmlPurifier helper](http://www.yiiframework.com/doc-2.0/yii-helpers-basehtmlpurifier.html)，可以清理危險的HTML內容。我們可以在視圖裡面使用以下程式碼做過濾：
 
-```
-echo
- HtmlPurifier::process(
+```php
+echo HtmlPurifier::process(
 $data
 );
 ```

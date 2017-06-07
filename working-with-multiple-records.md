@@ -90,17 +90,15 @@ The steps followed in the example.
 
 1. Check if the request can process the petition.
 
-In this case we are assuming the controller already checked the user credentials using filter and at the action its enough to check if the petition is using the`post`method.
+   In this case we are assuming the controller already checked the user credentials using filter and at the action its enough to check if the petition is using the`post`method.
 
 1. Create the models and load the user data to them
-
-While there is only one credit, there might be many files and references
+   While there is only one credit, there might be many files and references
 
 1. Start the transaction
+   Its important to start the transaction at this point since some validations like`unique`and`exist`might be necessary so we start the transaction here to avoid \[Reading Phenomena\] \([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Read\_phenomena\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Read_phenomena%29\).
 
-Its important to start the transaction at this point since some validations like`unique`and`exist`might be necessary so we start the transaction here to avoid \[Reading Phenomena\] \([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Read\_phenomena\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Read_phenomena\)\).
-
-You should also notice that we created the transaction using`yii\db\Transaction::SERIALIZABLE`which is the highest \[isolation level\] \([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Isolation\_levels\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels\)\).
+You should also notice that we created the transaction using`yii\db\Transaction::SERIALIZABLE`which is the highest \[isolation level\] \([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Isolation\_levels\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29\).
 
 4 Validate all the models
 
