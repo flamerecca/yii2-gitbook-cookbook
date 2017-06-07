@@ -92,15 +92,14 @@ The steps followed in the example.
 
    In this case we are assuming the controller already checked the user credentials using filter and at the action its enough to check if the petition is using the`post`method.
 
-1. Create the models and load the user data to them
+2. Create the models and load the user data to them  
    While there is only one credit, there might be many files and references
 
-1. Start the transaction
-   Its important to start the transaction at this point since some validations like`unique`and`exist`might be necessary so we start the transaction here to avoid \[Reading Phenomena\] \([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Read\_phenomena\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Read_phenomena%29\).
+3. Start the transaction  
+   Its important to start the transaction at this point since some validations like`unique`and`exist`might be necessary so we start the transaction here to avoid \[Reading Phenomena\] \([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Read\_phenomena\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Read_phenomena%29\).  
+   You should also notice that we created the transaction using`yii\db\Transaction::SERIALIZABLE`which is the highest \[isolation level\] \([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Isolation\_levels\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29\).
 
-You should also notice that we created the transaction using`yii\db\Transaction::SERIALIZABLE`which is the highest \[isolation level\] \([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Isolation\_levels\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29\).
-
-4 Validate all the models
+4. Validate all the models
 
 Its important to validate them all to show the user all the validation errors if necessary. Using an`if`statement like this
 
