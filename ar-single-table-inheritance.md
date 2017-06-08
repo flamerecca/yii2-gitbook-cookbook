@@ -159,7 +159,7 @@ The output should be:
 
 That means models are now instantiated according to`type`field and the search is performed as expected.
 
-## How it works... {#how-it-works}
+## 運作原理 {#how-it-works}
 
 `SportCar`and`HeavyCar`models are quite similar. They both extend from`Car`and have two methods overridden. In`find`method we're instantiating a custom query class that stores car type and applies it in the`prepare`method that is called right before forming SQL for the database query.`SportCar`will only search for sport cars and`HeavyCar`will only search for heavy cars. In`beforeSave`we're making sure that the proper`type`is written to database when class is saved.`TYPE`constants are introduced just for convenience.
 
