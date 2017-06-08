@@ -1,10 +1,10 @@
 # 加入搜尋引擎最佳化標籤（Adding SEO tags） {#adding-seo-tags}
 
-Organic search is an excellent traffic source. In order to get it you have to make a lot of small steps to improve your project.
+自然搜尋（organic search）是流量的重要來源。要最佳化這一部份，我們有很多小部份需要達成。
 
-One of such steps is to provide different meta tags for different pages. It will improve your site organic search appearance and may result in better ranking.
+其中一個部份，是在每個網頁上面加上不同的 meta tag。這會讓網站的自然搜尋One of such steps is to provide different meta tags for different pages. It will improve your site organic search appearance and may result in better ranking.
 
-Let's review how to add SEO-related metadata to your pages.
+以下簡述如何在網站裡面，加上搜尋相關的metadata。
 
 ## Title {#title}
 
@@ -75,4 +75,10 @@ $this->registerMetaTag([
 ```
 
 這樣的話，前面的 description 會被蓋過，網頁的description 會是「網頁描述二」。
+
+## 相關資料
+
+* [中文維基-有機搜尋](https://zh.wikipedia.org/wiki/%E6%9C%89%E6%A9%9F%E6%90%9C%E5%B0%8B)
+
+
 
