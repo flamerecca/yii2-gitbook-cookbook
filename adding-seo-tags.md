@@ -76,7 +76,7 @@ $this->registerMetaTag([
 
 這樣的話，前面的 description 會被蓋過，網頁的description 會是「網頁描述二」。
 
-## 相關資料
+## 其他資料 {#see-also}
 
 * [中文維基-有機搜尋](https://zh.wikipedia.org/wiki/有機搜尋)
 
