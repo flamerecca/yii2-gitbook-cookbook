@@ -33,78 +33,24 @@ Now use Gii to generate`Car`model.
 
 We'll need a quite simple custom query class in order to always apply car type to query condition. Create`models/CarQuery.php`:
 
-```
-namespace
-app
-\
-models
-;
+```php
+namespace app\models;
 
+use yii\db\ActiveQuery;
 
-use
-yii
-\
-db
-\
-ActiveQuery
-;
-
-
-class
-CarQuery
-extends
-ActiveQuery
+class CarQuery extends ActiveQuery
 {
-    
-public
-$type
-;
-    
-public
-$tableName
-;
+    public $type;
+    public $tableName;
 
-    
-public
-function
-prepare
-(
-$builder
-)
-{
-        
-if
- (
-$this
--
->
-type !== 
-null
-) {
-            
-$this
--
->
-andWhere([
-"$this-
->
-tableName.type"
- =
->
-$this
--
->
-type]);
+    public function prepare($builder)
+    {
+        if ($this->type !== null) {
+            $this->andWhere(["$this->tableName.type" => $this->type]);
         }
-        
-return
-parent
-::prepare(
-$builder
-);
+        return parent::prepare($builder);
     }
 }
-
 ```
 
 Now let's create models for car classes for different types. First`models/SportCar.php`:
@@ -122,38 +68,38 @@ SportCar
 extends
 Car
 {
-    
+
 const
  TYPE = 
 'sport'
 ;
 
-    
+
 public
 function
 init
 ()
 {
-        
+
 $this
 -
 >
 type = 
 self
 ::TYPE;
-        
+
 parent
 ::init();
     }
 
-    
+
 public
 static
 function
 find
 ()
 {
-        
+
 return
 new
  CarQuery(get_called_class(), [
@@ -169,7 +115,7 @@ self
 ::tableName()]);
     }
 
-    
+
 public
 function
 beforeSave
@@ -177,14 +123,14 @@ beforeSave
 $insert
 )
 {
-        
+
 $this
 -
 >
 type = 
 self
 ::TYPE;
-        
+
 return
 parent
 ::beforeSave(
@@ -192,7 +138,6 @@ $insert
 );
     }
 }
-
 ```
 
 Then`models/HeavyCar.php`:
@@ -210,38 +155,38 @@ HeavyCar
 extends
 Car
 {
-    
+
 const
  TYPE = 
 'heavy'
 ;
 
-    
+
 public
 function
 init
 ()
 {
-        
+
 $this
 -
 >
 type = 
 self
 ::TYPE;
-        
+
 parent
 ::init();
     }
 
-    
+
 public
 static
 function
 find
 ()
 {
-        
+
 return
 new
  CarQuery(get_called_class(), [
@@ -257,7 +202,7 @@ self
 ::tableName()]);
     }
 
-    
+
 public
 function
 beforeSave
@@ -265,14 +210,14 @@ beforeSave
 $insert
 )
 {
-        
+
 $this
 -
 >
 type = 
 self
 ::TYPE;
-        
+
 return
 parent
 ::beforeSave(
@@ -280,7 +225,6 @@ $insert
 );
     }
 }
-
 ```
 
 Now we need to override`instantiate`method in the`Car`model:
@@ -294,38 +238,37 @@ instantiate
 $row
 )
 {
-    
+
 switch
  (
 $row
 [
 'type'
 ]) {
-        
+
 case
  SportCar::TYPE:
-            
+
 return
 new
  SportCar();
-        
+
 case
  HeavyCar::TYPE:
-            
+
 return
 new
  HeavyCar();
-        
+
 default
 :
-           
+
 return
 new
 self
 ;
     }
 }
-
 ```
 
 Also we need to override`tableName`method in the`Car`model in order for all models involved to use a single table:
@@ -337,12 +280,11 @@ function
 tableName
 ()
 {
-    
+
 return
 '{{%car%}}'
 ;
 }
-
 ```
 
 That's it. Let's try it. Create the following`actionTest`in`SiteController`and run it:
@@ -360,7 +302,7 @@ $cars
 as
 $car
 ) {
-    
+
 echo
 "$car-
 >
@@ -404,7 +346,6 @@ br /
 >
 "
 ;
-
 ```
 
 The output should be:
@@ -445,7 +386,7 @@ function
 rules
 ()
 {
-        
+
 return
  [
             [[
