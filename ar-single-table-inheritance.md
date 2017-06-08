@@ -1,0 +1,466 @@
+# Single table inheritance {#single-table-inheritance}
+
+There is no native inheritance support in most relational databases so it should be implemented manually if needed. One of approaches to the problem is called[single table inheritance](http://martinfowler.com/eaaCatalog/singleTableInheritance.html), described well by Martin Fowler.
+
+According to the pattern in the entity table we add an additional column called`type`that determines which class will be instantiated from a row of data.
+
+Let's implement simple car types inheritance with the following class structure:
+
+```
+Car
+|- SportCar
+|- HeavyCar
+```
+
+## Get ready {#get-ready}
+
+We'll use a basic application. After creating and setting up a database, execute the following SQL to create the table and insert some data:
+
+```sql
+CREATE TABLE `car` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    `type` varchar(255) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+);
+
+INSERT INTO car (id, NAME, TYPE) VALUES (1, 'Kamaz', 'heavy'), (2, 'Ferrari', 'sport'), (3, 'BMW', 'city');
+```
+
+Now use Gii to generate`Car`model.
+
+## How to do it... {#how-to-do-it}
+
+We'll need a quite simple custom query class in order to always apply car type to query condition. Create`models/CarQuery.php`:
+
+```
+namespace
+app
+\
+models
+;
+
+
+use
+yii
+\
+db
+\
+ActiveQuery
+;
+
+
+class
+CarQuery
+extends
+ActiveQuery
+{
+    
+public
+$type
+;
+    
+public
+$tableName
+;
+
+    
+public
+function
+prepare
+(
+$builder
+)
+{
+        
+if
+ (
+$this
+-
+>
+type !== 
+null
+) {
+            
+$this
+-
+>
+andWhere([
+"$this-
+>
+tableName.type"
+ =
+>
+$this
+-
+>
+type]);
+        }
+        
+return
+parent
+::prepare(
+$builder
+);
+    }
+}
+
+```
+
+Now let's create models for car classes for different types. First`models/SportCar.php`:
+
+```
+namespace
+app
+\
+models
+;
+
+
+class
+SportCar
+extends
+Car
+{
+    
+const
+ TYPE = 
+'sport'
+;
+
+    
+public
+function
+init
+()
+{
+        
+$this
+-
+>
+type = 
+self
+::TYPE;
+        
+parent
+::init();
+    }
+
+    
+public
+static
+function
+find
+()
+{
+        
+return
+new
+ CarQuery(get_called_class(), [
+'type'
+ =
+>
+self
+::TYPE, 
+'tableName'
+ =
+>
+self
+::tableName()]);
+    }
+
+    
+public
+function
+beforeSave
+(
+$insert
+)
+{
+        
+$this
+-
+>
+type = 
+self
+::TYPE;
+        
+return
+parent
+::beforeSave(
+$insert
+);
+    }
+}
+
+```
+
+Then`models/HeavyCar.php`:
+
+```
+namespace
+app
+\
+models
+;
+
+
+class
+HeavyCar
+extends
+Car
+{
+    
+const
+ TYPE = 
+'heavy'
+;
+
+    
+public
+function
+init
+()
+{
+        
+$this
+-
+>
+type = 
+self
+::TYPE;
+        
+parent
+::init();
+    }
+
+    
+public
+static
+function
+find
+()
+{
+        
+return
+new
+ CarQuery(get_called_class(), [
+'type'
+ =
+>
+self
+::TYPE, 
+'tableName'
+ =
+>
+self
+::tableName()]);
+    }
+
+    
+public
+function
+beforeSave
+(
+$insert
+)
+{
+        
+$this
+-
+>
+type = 
+self
+::TYPE;
+        
+return
+parent
+::beforeSave(
+$insert
+);
+    }
+}
+
+```
+
+Now we need to override`instantiate`method in the`Car`model:
+
+```
+public
+static
+function
+instantiate
+(
+$row
+)
+{
+    
+switch
+ (
+$row
+[
+'type'
+]) {
+        
+case
+ SportCar::TYPE:
+            
+return
+new
+ SportCar();
+        
+case
+ HeavyCar::TYPE:
+            
+return
+new
+ HeavyCar();
+        
+default
+:
+           
+return
+new
+self
+;
+    }
+}
+
+```
+
+Also we need to override`tableName`method in the`Car`model in order for all models involved to use a single table:
+
+```
+public
+static
+function
+tableName
+()
+{
+    
+return
+'{{%car%}}'
+;
+}
+
+```
+
+That's it. Let's try it. Create the following`actionTest`in`SiteController`and run it:
+
+```
+// finding all cars we have
+$cars
+ = Car::find()-
+>
+all();
+
+foreach
+ (
+$cars
+as
+$car
+) {
+    
+echo
+"$car-
+>
+id $car-
+>
+name "
+ . get_class(
+$car
+) . 
+"
+<
+br /
+>
+"
+;
+}
+
+
+// finding any sport car
+$sportCar
+ = SportCar::find()-
+>
+limit(
+1
+)-
+>
+one();
+
+echo
+"$sportCar-
+>
+id $sportCar-
+>
+name "
+ . get_class(
+$sportCar
+) . 
+"
+<
+br /
+>
+"
+;
+
+```
+
+The output should be:
+
+```
+1 Kamaz app
+\models
+\HeavyCar
+
+2 Ferrari app
+\models
+\SportCar
+
+3 BMW app
+\models
+\Car
+
+2 Ferrari app
+\models
+\SportCar
+```
+
+That means models are now instantiated according to`type`field and the search is performed as expected.
+
+## How it works... {#how-it-works}
+
+`SportCar`and`HeavyCar`models are quite similar. They both extend from`Car`and have two methods overridden. In`find`method we're instantiating a custom query class that stores car type and applies it in the`prepare`method that is called right before forming SQL for the database query.`SportCar`will only search for sport cars and`HeavyCar`will only search for heavy cars. In`beforeSave`we're making sure that the proper`type`is written to database when class is saved.`TYPE`constants are introduced just for convenience.
+
+The`Car`model is pretty much what was generated by Gii except additional`instantiate`method. This method is called after data is retrieved from database and is about to be used to initialize class properties. Return value is uninitialized class instance and the only argument passed to the method is the row of data retrieved from the database. Exactly what we need. The implementation is a simple switch statement where we're checking if the`type`field matches type of the classes we suport. If so, an instance of the class is returned. If nothing matches, it falls back to returning a`Car`model instance.
+
+## Handling unique values {#handling-unique-values}
+
+If you have a column marked as unique, to prevent breaking the```UniqueValidator`` you need to specify the```targetClass\` property.
+
+```
+public
+function
+rules
+()
+{
+        
+return
+ [
+            [[
+'MyUniqueColumnName'
+], 
+'unique'
+, 
+'targetClass'
+ =
+>
+'\app\models\Car'
+],
+        ];
+    }
+```
+
+
+
