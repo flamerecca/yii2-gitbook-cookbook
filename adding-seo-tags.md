@@ -2,7 +2,7 @@
 
 自然搜尋（organic search）是流量的重要來源。要最佳化這一部份，我們有很多小部份需要達成。
 
-其中一個部份，是在每個網頁上面加上不同的 meta tag。這會讓網站的自然搜尋One of such steps is to provide different meta tags for different pages. It will improve your site organic search appearance and may result in better ranking.
+其中一個部份，是在每個網頁上面加上不同的 meta tag。這會提供搜尋引擎一些網頁的資訊，可能會讓網站的自然搜尋表現更好。
 
 以下簡述如何在網站裡面，加上搜尋相關的metadata。
 
