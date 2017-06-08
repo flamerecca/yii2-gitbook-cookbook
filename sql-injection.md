@@ -1,8 +1,10 @@
 # SQL注入攻擊（SQL injection） {#sql-injection}
 
-A SQL injection exploit can modify a database data. Please, always validate all input on the server. The following examples shows how to build parameterized queries:
+SQL注入攻擊會影響整個資料庫的內容。所以一定要驗證從資料庫傳來的指令。 
 
-#### Example \#1: {#example-1}
+下面的例子示範如何透過Yii的函式，建立安全的資料庫指令：
+
+#### 範例 \#1: {#example-1}
 
 ```php
 $user = Yii::$app->db->createCommand('SELECT * FROM user WHERE id = :id')
@@ -10,7 +12,7 @@ $user = Yii::$app->db->createCommand('SELECT * FROM user WHERE id = :id')
            ->queryOne();
 ```
 
-#### Example \#2: {#example-2}
+#### 範例 \#2: {#example-2}
 
 ```php
 $params = [':id' => 123];
@@ -23,7 +25,7 @@ $user  = Yii::$app->db->createCommand('SELECT * FROM user WHERE id = :id', $para
            ->queryOne();
 ```
 
-#### Example \#3: {#example-3}
+#### 範例 \#3: {#example-3}
 
 ```php
 $command = Yii::$app->db->createCommand('SELECT * FROM user WHERE id = :id');
@@ -31,12 +33,11 @@ $command = Yii::$app->db->createCommand('SELECT * FROM user WHERE id = :id');
 $user = $command->bindValue(':id', 123)->queryOne();
 ```
 
-#### Example \#4: Wrong: don't do this! {#example-4-wrong-dont-do-this}
+#### 範例 \#4: 錯誤示範！不要這樣做！ {#example-4-wrong-dont-do-this}
 
 ```php
-// Wrong: don't do this!
+// 錯誤示範！不要這樣做！
 $user = Yii::$app->db->createCommand('SELECT * FROM user WHERE id = ' . $_GET['id'])->queryOne();
-Next  Previous
 ```
 
 
