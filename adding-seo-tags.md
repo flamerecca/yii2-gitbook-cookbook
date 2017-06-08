@@ -25,7 +25,7 @@ $this->title = 'Title from view';
 有預設 title 通常是個好主意，所以可以在layout裡面這樣寫：
 
 ```php
-$this->title = $this->title ? $this->title : '預設 title';
+$this->title = $this->title ? $this->title : '預設標題';
 ```
 
 ## Description 和 Keywords {#description-and-keywords}
