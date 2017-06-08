@@ -74,5 +74,5 @@ $this->registerMetaTag([
 ], 'description');
 ```
 
-這樣的話，前面的 description 會被蓋過，網頁的description 會顯示為「網頁描述二」。
+這樣的話，前面的 description 會被蓋過，網頁的description 會是「網頁描述二」。
 
