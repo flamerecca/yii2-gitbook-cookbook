@@ -60,7 +60,7 @@ $this->registerMetaTag([
 
 所有登記的 meta tag 會在`$this->head()`呼叫時產生。
 
-這邊需要注意的是，如果我們對同一個標籤登記不只一次，那麼每一次登記的內容都會出現在網頁中。舉例來說，如果我們layout裡面登記了一個description，view裡面又登記了一個description，那網頁會出現兩個description。這樣通常對 SEO 不好。要避免這個狀況，我們可以在`registerMetaTag()`的第二個參數，加上對應的key：
+這邊需要注意的是，如果我們對同一個標籤登記不只一次，那麼每一次登記的內容都會出現在網頁中。舉例來說，如果我們layout裡面登記了一個description，view裡面又登記了一個 description，那網頁會出現兩個 description。這樣通常對 SEO 不好。要避免這個狀況，我們可以在`registerMetaTag()`的第二個參數，加上對應的key：
 
 ```php
 $this->registerMetaTag([
@@ -78,7 +78,7 @@ $this->registerMetaTag([
 
 ## 相關資料
 
-* [中文維基-有機搜尋](https://zh.wikipedia.org/wiki/%E6%9C%89%E6%A9%9F%E6%90%9C%E5%B0%8B)
+* [中文維基-有機搜尋](https://zh.wikipedia.org/wiki/有機搜尋)
 
 
 
