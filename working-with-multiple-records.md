@@ -50,7 +50,7 @@ public function actionCreate()
                 ]) && $valid;
 
             if ($valid) {
-                // the model was validated, no need to validate it once more
+                // 模型已經驗證過，所以這邊不再驗證
                 $model->save(false);
 
                 foreach ($modelReferences as $newModel) {
@@ -65,13 +65,15 @@ public function actionCreate()
                     ));
                     $newModel->save(false);
                 }
-
+                
                 $transaction->commit();
                 return $this->redirect(['credit/view', ['id' => $model->id]]);
             } else {
+                //驗證失敗，交易取消
                 $transaction->rollBack();
             }
         } catch (Exception $e) {
+            //出現例外，交易取消
             $transaction->rollBack();
             throw new BadRequestHttpException($e->getMessage(), 0, $e);
         }
@@ -86,18 +88,17 @@ public function actionCreate()
 }
 ```
 
-The steps followed in the example.
+以下說明各個步驟：
 
-1. 檢查輸入是否合法Check if the request can process the petition.
-
+1. 檢查輸入是否合法  
    In this case we are assuming the controller already checked the user credentials using filter and at the action its enough to check if the petition is using the`post`method.
 
-2. 建立模型、輸入使用者資料Create the models and load the user data to them  
-   While there is only one credit, there might be many files and references
+2. 建立模型、輸入使用者資料  
+   雖然只有一筆交易，但是可能影響多個檔案與相關資料
 
 3. 開始交易  
    Its important to start the transaction at this point since some validations like`unique`and`exist`might be necessary so we start the transaction here to avoid \[Reading Phenomena\] \([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Read\_phenomena](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Read_phenomena%29%29.  
-   You should also notice that we created the transaction using`yii\db\Transaction::SERIALIZABLE`which is the highest [isolation level] %28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29\)\]\([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Isolation\_levels\)\)\)\)\)\)\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29%29\)\).
+   You should also notice that we created the transaction using`yii\db\Transaction::SERIALIZABLE`which is the highest [isolation level] %28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29\)\]\([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Isolation\_levels\)\)\)\)\)\)\)\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29%29%29\)\).
 
 4. 驗證模型  
    Its important to validate them all to show the user all the validation errors if necessary. Using an`if`statement like this  
@@ -105,17 +106,17 @@ The steps followed in the example.
    Is simpler to understand but if the first validation fails the second one won't be executed.  
    Also notice that we are not going to validate`credit_id`on the files and references since the credit has not been created yet.
 
-   1. if the validations fail, end the transaction with a`rollBack()`just in case any validation had updated anything  
+   1. 如果驗證失敗， end the transaction with a`rollBack()`just in case any validation had updated anything  
       The action will then render the view and if you are using something like`ActiveForm`the user will see all the validation errors.
 
-5. if the all the validations are successful we proceed to save all the models.  
+5. 如果交易驗證成功，我們就儲存所有相關的模型（model）  
    We will save them without validation since they were already validated and assign the`credit_id`to the files and references after the credit has been saved.
 
-   1. Catch any exception from the validation or saving and execute\`rollBack\(\)  
-      \`For debugging purposes we throw a new exception with the previous one so it can get caught by the Yii2 exception manager.
+   1. Catch any exception from the validation or saving and execute `rollBack()`  
+      For debugging purposes we throw a new exception with the previous one so it can get caught by the Yii2 exception manager.
 
 6. 如果沒有任何例外，就`commit()`改變的部份  
-   之後就執行交易成功後的行為，比方說導向其他頁面或者更新頁面資訊
+   之後就執行交易成功後的行為，比方說導向其他頁面，或者更新頁面資訊。
 
 ## Operations Triggered by Events {#operations-triggered-by-events}
 
