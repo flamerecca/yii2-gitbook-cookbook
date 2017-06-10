@@ -1,8 +1,8 @@
 # 加入搜尋引擎最佳化標籤（Adding SEO tags） {#adding-seo-tags}
 
-自然搜尋（organic search）是流量的重要來源。要最佳化這一部份，我們有很多小部份需要達成。
+自然搜尋（organic search）是流量的重要來源。要最佳化這一部份，我們需要作到很多事情。
 
-其中一個部份，是在每個網頁上面加上不同的 meta tag。這會提供搜尋引擎一些網頁的資訊，可能會讓網站的自然搜尋表現更好。
+其中一個該做的事情，是在每個網頁上面加上不同的 meta tag。這會提供搜尋引擎一些網頁的資訊，可能會讓網站的自然搜尋表現更好。
 
 以下簡述如何在網站裡面，加上搜尋相關的metadata。
 
@@ -20,7 +20,7 @@
 $this->title = 'Title from view';
 ```
 
-> 備註：Setting`$this->title`in layout will override value which is set for concrete view so don't do it.
+> 備註：在layout裡面設置`$this->title`，會蓋過所有的頁面，所以不要這麼做。
 
 有預設 title 通常是個好主意，所以可以在layout裡面這樣寫：
 
@@ -30,7 +30,7 @@ $this->title = $this->title ? $this->title : '預設標題';
 
 ## Description 和 Keywords {#description-and-keywords}
 
-Yii內`keywords`和`description` 沒有對應的參數。因為這兩個在網頁上都是meta標籤，所以我們應該使用`registerMetaTag()`函式。
+Yii 內`keywords`和`description` 沒有對應的參數。因為這兩個在網頁上都是meta標籤，所以我們可以使用`registerMetaTag()`函式。
 
 在控制器（controller）裡面是：
 
