@@ -2,7 +2,7 @@
 
 有時候，使用者一個動作會同時建立或者影響不同表格的紀錄。這一類操作最好要遵守 [ACID](https://en.wikipedia.org/wiki/ACID) （原子性、一致性性、隔離性、持久性）的特性。Yii2 supports transactions, isolation levels, and allow you to validate data independently.
 
-比方說，要開始一場交易，你可能同時需要儲存交易參考資料與檔案For example when creating a credit, you also need to store the credit references and files associated to the credit.
+比方說，要開始一場交易，你可能同時需要儲存交易參考資料與相關檔案。
 
 ```php
 public function actionCreate()
@@ -65,7 +65,7 @@ public function actionCreate()
                     ));
                     $newModel->save(false);
                 }
-                
+
                 $transaction->commit();
                 return $this->redirect(['credit/view', ['id' => $model->id]]);
             } else {
@@ -98,7 +98,7 @@ public function actionCreate()
 
 3. 開始交易  
    Its important to start the transaction at this point since some validations like`unique`and`exist`might be necessary so we start the transaction here to avoid \[Reading Phenomena\] \([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Read\_phenomena](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Read_phenomena%29%29.  
-   You should also notice that we created the transaction using`yii\db\Transaction::SERIALIZABLE`which is the highest [isolation level] %28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29\)\]\([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Isolation\_levels\)\)\)\)\)\)\)\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29%29%29\)\).
+   You should also notice that we created the transaction using`yii\db\Transaction::SERIALIZABLE`which is the highest [isolation level] %28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29%29]%28[https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29%29\)\]\([https://en.wikipedia.org/wiki/Isolation\_\(database\_systems\)\#Isolation\_levels\)\)\)\)\)\)\)\)\](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels%29%29%29%29%29%29%29%29\)\).
 
 4. 驗證模型  
    Its important to validate them all to show the user all the validation errors if necessary. Using an`if`statement like this  
