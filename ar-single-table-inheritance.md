@@ -1,6 +1,6 @@
 # 單一表格繼承（Single table inheritance） {#single-table-inheritance}
 
-There is no native inheritance support in most relational databases so it should be implemented manually if needed. One of approaches to the problem is called[single table inheritance](http://martinfowler.com/eaaCatalog/singleTableInheritance.html), described well by Martin Fowler.
+大部分資料庫沒有處理繼承問題，所以網頁設計需要的時候，就必須要自己製作。其中一個方法是[single table inheritance](http://martinfowler.com/eaaCatalog/singleTableInheritance.html)，described well by Martin Fowler.
 
 According to the pattern in the entity table we add an additional column called`type`that determines which class will be instantiated from a row of data.
 
