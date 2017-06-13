@@ -33,7 +33,7 @@ if ($data === false) {
 
 ## 用於靜態資源的 HTTP 快取 {#http-caching-for-assets-and-other-static-resources}
 
-If expiration not specified for cacheable resources （`.js`、`.css`……等等）a speed of page loading process may be very slow. Such tool as`PageSpeed Insights for Chrome`determines`expiration not specified`problem as **crucial **for yii web page performance. It advices you to`Leverage browser caching`. You can do it by adding only one row to your application asset manager component:
+如果沒有指定靜態資源的過期時間 （像是`.js`、`.css`……等等），網頁存取的速度可能會變得非常慢。`Chrome的 PageSpeed Insights`指定`過期時間未指定`（expiration not specified）是Yii網頁效率的**重要問題。**It advices you to`Leverage browser caching`。You can do it by adding only one row to your application asset manager component:
 
 ```php
 return [
