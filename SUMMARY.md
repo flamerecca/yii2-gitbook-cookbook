@@ -4,7 +4,7 @@
 * [介紹](README.md)
 * [加入搜尋引擎最佳化標籤（Adding SEO tags）](adding-seo-tags.md)
 * [單一表格繼承（Single table inheritance）](ar-single-table-inheritance.md)
-* [Caching](caching.md)
+* [快取（Caching）](caching.md)
 * [Canonical urls](canonical-urls.md)
 * [Cookies](cookies.md)
 * [Csrf](csrf.md)
