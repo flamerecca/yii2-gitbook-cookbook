@@ -18,9 +18,9 @@ $cookie = new Cookie([
 In the above we're passing parameters to cookie class constructor. These basically the same as used with native PHP[setcookie](http://php.net/manual/en/function.setcookie.php)function:
 
 * `name`
-  * name of the cookie.
+  * cookie的名稱
 * `value`
-  * value of the cookie. Make sure it's a string. Browsers typically aren't happy about binary data in cookies.
+  * cookie的值。必須確定是一個字串。如果不是字串，可能會讓瀏覽器不開心。
 * `domain`
   * domain you're setting the cookie for.
 * `expire`
@@ -28,17 +28,13 @@ In the above we're passing parameters to cookie class constructor. These basical
 * `path`
   * the path on the server in which the cookie will be available on.
 * `secure`
-  * if
-    `true`
-    , cookie will be set only if HTTPS is used.
+  * if`true`, cookie will be set only if HTTPS is used.
 * `httpOnly`
-  * if
-    `true`
-    , cookie will not be available via JavaScript.
+  * if`true`, cookie will not be available via JavaScript.
 
-## Reading a cookie {#reading-a-cookie}
+## 取得 cookie {#reading-a-cookie}
 
-In order to read a cookie use the following code:
+取得cookie的程式碼如下：
 
 ```php
 $value = \Yii::$app->getRequest()->getCookies()->getValue('my_cookie');
