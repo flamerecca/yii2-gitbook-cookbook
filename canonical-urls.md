@@ -1,4 +1,4 @@
-# Canonical URLs {#canonical-urls}
+# 偏好網址Canonical URLs {#canonical-urls}
 
 Because of many reasons the same or nearly the same page content often is accessible via multiple URLs. There are valid cases for it such as viewing an article within a category and not so valid ones. For end user it doesn't really matter much but still it could be a problem because of search engines because either you might get wrong URLs preferred or, in the worst case, you might get penalized.
 
