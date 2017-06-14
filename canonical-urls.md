@@ -13,7 +13,7 @@ One way to solve it is to mark one of URLs as a primary or, as it called, canoni
 
 這兩個網址的內容幾乎是一樣的。
 
-Our goal is to mark first one as canonical. Another one would be still accessible to end user. The process of adding SEO meta-tags is descibed in "[adding SEO tags](https://yii2-cookbook.readthedocs.io/adding-seo-tags/)" recipe. Adding`<link rel="canonical"`is very similar. In order to do it from controller action you may use the following code:
+我們的目標是把第一個網址設置成偏好網址。另一個網址還是能讓使用者連結。The process of adding SEO meta-tags is descibed in "[adding SEO tags](https://yii2-cookbook.readthedocs.io/adding-seo-tags/)" recipe. Adding`<link rel="canonical"`is very similar. In order to do it from controller action you may use the following code:
 
 ```php
 \Yii::$app->view->registerLinkTag(['rel' => 'canonical', 'href' => Url::to(['item1'], true)]);
@@ -37,7 +37,7 @@ The line above could be added to layout.`Url::canonical()`generates the tag base
 
 ## 其他資料 {#see-also}
 
-* [Google article about canonical URLs](https://support.google.com/webmasters/answer/139066?hl=zh-Hant)
+* [Google 說明 使用標準網址](https://support.google.com/webmasters/answer/139066?hl=zh-Hant)
   .
 
 
