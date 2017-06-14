@@ -1,14 +1,16 @@
 # 啟用 pretty URLs（Enable pretty URLs） {#enable-pretty-urls}
 
-Sometimes users want to share your site URLs via social networks. For example, by default your\_about page\_URL looks like`http://webproject.ru/index.php?r=site%2Fabout`. Let's imagine this link on Facebook page. Do you want to click on it? Most of users have no idea what is`index.php`and what is`%2`. They trust such link less, so will click less on it. Thus web site owner would lose traffic.
+有時候我們會希望透過社群網站來分享網址。不過，舉例來說，網址可能會長得像`http://webproject.ru/index.php?r=site%2Fabout`。假設這個網址出現在臉書頁面，我們會想點擊嗎？多數使用者並不知道`index.php`和`%2F`是什麼，所以他們不大信任這類網址。這讓他們比較不願意點擊網址，網站就損失了流量。 
 
-URLs such as the following is better:`http://webproject.ru/about`. Every user can understand that it is a clear way to get to_about page_.
+像是`http://webproject.ru/about`這樣的網址就比較好。每個使用者都可以理解，這網址會導向該網站的相關資料（_about page_）。
 
-Let's enable pretty URLs for our Yii project.
+要達成這個目的，我們來啟用Yii專案的 pretty URLs 工具。
 
 ## Apache 伺服器設置 {#apache-web-server-configuration}
 
-If you're using Apache you need an extra step. Inside your`.htaccess`file in your webroot directory or inside location section of your main Apache config add the following lines:
+如果你正在使用 Apache 伺服器，你會需要多一個設定步驟。
+
+在網頁根目錄或者設定檔資料夾的`.htaccess`檔案裡面，加入以下內容： 
 
 ```
 RewriteEngine on
