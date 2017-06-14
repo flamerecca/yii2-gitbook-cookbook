@@ -52,55 +52,20 @@ Cookies are part of HTTP request so it's a good idea to do both in controller wh
 
 Because of security reasons, by default cookies are accessible only on the same domain from which they were set. For example, if you have set a cookie on domain`example.com`, you cannot get it on domain`www.example.com`. So if you're planning to use subdomains \(i.e. admin.example.com, profile.example.com\), you need to set`domain`explicitly:
 
-```
-$cookie
- = 
-new
- Cookie([
-
-'name'
- =
->
-'cookie_monster'
-,
-
-'value'
- =
->
-'Me want cookie everywhere!'
-,
-
-'expire'
- =
->
- time() + 
-86400
- * 
-365
-,
-
-'domain'
- =
->
-'.example.com'
-// 
-<
-<
-<
-=== HERE
-
-]);
-\Yii::
-$app
--
->
-getResponse()-
->
-getCookies()-
->
-add(
-$cookie
-);
+```php
+$config = [
+    // ...
+    'components' => [
+        // ...
+        'session' => [
+            'name' => 'admin_session',
+            'cookieParams' => [
+                'httpOnly' => true,
+                'path' => '/admin',
+            ],
+        ],
+    ],
+];
 ```
 
 Now cookie can be read from all subdomains of`example.com`.
