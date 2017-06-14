@@ -9,7 +9,7 @@
 * [Cookies](cookies.md)
 * [Csrf](csrf.md)
 * [Dependencies](dependencies.md)
-* [Enable pretty urls](enable-pretty-urls.md)
+* [啟用 pretty URLs（Enable pretty URLs）](enable-pretty-urls.md)
 * [Forms activeform js](forms-activeform-js.md)
 * [Forms captcha](forms-captcha.md)
 * [Forms uploading files](forms-uploading-files.md)

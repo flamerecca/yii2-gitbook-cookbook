@@ -4,7 +4,7 @@ Because of many reasons the same or nearly the same page content often is access
 
 One way to solve it is to mark one of URLs as a primary or, as it called, canonical, one you may use`<link rel="canonical"`tag in the page head.
 
-> 備註：這邊假設已經開啟pretty URLs
+> 備註：這邊假設已經[啟用pretty URLs](/enable-pretty-urls.md)
 
 Let's imagine we have two pages with similar or nearly similar content:
 
