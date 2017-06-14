@@ -13,7 +13,7 @@ Because of many reasons the same or nearly the same page content often is access
 
 這兩個網址的內容幾乎是一樣的。
 
-我們的目標是把第一個網址設置成偏好網址。另一個網址還是能讓使用者連結。這邊的程序跟「[加入搜尋引擎最佳化標籤](/adding-seo-tags.md) 」的方式類似。`<link rel="canonical"`is very similar. 
+我們的目標是把第一個網址設置成偏好網址。另一個網址還是能讓使用者連結。這邊的程序跟「[加入搜尋引擎最佳化標籤](/adding-seo-tags.md) 」的方式類似。`<link rel="canonical"`is very similar.
 
 要在控制器（controller）裡面加入，我們使用的程式碼如下：
 
