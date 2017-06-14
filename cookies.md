@@ -64,7 +64,7 @@ $cookie = new Cookie([
 
 Now cookie can be read from all subdomains of`example.com`.
 
-## Cross-subdomain authentication and identity cookies {#cross-subdomain-authentication-and-identity-cookies}
+## 跨子網域身份驗證和身份cookie {#cross-subdomain-authentication-and-identity-cookies}
 
 In case of autologin or "remember me" cookie, the same quirks as in case of subdomain cookies are applying. But this time you need to configure user component, setting`identityCookie`array to desired cookie config.
 
