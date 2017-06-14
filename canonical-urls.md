@@ -6,10 +6,12 @@ One way to solve it is to mark one of URLs as a primary or, as it called, canoni
 
 > 備註：這邊假設已經[啟用pretty URLs](/enable-pretty-urls.md)
 
-Let's imagine we have two pages with similar or nearly similar content:
+現在，假設我們有兩個網址：
 
 * `http://example.com/item1`
 * `http://example.com/item2`
+
+這兩個網址的內容幾乎是一樣的。
 
 Our goal is to mark first one as canonical. Another one would be still accessible to end user. The process of adding SEO meta-tags is descibed in "[adding SEO tags](https://yii2-cookbook.readthedocs.io/adding-seo-tags/)" recipe. Adding`<link rel="canonical"`is very similar. In order to do it from controller action you may use the following code:
 
@@ -35,7 +37,7 @@ The line above could be added to layout.`Url::canonical()`generates the tag base
 
 ## 其他資料 {#see-also}
 
-* [Google article about canonical URLs](https://support.google.com/webmasters/answer/139066?hl=en)
+* [Google article about canonical URLs](https://support.google.com/webmasters/answer/139066?hl=zh-Hant)
   .
 
 
