@@ -1,8 +1,8 @@
-# Managing cookies {#managing-cookies}
+# 處理 cookie {#managing-cookies}
 
-Managing HTTP cookies isn't that hard using plain PHP but Yii makes it a bit more convenient. In this recipe we'll describe how to perform typical cookie actions.
+用純 PHP 處理 HTTP cookie 並不困難。不過 Yii 框架讓這件事情更簡易。 In this recipe we'll describe how to perform typical cookie actions.
 
-## Setting a cookie {#setting-a-cookie}
+## 設置 cookie {#setting-a-cookie}
 
 To set a cookie i.e. to create it and schedule for sending to the browser you need to create new`\yii\web\Cookie`class instance and add it to response cookies collection:
 
