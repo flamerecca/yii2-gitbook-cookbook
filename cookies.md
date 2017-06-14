@@ -6,9 +6,7 @@
 
 ## 設置 cookie {#setting-a-cookie}
 
-To set a cookie i.e. to create it and schedule for sending to the browser
-
-我們建立一個`\yii\web\Cookie`物件，並加入回應cookies 集合：
+要設置 cookie，或者說，要建立一個 cookie 檔案並傳給瀏覽器的話，在 Yii 我們可以建立一個`\yii\web\Cookie`物件，並加入回應cookies 集合：
 
 ```php
 $cookie = new Cookie([
@@ -19,22 +17,22 @@ $cookie = new Cookie([
 \Yii::$app->getResponse()->getCookies()->add($cookie);
 ```
 
-In the above we're passing parameters to cookie class constructor. These basically the same as used with native PHP[setcookie](http://php.net/manual/en/function.setcookie.php)function:
+In the above we're passing parameters to cookie class constructor. 這些參數基本上與 PHP 原本的[setcookie](http://php.net/manual/en/function.setcookie.php) 函式參數相同：
 
 * `name`
   * cookie的名稱
 * `value`
-  * cookie的值。必須確定是一個字串。如果不是字串，可能會讓瀏覽器不開心。
+  * cookie的值。必須確定是一個字串。如果不是字串的話，可能會讓大多瀏覽器不太開心。
 * `domain`
-  * domain you're setting the cookie for.
+  * cookie 的網域
 * `expire`
-  * unix timestamp indicating time when the cookie should be automatically deleted.
+  * unix 時間戳記，標記 cookie 該被刪掉的時間
 * `path`
-  * the path on the server in which the cookie will be available on.
+  * cookie 的伺服器路徑。
 * `secure`
-  * if`true`, cookie will be set only if HTTPS is used.
+  * 設置為`true`的話， cookie 只有在使用 HTTPS 的狀況下才會建立。
 * `httpOnly`
-  * if`true`, cookie will not be available via JavaScript.
+  * 設置為`true`的話，cookie 無法透過 JavaScript存取。
 
 ## 取得 cookie {#reading-a-cookie}
 
@@ -50,7 +48,7 @@ cookie 是 HTTP 請求的一部分，而網頁請求與回應都屬於控制器�
 
 ## 子網域的 cookie {#cookies-for-subdomains}
 
-Because of security reasons, by default cookies are accessible only on the same domain from which they were set. For example, if you have set a cookie on domain`example.com`, you cannot get it on domain`www.example.com`. So if you're planning to use subdomains \(i.e. admin.example.com, profile.example.com\), you need to set`domain`explicitly:
+因為安全性問題，Because of security reasons, by default cookies are accessible only on the same domain from which they were set. 舉例來說，如果你把cookie的網域是`example.com`，那麼`www.example.com`就不能取得這個cookie。So if you're planning to use subdomains \(i.e. admin.example.com, profile.example.com\), you need to set`domain`explicitly:
 
 ```php
 $cookie = new Cookie([
