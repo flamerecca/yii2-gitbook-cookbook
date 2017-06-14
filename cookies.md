@@ -1,10 +1,14 @@
 # 處理 cookie {#managing-cookies}
 
-用純 PHP 處理 HTTP cookie 並不困難。不過 Yii 框架讓這件事情更簡易。 In this recipe we'll describe how to perform typical cookie actions.
+用純 PHP 處理 HTTP cookie 並不困難。不過 Yii 框架讓這件事情更簡易。
+
+下面我們說明如何處理一般的 cookie 行為。
 
 ## 設置 cookie {#setting-a-cookie}
 
-To set a cookie i.e. to create it and schedule for sending to the browser you need to create new`\yii\web\Cookie`class instance and add it to response cookies collection:
+To set a cookie i.e. to create it and schedule for sending to the browser
+
+我們建立一個`\yii\web\Cookie`物件，並加入回應cookies 集合：
 
 ```php
 $cookie = new Cookie([
@@ -42,7 +46,7 @@ $value = \Yii::$app->getRequest()->getCookies()->getValue('my_cookie');
 
 ## 在哪邊設置與取得cookie？ {#where-to-get-and-set-cookies}
 
-Cookies are part of HTTP request so it's a good idea to do both in controller which responsibility is exactly dealing with request and response.
+cookie 是 HTTP 請求的一部分，而網頁請求與回應都屬於控制器（controller）的責任，所以建議把cookie相關的程式碼放在控制器裡面。
 
 ## 子網域的 cookie {#cookies-for-subdomains}
 
