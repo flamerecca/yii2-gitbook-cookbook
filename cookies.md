@@ -53,30 +53,6 @@ Cookies are part of HTTP request so it's a good idea to do both in controller wh
 Because of security reasons, by default cookies are accessible only on the same domain from which they were set. For example, if you have set a cookie on domain`example.com`, you cannot get it on domain`www.example.com`. So if you're planning to use subdomains \(i.e. admin.example.com, profile.example.com\), you need to set`domain`explicitly:
 
 ```php
-$config = [
-    // ...
-    'components' => [
-        // ...
-        'session' => [
-            'name' => 'admin_session',
-            'cookieParams' => [
-                'httpOnly' => true,
-                'path' => '/admin',
-            ],
-        ],
-    ],
-];
-```
-
-Now cookie can be read from all subdomains of`example.com`.
-
-## Cross-subdomain authentication and identity cookies {#cross-subdomain-authentication-and-identity-cookies}
-
-In case of autologin or "remember me" cookie, the same quirks as in case of subdomain cookies are applying. But this time you need to configure user component, setting`identityCookie`array to desired cookie config.
-
-Open you application config file and add`identityCookie`parameters to user component configuration:
-
-```php
 $cookie = new Cookie([
     'name' => 'cookie_monster',
     'value' => 'Me want cookie everywhere!',
@@ -86,13 +62,13 @@ $cookie = new Cookie([
 \Yii::$app->getResponse()->getCookies()->add($cookie);
 ```
 
-Note that`cookieValidationKey`should be the same for all sub-domains.
+Now cookie can be read from all subdomains of`example.com`.
 
-Note that you have to configure the`session::cookieParams`property to have the samedomain as your`user::identityCookie`to ensure the`login`and`logout`work for all subdomains. This behavior is better explained on the next section.
+## Cross-subdomain authentication and identity cookies {#cross-subdomain-authentication-and-identity-cookies}
 
-## Session cookie parameters {#session-cookie-parameters}
+In case of autologin or "remember me" cookie, the same quirks as in case of subdomain cookies are applying. But this time you need to configure user component, setting`identityCookie`array to desired cookie config.
 
-Session cookies parameters are important both if you have a need to maintain session while getting from one subdomain to another or when, in contrary, you host backend app under`/admin`URL and want handle session separately.
+Open you application config file and add`identityCookie`parameters to user component configuration:
 
 ```php
 $config = [
@@ -120,6 +96,30 @@ $config = [
             ],
         ],
 
+    ],
+];
+```
+
+Note that`cookieValidationKey`should be the same for all sub-domains.
+
+Note that you have to configure the`session::cookieParams`property to have the samedomain as your`user::identityCookie`to ensure the`login`and`logout`work for all subdomains. This behavior is better explained on the next section.
+
+## Session cookie 參數 {#session-cookie-parameters}
+
+Session cookies parameters are important both if you have a need to maintain session while getting from one subdomain to another or when, in contrary, you host backend app under`/admin`URL and want handle session separately.
+
+```php
+$config = [
+    // ...
+    'components' => [
+        // ...
+        'session' => [
+            'name' => 'admin_session',
+            'cookieParams' => [
+                'httpOnly' => true,
+                'path' => '/admin',
+            ],
+        ],
     ],
 ];
 ```
