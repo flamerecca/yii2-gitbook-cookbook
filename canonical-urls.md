@@ -1,10 +1,10 @@
-# 偏好網址Canonical URLs {#canonical-urls}
+# 偏好網址（Canonical URLs） {#canonical-urls}
 
 Because of many reasons the same or nearly the same page content often is accessible via multiple URLs. There are valid cases for it such as viewing an article within a category and not so valid ones. For end user it doesn't really matter much but still it could be a problem because of search engines because either you might get wrong URLs preferred or, in the worst case, you might get penalized.
 
 One way to solve it is to mark one of URLs as a primary or, as it called, canonical, one you may use`<link rel="canonical"`tag in the page head.
 
-> Note: In the above we assume that[pretty URLs are enabled](https://yii2-cookbook.readthedocs.io/enable-pretty-urls/).
+> 備註：這邊假設已經開啟pretty URLs
 
 Let's imagine we have two pages with similar or nearly similar content:
 
@@ -19,7 +19,7 @@ Our goal is to mark first one as canonical. Another one would be still accessibl
 
 In order to achieve the same from inside the view do it as follows:
 
-```
+```php
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::to(['item1'], true)]);
 ```
 
@@ -27,7 +27,7 @@ $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::to(['item1'], true)
 
 As an alternative to`Url::to()`you can use`Url::canonical()`such as
 
-```
+```php
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::canonical()]);
 ```
 
