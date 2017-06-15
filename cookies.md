@@ -64,9 +64,9 @@ $cookie = new Cookie([
 
 ## 跨子網域身份驗證和身份cookie {#cross-subdomain-authentication-and-identity-cookies}
 
-In case of autologin or "remember me" cookie, the same quirks as in case of subdomain cookies are applying. But this time you need to configure user component, setting`identityCookie`array to desired cookie config.
+在自動登入或者「記住我」的這種 cookie，the same quirks as in case of subdomain cookies are applying. But this time you need to configure user component, setting`identityCookie`array to desired cookie config.
 
-Open you application config file and add`identityCookie`parameters to user component configuration:
+在 config 檔案裡面的 user 元件裡面，加入 `identityCookie`參數：
 
 ```php
 $config = [
@@ -82,7 +82,7 @@ $config = [
 
                 'name' => '_identity',
                 'httpOnly' => true,
-                'domain' => '.example.com',// <<<=== 這裡！
+                'domain' => '.example.com',// <<<=== 注意這裡！
             ],
         ],
         'request' => [
@@ -90,7 +90,7 @@ $config = [
         ],
         'session' => [
             'cookieParams' => [
-                'domain' => '.example.com',// <<<=== 這裡！
+                'domain' => '.example.com',// <<<=== 注意這裡！
                 'httpOnly' => true,
             ],
         ],
@@ -99,7 +99,7 @@ $config = [
 ];
 ```
 
-Note that`cookieValidationKey`should be the same for all sub-domains.
+注意每個子網域底的 `cookieValidationKey`都應該要相同。
 
 Note that you have to configure the`session::cookieParams`property to have the samedomain as your`user::identityCookie`to ensure the`login`and`logout`work for all subdomains. This behavior is better explained on the next section.
 
