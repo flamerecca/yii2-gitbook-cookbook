@@ -1,4 +1,4 @@
-# Using slugs {#using-slugs}
+# 使用slug（Using slugs） {#using-slugs}
 
 即使使用了 pretty URLs套件，下面這種網址
 

@@ -42,7 +42,7 @@
 * [Urls variable number of parameters](urls-variable-number-of-parameters.md)
 * [Using custom migration template](using-custom-migration-template.md)
 * [使用重新導向（Using redirects）](using-redirects.md)
-* [Using slugs](using-slugs.md)
+* [使用slug（Using slugs）](using-slugs.md)
 * [在第三方程式中使用Yii（Using Yii in third party apps）](using-yii-in-third-party-apps.md)
 * [多筆紀錄的處理（Working With Multiple Records）](working-with-multiple-records.md)
 * [跨網站指令碼（XSS）](xss.md)
