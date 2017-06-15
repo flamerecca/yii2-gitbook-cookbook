@@ -1,6 +1,6 @@
 # 處理 cookie {#managing-cookies}
 
-用純 PHP 處理 HTTP cookie 並不困難。不過 Yii 框架讓這件事情更簡易。
+用純 PHP 處理 HTTP cookie 並不困難。不過 Yii 框架讓這件事情更簡單一些。
 
 下面我們說明如何處理一般的 cookie 行為。
 
@@ -17,7 +17,7 @@ $cookie = new Cookie([
 \Yii::$app->getResponse()->getCookies()->add($cookie);
 ```
 
-In the above we're passing parameters to cookie class constructor. 這些參數基本上與 PHP 原本的[setcookie](http://php.net/manual/en/function.setcookie.php) 函式參數相同：
+上面的程式碼裡面，傳了一些參數給 Yii 的cookie 物件建構子。這些參數基本上與 PHP 原本的[setcookie](http://php.net/manual/en/function.setcookie.php) 函式參數相同：
 
 * `name`
   * cookie的名稱
@@ -48,19 +48,19 @@ cookie 是 HTTP 請求的一部分，而網頁請求與回應都屬於控制器�
 
 ## 子網域的 cookie {#cookies-for-subdomains}
 
-因為安全性問題，Because of security reasons, by default cookies are accessible only on the same domain from which they were set. 舉例來說，如果你把cookie的網域是`example.com`，那麼`www.example.com`就不能取得這個cookie。So if you're planning to use subdomains \(i.e. admin.example.com, profile.example.com\), you need to set`domain`explicitly:
+因為安全性問題，一般cookie只能在同一個網域裡面做存取。舉例來說，如果你把cookie的網域是`example.com`，那麼`www.example.com`就不能取得這個 cookie。所以如果我們需要使用子網域（像是admin.example.com、profile.example.com……） cookie的`domain`要特別設置：
 
 ```php
 $cookie = new Cookie([
     'name' => 'cookie_monster',
     'value' => 'Me want cookie everywhere!',
     'expire' => time() + 86400 * 365,
-    'domain' => '.example.com' // <<<=== HERE
+    'domain' => '.example.com' // <<<=== 這裡！
 ]);
 \Yii::$app->getResponse()->getCookies()->add($cookie);
 ```
 
-Now cookie can be read from all subdomains of`example.com`.
+現在這個 cookie 在所有`example.com`的子網域都會生效了。
 
 ## 跨子網域身份驗證和身份cookie {#cross-subdomain-authentication-and-identity-cookies}
 
@@ -78,10 +78,11 @@ $config = [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
             'loginUrl' => '/user/login',
-            'identityCookie' => [ // <---- here!
+            'identityCookie' => [ // <<<=== 這裡！
+
                 'name' => '_identity',
                 'httpOnly' => true,
-                'domain' => '.example.com',
+                'domain' => '.example.com',// <<<=== 這裡！
             ],
         ],
         'request' => [
@@ -89,7 +90,7 @@ $config = [
         ],
         'session' => [
             'cookieParams' => [
-                'domain' => '.example.com',
+                'domain' => '.example.com',// <<<=== 這裡！
                 'httpOnly' => true,
             ],
         ],
