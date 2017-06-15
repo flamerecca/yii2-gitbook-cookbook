@@ -1,5 +1,6 @@
 # Summary
 
+* [Introduction](readme.md)
 * [介紹](README.md)
 * [加入搜尋引擎最佳化標籤（Adding SEO tags）](adding-seo-tags.md)
 * [單一表格繼承（Single table inheritance）](ar-single-table-inheritance.md)
@@ -40,11 +41,9 @@
 * [Switching themes](switching-themes.md)
 * [Urls variable number of parameters](urls-variable-number-of-parameters.md)
 * [Using custom migration template](using-custom-migration-template.md)
-* [Using redirects](using-redirects.md)
+* [使用重新導向（Using redirects）](using-redirects.md)
 * [Using slugs](using-slugs.md)
 * [在第三方程式中使用Yii（Using Yii in third party apps）](using-yii-in-third-party-apps.md)
 * [多筆紀錄的處理（Working With Multiple Records）](working-with-multiple-records.md)
 * [跨網站指令碼（XSS）](xss.md)
-
-
 
