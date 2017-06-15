@@ -1,10 +1,10 @@
-# Using custom migration template {#using-custom-migration-template}
+# 使用客製化的遷移模板（Using custom migration template） {#using-custom-migration-template}
 
 For many cases it's useful to customize code that's created when you run`./yii migrate/create`. A good example is migrations for MySQL InnoDB where you need to specify engine.
 
-## How to do it {#how-to-do-it}
+## 作法 {#how-to-do-it}
 
-First of all, copy standard template i.e.`framework/views/migration.php`to your app. For example, to`views/migration.php`.
+首先，copy standard template i.e.`framework/views/migration.php`to your app. For example, to`views/migration.php`.
 
 Then customize template:
 
@@ -56,7 +56,7 @@ class <?= $className ?> extends Migration
 
 Now in your console application config, such as`config/console.php`specify new template to use:
 
-```
+```php
 return [
 ...
 
@@ -69,7 +69,6 @@ return [
 
 ...
 ];
-
 ```
 
 That's it. Now`./yii migrate/create`will use your template instead of standard one.
