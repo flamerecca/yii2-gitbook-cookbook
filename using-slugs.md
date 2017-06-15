@@ -1,12 +1,14 @@
 # Using slugs {#using-slugs}
 
-Even when pretty URLs are enabled, these often aren't looking too friendly:
+即使使用了 pretty URLs套件，下面這種網址
 
 ```
 http://example.com/post/42
 ```
 
-Using Yii it doesn't take much time to make URLs look like the following:
+看起來依舊不是很友善。
+
+使用 Yii，不需要很多功夫就可以把網址改成像是：
 
 ```
 http://example.com/post/hello-world
@@ -14,7 +16,7 @@ http://example.com/post/hello-world
 
 ## 準備 {#preparations}
 
-Set up database to use with Yii, create the following table:
+設置好資料庫，並建立以下表格：
 
 ```
 post
@@ -22,14 +24,13 @@ post
 id
 title
 content
-
 ```
 
-Generate`Post`model and CRUD for it using Gii.
+使用 Gii 生成 `Post`模型，與對應的 CRUD 操作。
 
 ## 作法 {#how-to-do-it}
 
-Add`slug`field to`post`table that holds our posts. Then add sluggable behavior to the model:
+在`post`表格裡面加入`slug`欄位。 然後在模型裡面加入 sluggable behavior：
 
 ```php
 <?php
@@ -53,12 +54,11 @@ class Post extends ActiveRecord
 
     // ...
 }
-
 ```
 
-Now when post is created`slug`in database will be automatically filled.
+現在，每當我們建立文章時，資料庫的`slug`欄位也會自動更新。
 
-We need to adjust controller. Add the following method:
+修改控制器（controller）的部份，加入以下函式：
 
 ```php
 protected function findModelBySlug($slug)
@@ -71,7 +71,7 @@ protected function findModelBySlug($slug)
 }
 ```
 
-Now adjust`view`action:
+改變`actionview()`函式：
 
 ```php
 public function actionView($slug)
@@ -82,15 +82,15 @@ public function actionView($slug)
 }
 ```
 
-Now in order to create a link to the post you have to pass slug into it like the following:
+如果要產生連接文章的網址，需要傳遞對應的 slug ：
 
-```
+```php
 echo Url::to(['post/view', 'slug' => $post->slug]);
 ```
 
 ## 標題改變處理 {#handling-title-changes}
 
-There are be multiple strategies to deal with situation when title is changed. One of these is to include ID in the title and use it to find a post.
+有很多方式可以處理標題改變的狀況。其中一種方式是在網址裡面加入文章 ID，並利用 ID 來找文章內容
 
 ```
 http://example.com/post/42/hello-world
