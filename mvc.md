@@ -25,7 +25,8 @@ The model is the most interesting part of the MVC pattern and the most misunders
 
 ActiveRecord classes should not contain any significant business logic. It deserves to be in separate classes which are built according to[SOLID](https://yii2-cookbook.readthedocs.io/solid/)and[Dependency Inversion](https://yii2-cookbook.readthedocs.io/dependencies/). Don't be afraid to create your own classes which are not inherited from anything from the framework.
 
-> 備註： The Model should never deal with formatting i.e. it should not produce any HTML. This is the job of the view layer. Also, same as in the view, it is strictly forbidden to work with any environment, database or user input directly in the view. It should be in controller.
+> 備註：模型不應該處理網頁格式相關的工作，舉例來說，模型不應該產出任何HTML。網頁外觀是視圖的工作。  
+> 另外，視圖也不應該處理與環境、資料庫、用戶輸入等相關的工作。這一些應該是其他地方處理。
 
 
 
