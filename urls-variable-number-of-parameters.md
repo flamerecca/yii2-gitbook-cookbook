@@ -1,10 +1,10 @@
-# URLs with variable number of parameters {#urls-with-variable-number-of-parameters}
+# 可變參數的網址（URLs with variable number of parameters） {#urls-with-variable-number-of-parameters}
 
-There are many cases when you need to get variable number of parameters via URL. For example one may want URLs such as`http://example.com/products/cars/sport`to lead to`ProductController::actionCategory`where it's expected to get an array containing`cars`and`sport`.
+許多時候，我們需要從網址取得的不同數目的參數。舉例來說，從網址`http://example.com/products/cars/sport`裡面，我們可能希望會進入`ProductController::actionCategory`，並得到包含`cars`和`sport的陣列。`
 
 ## 準備 {#get-ready}
 
-First of all, we need to enable pretty URLs. In the application config file add the following:
+首先，我們要啟用 pretty URLs。首先我們在 config 檔裡面加入：
 
 ```php
 $config = [
@@ -19,9 +19,9 @@ $config = [
     ]
 ```
 
-Note that we're including separate file instead of listing rules directly. It is helpful when application grows large.
+注意這邊，我們在`rule`使用分開的 PHP 檔案，而不是直接寫在config檔案裡面。這在程式成長的時候會很有幫助。
 
-Now in`config/urls.php`add the following content:
+然後在`config/urls.php`裡面，加上以下規則：
 
 ```php
 <?php
@@ -32,10 +32,9 @@ return [
         'encodeParams' => false,
     ],
 ];
-
 ```
 
-Create`ProductController`:
+現在建立`ProductController`：
 
 ```php
 namespace app\controllers;
@@ -52,7 +51,7 @@ class ProductController extends Controller
 }
 ```
 
-That's it. Now you can try`http://example.com/products/cars/sport`. 你會得到：
+好了，如果現在你進入`http://example.com/products/cars/sport`，你會得到：
 
 ```
 Array ( [0] => cars [1] => sport)

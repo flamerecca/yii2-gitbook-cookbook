@@ -39,7 +39,7 @@
 * [Structure collections](structure-collections.md)
 * [Structure global functions](structure-global-functions.md)
 * [Switching themes](switching-themes.md)
-* [Urls variable number of parameters](urls-variable-number-of-parameters.md)
+* [可變參數的網址（URLs with variable number of parameters）](urls-variable-number-of-parameters.md)
 * [Using custom migration template](using-custom-migration-template.md)
 * [使用重新導向（Using redirects）](using-redirects.md)
 * [使用slug（Using slugs）](using-slugs.md)
