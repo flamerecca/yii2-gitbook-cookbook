@@ -46,4 +46,5 @@
 * [在第三方程式中使用Yii（Using Yii in third party apps）](using-yii-in-third-party-apps.md)
 * [多筆紀錄的處理（Working With Multiple Records）](working-with-multiple-records.md)
 * [跨網站指令碼（XSS）](xss.md)
+* [處理第三方來的POST](chu-li-di-san-fang-lai-de-post.md)
 
