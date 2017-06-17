@@ -57,7 +57,7 @@ class MyController extends Controller
 }
 ```
 
-詳細資訊可參考 \[處理第三方來的POST\]\(內聯連結\) 請求
+詳細資訊可參考[處理第三方來的POST請求](https://yii2-cookbook.readthedocs.io/incoming-post/)
 
 ## 添加CSRF保護 {#adding-csrf-protection}
 
