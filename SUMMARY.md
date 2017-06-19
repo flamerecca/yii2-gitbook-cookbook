@@ -35,7 +35,7 @@
 * [Solid](solid.md)
 * [SQL注入攻擊（SQL injection）](sql-injection.md)
 * [Structure asset processing with grunt](structure-asset-processing-with-grunt.md)
-* [Structure backend frontend modules](structure-backend-frontend-modules.md)
+* [建構後台前台模組（Structure backend frontend modules）](structure-backend-frontend-modules.md)
 * [實做有型態的集合（Implementing typed collections）](structure-collections.md)
 * [使用全域函式（Using global functions）](structure-global-functions.md)
 * [動態改變佈景（Switching themes dynamically）](switching-themes.md)
