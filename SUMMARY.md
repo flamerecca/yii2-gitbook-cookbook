@@ -36,7 +36,7 @@
 * [SQL注入攻擊（SQL injection）](sql-injection.md)
 * [Structure asset processing with grunt](structure-asset-processing-with-grunt.md)
 * [Structure backend frontend modules](structure-backend-frontend-modules.md)
-* [Structure collections](structure-collections.md)
+* [實做有型態的集合（Implementing typed collections）](structure-collections.md)
 * [使用全域函式（Using global functions）](structure-global-functions.md)
 * [動態改變佈景（Switching themes dynamically）](switching-themes.md)
 * [可變參數的網址（URLs with variable number of parameters）](urls-variable-number-of-parameters.md)

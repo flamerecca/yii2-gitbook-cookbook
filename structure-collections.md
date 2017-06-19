@@ -1,8 +1,8 @@
-# Implementing typed collections {#implementing-typed-collections}
+# 實做有型態的集合（Implementing typed collections） {#implementing-typed-collections}
 
-For stricter type hinting and iterfaces it could be useful to implement typed collections to put your models and other same-typed classes into.
+對嚴格的型態提示（type hinting）以及界面來說，實做一個類別集合（typed collection）來儲存模型以及其他相似類別的物件是很有用的。
 
-As an example, we'll assume we have a`Post`class:
+作為示範，假設我們有個`Post`類別：
 
 ```php
 class Post
@@ -21,7 +21,7 @@ class Post
 }
 ```
 
-A simple typed immutable collection could be implemented like the following:
+現在我們實做一個用來儲存`Post`，簡單的不可變型態集合（typed immutable collection）如下：
 
 ```php
 class PostCollection implements \Countable, \IteratorAggregate
@@ -50,7 +50,7 @@ class PostCollection implements \Countable, \IteratorAggregate
 }
 ```
 
-That's it. Now you can use it like the following:
+好了，現在我們可以使用`PostCollection`如下：
 
 ```php
 $data = [new Post('post1'), new Post('post 2')];
@@ -61,16 +61,18 @@ foreach ($collection as $post) {
 }
 ```
 
-The main pro besides type checking in the constructor is about interfaces. With typed collections you may explicitly require a set of items of a certain class:
+除了建立函式中的類型檢查之外，這種作法的主要好處是在於界面（interface）。使用型態集合，我們可以在界面裡明確的要求一組特定類別：
 
 ```php
 interface FeedGenerator
 {
     public function generateFromPosts(PostsCollection $posts);
 }
+```
 
-//而不是
+而不是
 
+```php
 interface FeedGenerator
 {
     public function generateFromPosts(array $posts);
