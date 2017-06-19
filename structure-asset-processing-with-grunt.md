@@ -6,9 +6,9 @@ Yii 2.0 已經[有相當不錯的資源管理系統](http://www.yiiframework.com
 
 ## 準備 {#get-ready}
 
-We'll start with basic application template. Its installation is [described in official guide](http://www.yiiframework.com/doc-2.0/guide-start-installation.html).
+我們從Yii基本應用開始，安裝方法在[官方教學裡面](http://www.yiiframework.com/doc-2.0/guide-start-installation.html)。
 
-If you haven't [installed Node.js](http://nodejs.org/), do so. After it's done install TypeScript, Grunt and its required plugins by executing the following commands in project root directory:
+如果你還沒[安裝 Node.js](http://nodejs.org/)，必須先安裝。安裝好Node.js過後， 安裝TypeScript、Grunt 以及 相關套件如下：
 
 ```
 npm install -g grunt-cli
@@ -53,18 +53,18 @@ return $config;
 <?= Html::cssFile(YII_DEBUG ? '@web/css/all.css' : '@web/css/all.min.css?v=' . filemtime(Yii::getAlias('@webroot/css/all.min.css'))) ?>
 ```
 
-It adds a link to`http://example.com/css/all.css`in debug mode and a link to`http://example.com/css/all.min.css`with modification time \(cache busting\) in production mode. The file itself will be published by Grunt.
+這會在 debug 模式中加入`http://example.com/css/all.css`，並在正式模式中加入含修改時間（避免 cache）的`http://example.com/css/all.min.css`。這個檔案會被 Grunt 發布出去。
 
-Right before`<?php $this->endBody() ?>`add:
+在`<?php $this->endBody() ?>`前面，加入：
 
 ```php
 <?= Html::jsFile(YII_DEBUG ? '@web/js/lib.js' : '@web/js/lib.min.js?v=' . filemtime(Yii::getAlias('@webroot/js/lib.min.js'))) ?>
 <?= Html::jsFile(YII_DEBUG ? '@web/js/all.js' : '@web/js/all.min.js?v=' . filemtime(Yii::getAlias('@webroot/js/all.min.js'))) ?>
 ```
 
-Same as with CSS, it adds a link for JS that is published via Grunt.
+與前面設定CSS的部份相同，這會加入被Grunt 發布的JS檔案連接。
 
-Now create`Gruntfile.js`in the root of the project. The file describes what grunt will do with your assets:
+現在在根目錄建立`Gruntfile.js`。該檔案設定 grunt 會怎麼處理你的資源：
 
 ```js
 module.exports = function (grunt) {
@@ -180,9 +180,9 @@ module.exports = function (grunt) {
 };
 ```
 
-Now Grunt will look in`assets/js`,`assets/less`and`assets/ts`for clientside source files.
+現在 Grunt 會根據`assets/js`、`assets/less`和`assets/ts`來管理用戶端原始檔。
 
-Create`assets/js/all.json`:
+建立`assets/js/all.json`：
 
 ```js
 [
@@ -194,24 +194,24 @@ Create`assets/js/all.json`:
 ]
 ```
 
-`all.json`lists JavaScript files to process into`lib.js`. In the above we're doing the same things standard Yii asset management does: adding jQuery, bootstrap and Yii's JavaScript.
+`all.json`列出 JavaScript files to process into`lib.js`. 上面 we're doing the same things standard Yii asset management does: adding jQuery, bootstrap and Yii's JavaScript.
 
-Now create`assets/less/all.less`:
+現在建立`assets/less/all.less`：
 
 ```js
 @import "../../vendor/bower/bootstrap/less/bootstrap.less";
 @import "site.less";
 ```
 
-and`assets/less/site.less`. Its content should be copied from`web/css/site.css`.
+和`assets/less/site.less`。 Its content should be copied from`web/css/site.css`。
 
 ## 使用方法 {#how-to-use-it}
 
-* Run`grunt build`to process assets.
-* During development you could run`grunt`and the process will watch for changes and rebuild files necessary.
-* In order to add JavaScript files, put these into`assets/js`and list their names in`assets/js/all.json`.
-* In order to add [LESS files](http://lesscss.org/), put these into`assets/less`and list their names in`assets/less/all.less`.
-* In order to add [TypeScript files](http://www.typescriptlang.org/) just put these into`assets/ts`
+* 運行`grunt build`來處理資源。
+* 開發期間，我們可以運行 `grunt`，程式會監控檔案的改變，並在需要的時候重建檔案。
+* 增加 JavaScript 檔案時，放在`assets/js`，並列入`assets/js/all.json`。
+* 增加 [LESS 檔案](http://lesscss.org/)時，放在`assets/less`，並列入`assets/less/all.less`。
+* 增加 [TypeScript 檔案](http://www.typescriptlang.org/)時，放在`assets/ts`。
   .
 
 
