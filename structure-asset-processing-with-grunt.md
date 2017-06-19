@@ -47,7 +47,6 @@ Edit layout file`views/layouts/main.php`. After`<?= Html::csrfMetaTags() ?>`add:
 
 ```php
 <?= Html::cssFile(YII_DEBUG ? '@web/css/all.css' : '@web/css/all.min.css?v=' . filemtime(Yii::getAlias('@webroot/css/all.min.css'))) ?>
-
 ```
 
 It adds a link to`http://example.com/css/all.css`in debug mode and a link to`http://example.com/css/all.min.css`with modification time \(cache busting\) in production mode. The file itself will be published by Grunt.
@@ -181,7 +180,7 @@ Now Grunt will look in`assets/js`,`assets/less`and`assets/ts`for clientside sour
 
 Create`assets/js/all.json`:
 
-```JSON
+```js
 [
     "vendor/bower/jquery/dist/jquery.js",
     "vendor/bower/bootstrap/dist/js/bootstrap.js",
@@ -189,7 +188,6 @@ Create`assets/js/all.json`:
     "vendor/yiisoft/yii2/assets/yii.validation.js",
     "vendor/yiisoft/yii2/assets/yii.activeForm.js"
 ]
-
 ```
 
 `all.json`lists JavaScript files to process into`lib.js`. In the above we're doing the same things standard Yii asset management does: adding jQuery, bootstrap and Yii's JavaScript.
@@ -204,7 +202,6 @@ Now create`assets/less/all.less`:
 @import
 "site.less"
 ;
-
 ```
 
 and`assets/less/site.less`. Its content should be copied from`web/css/site.css`.
