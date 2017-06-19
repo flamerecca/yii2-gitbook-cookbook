@@ -4,7 +4,7 @@ Although it looks like a weird idea at the first glance, using just functions in
 
 ## 作法 {#how-to-do-it}
 
-First of all, create a file that will contain functions. Let it be`functions.php`right in the root of the application. In order to be used it should in`require`d. The best place to do it is`index.php`:
+首先，建立儲存函式的檔案。假設是 create a file that will contain functions. Let it be`functions.php`right in the root of the application. In order to be used it should in`require`d. The best place to do it is`index.php`:
 
 ```php
 // ...
