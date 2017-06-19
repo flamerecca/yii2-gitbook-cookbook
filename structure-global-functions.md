@@ -18,7 +18,7 @@ require(__DIR__ . '/../functions.php');
 $app->run();
 ```
 
-Note that we're requiring it after including config and creating application instance. That allows you to use config and application which is needed for many functions.
+注意我們這裡是在 config 檔以及應用建立之後才宣告`require` 這允許我們在函式裡面使用config以及Yii裡面的函式。
 
 另外，你也可以加在`composer.json`：
 
@@ -30,7 +30,7 @@ Note that we're requiring it after including config and creating application ins
 },
 ```
 
-Note that after add this section you need run`composer update`。
+增加這段之後，記得要執行`composer update`，程式才會生效。
 
 ## 函式的點子 {#function-ideas}
 
