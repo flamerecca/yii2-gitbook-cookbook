@@ -1,10 +1,12 @@
 # 使用 Grunt 進行資源管理（Asset processing with Grunt） {#asset-processing-with-grunt}
 
-Yii 2.0 已經[有相當不錯的資源管理系統](http://www.yiiframework.com/doc-2.0/guide-structure-assets.html)。他可以處理發布，映射，格式轉換，組合和壓縮。 還算不錯，但是如果我們正在和前端團隊合作，而我們對於資源管理的需求可能超過 Yii 可以處理的情況，這時候將資源管理交給[ Grunt](http://gruntjs.com/) 是個好方法。因為 Grunt 有許多成熟的套件，可以滿足我們在客戶端開發上幾乎所有想到的需求。
+Yii 2.0 已經[有相當不錯的資源管理系統](http://www.yiiframework.com/doc-2.0/guide-structure-assets.html)。他可以處理發布，映射（mapping），格式轉換，組合和壓縮。 還算不錯，但是如果我們正在和前端團隊合作，而我們對於資源管理的需求可能超過 Yii 可以處理的情況。
+
+這時候，將資源管理交給[ Grunt](http://gruntjs.com/) 是個好方法。因為 Grunt 有許多成熟的套件，可以滿足我們在客戶端開發上幾乎所有想到的需求。
 
 ## 準備 {#get-ready}
 
-We'll start with basic application template. Its installation is[described in official guide](http://www.yiiframework.com/doc-2.0/guide-start-installation.html).
+We'll start with basic application template. Its installation is [described in official guide](http://www.yiiframework.com/doc-2.0/guide-start-installation.html).
 
 If you haven't [installed Node.js](http://nodejs.org/), do so. After it's done install TypeScript, Grunt and its required plugins by executing the following commands in project root directory:
 
@@ -23,7 +25,7 @@ npm install grunt-typescript --save-dev
 
 ## 作法 {#how-to-do-it}
 
-First of all, turn off built in Yii asset management via editing`config/web.php`:
+首先，關閉 Yii 內建的資源管理，我們修改`config/web.php`如下：
 
 ```php
 $params = require(__DIR__ . '/params.php');
@@ -43,7 +45,9 @@ $config = [
 return $config;
 ```
 
-Edit layout file`views/layouts/main.php`. After`<?= Html::csrfMetaTags() ?>`add:
+再來修改`views/layouts/main.php`。
+
+在`<?= Html::csrfMetaTags() ?>`後面加上：
 
 ```php
 <?= Html::cssFile(YII_DEBUG ? '@web/css/all.css' : '@web/css/all.min.css?v=' . filemtime(Yii::getAlias('@webroot/css/all.min.css'))) ?>
