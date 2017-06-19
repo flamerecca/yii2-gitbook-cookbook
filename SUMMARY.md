@@ -40,7 +40,7 @@
 * [Structure global functions](structure-global-functions.md)
 * [Switching themes](switching-themes.md)
 * [可變參數的網址（URLs with variable number of parameters）](urls-variable-number-of-parameters.md)
-* [Using custom migration template](using-custom-migration-template.md)
+* [使用客製化的遷移模板（Using custom migration template）](using-custom-migration-template.md)
 * [使用重新導向（Using redirects）](using-redirects.md)
 * [使用slug（Using slugs）](using-slugs.md)
 * [在第三方程式中使用Yii（Using Yii in third party apps）](using-yii-in-third-party-apps.md)
