@@ -1,10 +1,10 @@
 # 使用全域函式（Using global functions） {#using-global-functions}
 
-Although it looks like a weird idea at the first glance, using just functions in PHP is actually nice. Code looks much shorter and, with a good naming choices, much simpler.
+雖然乍看之下不是個好主意，但是在 PHP 宣告一些全域函式其實是好事。程式碼會變短，而且如果函式命名的好，會更簡潔易懂。
 
 ## 作法 {#how-to-do-it}
 
-首先，建立儲存函式的檔案。假設是 create a file that will contain functions. Let it be`functions.php`right in the root of the application. In order to be used it should in`require`d. The best place to do it is`index.php`:
+首先，建立儲存函式的檔案。假設是在根資料夾的`functions.php`。我們必須要將這個檔案被`require`。 最適合的地方是在`index.php`：
 
 ```php
 // ...
@@ -20,7 +20,7 @@ $app->run();
 
 Note that we're requiring it after including config and creating application instance. That allows you to use config and application which is needed for many functions.
 
-Also you can do it in`composer.json`:
+另外，你也可以加在`composer.json`：
 
 ```php
 "autoload": {
@@ -30,7 +30,7 @@ Also you can do it in`composer.json`:
 },
 ```
 
-Note that after add this section you need run`composer update`.
+Note that after add this section you need run`composer update`。
 
 ## 函式的點子 {#function-ideas}
 
