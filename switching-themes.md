@@ -32,7 +32,9 @@ public function actionIndex()
 }
 ```
 
-如果`themed`GET 參數we're configuring current a theme which takes view templates from`themes/basic`directory。現在我們在`themes/basic/site/index.php`裡面，加入自己的佈景樣板：
+如果`themed`GET 參數設置了，那佈景的資料夾就會從原本的資料夾改成`themes/basic`。
+
+現在我們在`themes/basic/site/index.php`裡面，加入自己的佈景樣板：
 
 ```
 Hello, I'm a custom theme!
