@@ -194,7 +194,7 @@ module.exports = function (grunt) {
 ]
 ```
 
-`all.json`列出 JavaScript files to process into`lib.js`. 上面 we're doing the same things standard Yii asset management does: adding jQuery, bootstrap and Yii's JavaScript.
+`all.json`列出要處理進`lib.js`的JavaScript 檔案。上面的程式碼做的事情與一般的 Yii 資源管理相同：加入 jQuery、bootstrap、和 Yii 本身的 JavaScript。
 
 現在建立`assets/less/all.less`：
 
@@ -203,7 +203,7 @@ module.exports = function (grunt) {
 @import "site.less";
 ```
 
-和`assets/less/site.less`。 Its content should be copied from`web/css/site.css`。
+以及建立`assets/less/site.less`。 `site.less`的內容應該從`web/css/site.css`複製過來。
 
 ## 使用方法 {#how-to-use-it}
 
