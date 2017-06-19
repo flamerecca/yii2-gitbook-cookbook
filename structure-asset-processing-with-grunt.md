@@ -194,14 +194,9 @@ Create`assets/js/all.json`:
 
 Now create`assets/less/all.less`:
 
-```
-@import
-"../../vendor/bower/bootstrap/less/bootstrap.less"
-;
-
-@import
-"site.less"
-;
+```LESS
+@import "../../vendor/bower/bootstrap/less/bootstrap.less";
+@import "site.less";
 ```
 
 and`assets/less/site.less`. Its content should be copied from`web/css/site.css`.
