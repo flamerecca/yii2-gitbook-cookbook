@@ -1,8 +1,8 @@
 ===========================================
 
-https://github.com/yiisoft/yii2/issues/3647
+[https://github.com/yiisoft/yii2/issues/3647](https://github.com/yiisoft/yii2/issues/3647)
 
-By default Yii comes with advanced application template that allows you to properly structure backend and frontend. It's a good way to deal with the problem except when you want to redistribute parts of your application. In this case a better way is to use modules.
+By default Yii 預設已有進階模組，可以建立後台與前台系統。一般來說這是後台系統需求的好解法。除非你需要重新分配你的部份檔案配置。在這種狀況下，使用模組會是一個很好的解決辦法。
 
 ## 資料夾結構 {#directory-structure}
 
@@ -22,12 +22,14 @@ frontend
 
 ## 命名空間 {#namespaces}
 
-Root namespace is the same as in any extension i.e.`samdark\blog`\(PSR-4 record required in`composer.json`\). Common stuff is under`samdark\blog\common`. Backend module is`samdark\blog\backend\Module`, frontend module is`samdark\blog\frontend\Module`.
+命名空間的位置與其他擴充相同。
+
+以`samdark\blog`為例（需要在`composer.json`裡面有PSR-4 紀錄）共用的檔案位於`samdark\blog\common`。後台模組位於`samdark\blog\backend\Module`，前台模組則位於`samdark\blog\frontend\Module`。
 
 ## 使用 {#using-it}
 
-* Install via Composer.
-* In your application config use modules:
+* 透過 composer 安裝
+* 在 config 裡面使用以下模組：
 
 ```php
 'modules' => [
@@ -41,12 +43,11 @@ Root namespace is the same as in any extension i.e.`samdark\blog`\(PSR-4 record 
 ]
 ```
 
-* Access via browser:
+* 透過瀏覽器使用：
 
 ```
 http://example.com/blog-frontend/post/view?id=10
 http://example.com/blog-backend/user/index
-
 ```
 
 
