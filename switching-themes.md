@@ -1,6 +1,6 @@
 # 動態改變佈景（Switching themes dynamically） {#switching-themes-dynamically}
 
-View themes are useful for overriding extension views and making special view versions.[Official Yii guide](http://www.yiiframework.com/doc-2.0/guide-output-theming.html)describes static usage and configuration of views well so in this recipe we'll learn how to switch themes dynamically.
+View themes are useful for overriding extension views and making special view versions.[Yii 官方教學](http://www.yiiframework.com/doc-2.0/guide-output-theming.html) 已經指導我們怎麼在靜態網頁裡面設置佈景。這邊我們指導如何動態的改變佈景。
 
 ## 準備 {#preparations}
 
@@ -8,11 +8,11 @@ View themes are useful for overriding extension views and making special view ve
 
 ## 目標 {#the-goal}
 
-For simplicity, let's switch theme based on a GET parameter i.e.`themed=1`.
+為求簡化，這裡我們使用 GET 參數來改變佈景，像是 `themed=1`。
 
 ## 作法 {#how-to-do-it}
 
-Theme could be switched at any moment before view template is rendered. For clarity sake let's do it right in index action of`controllers/SiteController.php`:
+只要在 render 樣板之前，我們可以在任何時間點改變佈景。為求清楚，我們這裡在`controllers/SiteController.php`的action裡面做修改：
 
 ```php
 public function actionIndex()
@@ -30,7 +30,7 @@ public function actionIndex()
 }
 ```
 
-If there's a`themed`GET parameter we're configuring current a theme which takes view templates from`themes/basic`directory. Let's add customized template itself in`themes/basic/site/index.php`:
+If there's a`themed`GET parameter we're configuring current a theme which takes view templates from`themes/basic`directory。現在我們在`themes/basic/site/index.php`裡面加入自己的佈景樣板：
 
 ```
 Hello, I'm a custom theme!
