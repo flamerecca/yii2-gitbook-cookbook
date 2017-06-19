@@ -1,12 +1,12 @@
-# Asset processing with Grunt {#asset-processing-with-grunt}
+# 使用 Grunt 進行資源管理（Asset processing with Grunt） {#asset-processing-with-grunt}
 
-Yii 2.0 has[pretty good asset management out of the box](http://www.yiiframework.com/doc-2.0/guide-structure-assets.html). It can handle publishing, mapping, format conversion, combining and compression. So far so good but if you're working with frontend team of your asset processing goes slightly beyond what Yii is capable of, it's a good idea to delegate the job to[Grunt](http://gruntjs.com/)which has lots of extensions capable of what Yii can do plus anything you can imagine about clientside development.
+Yii 2.0 已經[有相當不錯的資源管理系統](http://www.yiiframework.com/doc-2.0/guide-structure-assets.html)。他可以處理發布，映射，格式轉換，組合和壓縮。 還算不錯，但是如果我們正在和前端團隊合作，而我們對於資源管理的需求可能超過 Yii 可以處理的情況，這時候將資源管理交給[ Grunt](http://gruntjs.com/) 是個好方法。因為 Grunt 有許多成熟的套件，可以滿足我們在客戶端開發上幾乎所有想到的需求。
 
-## Get ready {#get-ready}
+## 準備 {#get-ready}
 
 We'll start with basic application template. Its installation is[described in official guide](http://www.yiiframework.com/doc-2.0/guide-start-installation.html).
 
-If you haven't[installed Node.js](http://nodejs.org/), do so. After it's done install TypeScript, Grunt and its required plugins by executing the following commands in project root directory:
+If you haven't [installed Node.js](http://nodejs.org/), do so. After it's done install TypeScript, Grunt and its required plugins by executing the following commands in project root directory:
 
 ```
 npm install -g grunt-cli
@@ -21,7 +21,7 @@ npm install typescript --save-dev
 npm install grunt-typescript --save-dev
 ```
 
-## How to do it... {#how-to-do-it}
+## 作法 {#how-to-do-it}
 
 First of all, turn off built in Yii asset management via editing`config/web.php`:
 
@@ -201,30 +201,13 @@ Now create`assets/less/all.less`:
 
 and`assets/less/site.less`. Its content should be copied from`web/css/site.css`.
 
-## How to use it {#how-to-use-it}
+## 使用方法 {#how-to-use-it}
 
-* Run
-  `grunt build`
-  to process assets.
-* During development you could run
-  `grunt`
-  and the process will watch for changes and rebuild files necessary.
-* In order to add JavaScript files, put these into
-  `assets/js`
-  and list their names in
-  `assets/js/all.json`
-  .
-* In order to add
-  [LESS files](http://lesscss.org/)
-  , put these into
-  `assets/less`
-  and list their names in
-  `assets/less/all.less`
-  .
-* In order to add
-  [TypeScript files](http://www.typescriptlang.org/)
-  just put these into
-  `assets/ts`
+* Run`grunt build`to process assets.
+* During development you could run`grunt`and the process will watch for changes and rebuild files necessary.
+* In order to add JavaScript files, put these into`assets/js`and list their names in`assets/js/all.json`.
+* In order to add [LESS files](http://lesscss.org/), put these into`assets/less`and list their names in`assets/less/all.less`.
+* In order to add [TypeScript files](http://www.typescriptlang.org/) just put these into`assets/ts`
   .
 
 
