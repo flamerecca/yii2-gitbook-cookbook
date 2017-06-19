@@ -194,7 +194,7 @@ Create`assets/js/all.json`:
 
 Now create`assets/less/all.less`:
 
-```LESS
+```js
 @import "../../vendor/bower/bootstrap/less/bootstrap.less";
 @import "site.less";
 ```
