@@ -1,29 +1,39 @@
-# MVC {#mvc}
+# MVC 模式（MVC） {#mvc}
 
-If you've been working in web development you've most probably heard of the term "MVC" and know that it refers to "Model", "View", and "Controller". The "MVC" software pattern was introduced in the nineties to explain the principles of building desktop applications. In particular to describe how a user interface interacts with a program and its underlying data. Later it was adjusted and adapted by web developers and has become a core foundation of many popular web frameworks including PHP frameworks. The name of a new pattern is still "MVC" and is often causing confusion.
+如果你曾經開發網頁，你可能聽過「MVC」這個詞，也知道模型（Model）、視圖（View）和控制器（Controller）的意思。 MVC 軟體開發模式在九十年代出現，用來解釋桌面應用的一些開發原則，特別是用來說明使用者介面如何與程式和底層的資料進行互動。
 
-A key issue for beginners with MVC is that despite its simplicity, it's not always easy to identify what a "Model", "View", and "Controller" really mean. Let's find out by starting with the simplest one.
+一段時間過後，網頁開發者修改並接納這個原則，MVC 模式變成許多網頁框架，包括 PHP 框架的基礎。新的模式也稱為「MVC」，有時候會造成一些誤會。
+
+對初學者來說，一個關鍵問題是雖然 MVC 模式非常簡潔，但是分辨模型、視圖、控制器的意義有時候並不容易。我們從最簡單的控制器來說明。
 
 ## 控制器（Controller） {#controller}
 
-The role of the controller is to accept input and convert it to commands for the model or view. Essentially the controller works with external data and environment such as:
+控制器的角色，是接收使用者的輸入資訊，並轉換成對模型或者視圖的命令。
 
-* GET, POST and other requests in web
-* user input in console
+基本上，控制器處理來自外部以及環境的資訊，比如：
+
+* GET、POST 和其他來自網路的請求
+* 使用者輸入
 
 ## 視圖（View） {#view}
 
-The view layer processes and formats data from the controller before sending it to the user. It generates HTML, JSON, or whatever format is needed.
+視圖處理從控制器送來的資料，並處理其格式之後再傳給使用者。它一般會產生 HTML、JSON 或者任何需要的格式。
 
-> 備註： It is strictly forbidden to work with any environment, database or user input directly in the view. It should be in controller.
+> 備註： 視圖不應該處理任何環境資訊以及使用者輸入的資料。這一些應該是控制器的責任。
 
 ## 模型（Model） {#model}
 
-The model is the most interesting part of the MVC pattern and the most misunderstood one. A MVC model is often confused with the Yii Model class and even Active Record. These are not the same thing. The MVC model is not a single class, it's the whole domain layer \(also called the problem layer or application logic\). Given data from the controller it's doing actual work of the application and passing results back to controller.
+模型是 MVC 模式裡面最有趣，也是最常被誤解的部份。MVC 的模型常常被誤解為 Yii 的模型，甚至是 Yii 的 ActiveRecord 類別。
+
+這三者是完全不一樣的東西。
+
+MVC 模式所說的模型，並不只是單一類別（class）的物件，而是像控制器以及視圖，是一整個領域的類別。模型有時候也被稱為問題層（problem layer）或者應用邏輯層（application logic）。
+
+模型的角色，應該是從控制器取得命令之後，處理相關的邏輯，並將結果傳回給控制器。
 
 > 備註：模型是有可能完全與資料庫無關的。
 
-ActiveRecord classes should not contain any significant business logic. It deserves to be in separate classes which are built according to[SOLID](https://yii2-cookbook.readthedocs.io/solid/)and[Dependency Inversion](https://yii2-cookbook.readthedocs.io/dependencies/). Don't be afraid to create your own classes which are not inherited from anything from the framework.
+ActiveRecord 類別不應該包含業務邏輯。根據 [SOLID 原則](/solid.md)以及[依賴反轉原則](/dependencies.md)，業務邏輯應該放在獨立的類別裡面。雖然 Gii 工具可以輕鬆的建立模型物件，但是不用害怕建立自己客製化，沒有從框架繼承任何東西的模型類別。
 
 > 備註：模型不應該處理網頁格式相關的工作，舉例來說，模型不應該產出任何HTML。網頁外觀是視圖的工作。  
 > 另外，視圖也不應該處理與環境、資料庫、用戶輸入等相關的工作。這一些應該是其他地方處理。

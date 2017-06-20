@@ -21,7 +21,7 @@
 * [Ide autocompletion](ide-autocompletion.md)
 * [Incoming post](incoming-post.md)
 * [Logging problems and solutions](logging-problems-and-solutions.md)
-* [Mvc](mvc.md)
+* [MVC 模式（MVC）](mvc.md)
 * [Pagination pretty urls](pagination-pretty-urls.md)
 * [Performance cron](performance-cron.md)
 * [Performance hhvm](performance-hhvm.md)

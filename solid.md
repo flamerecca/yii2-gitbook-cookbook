@@ -4,11 +4,11 @@
 
 這些原則為：
 
-* [單一功能](https://yii2-cookbook.readthedocs.io/solid/#single-responsibility)（Single responsibility）
-* [開閉原則](https://yii2-cookbook.readthedocs.io/solid/#open-closed)（Open-closed）
-* [里氏替換](https://yii2-cookbook.readthedocs.io/solid/#liskov-substitution)（Liskov substitution）
-* [介面隔離](https://yii2-cookbook.readthedocs.io/solid/#interface-segregation)（Interface segregation）
-* [依賴反轉](https://yii2-cookbook.readthedocs.io/solid/#dependency-inversion)（Dependency inversion）
+* [單一功能](#single-responsibility)（Single responsibility）
+* [開閉原則](#open-closed)（Open-closed）
+* [里氏替換](#liskov-substitution)（Liskov substitution）
+* [介面隔離](#interface-segregation)（Interface segregation）
+* [依賴反轉](#dependency-inversion)（Dependency inversion）
 
 我們來看看這些原則的意義。
 
@@ -35,7 +35,7 @@
 
 ## 介面隔離 {#interface-segregation}
 
-介面隔離原則（interface segregation principles， ISP） points that an interface should not define more functionality that is actually used at the same time. 這有點像是給介面的單一功能原則。
+介面隔離原則（interface segregation principles， ISP）指出，一個介面不應該定義太多功能，讓使用該介面的類別強迫接受這一些功能。這有點像是給介面的單一功能原則。
 
 換個說法，如果一個介面有很多任務，應該拆解成多個更簡潔的小介面。
 
