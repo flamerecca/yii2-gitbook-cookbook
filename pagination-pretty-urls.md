@@ -8,7 +8,7 @@ For example we have a page with such URL`http://example.com/schools/schoolTitle`
 
 In the application config file we have:
 
-```
+```php
 $config = [
     // ...
     'components' => [
@@ -33,13 +33,13 @@ When we click on pagination link our URL is transformed to`http://example.com/sc
 
 Let's add new urlManager rule **higher than **existed rule. Here it is:
 
-```
+```php
 $config = [
         // ...
         'urlManager' => [
             // ...
             'rules' => [
-              'schools/<title:\w+>/<page:\d+>' => 'site/schools', // new rule
+              'schools/<title:\w+>/<page:\d+>' => 'site/schools', // 新規則
               'schools/<title:\w+>' => 'site/schools',
             ],
         ],
