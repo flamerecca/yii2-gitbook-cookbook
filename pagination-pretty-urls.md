@@ -2,11 +2,11 @@
 
 For example we can render our site content by GridView. If there are a lot of content rows we use pagination. And it is necessary to provide GET request for every pagination page. Thus search crawlers can index our content. We also need our URLs to be pretty. Let's do it.
 
-## Initial state {#initial-state}
+## 初始狀態 {#initial-state}
 
-For example we have a page with such URL`http://example.com/schools/schoolTitle`. Parameter`schoolTitle`is a`title`parameter for our request. For details see[this recipe](https://github.com/samdark/yii2-cookbook/blob/master/book/urls-variable-number-of-parameters.md).
+假設我們最開始的網址是`http://example.com/schools/schoolTitle`。`schoolTitle`是程式碼`title`參數的輸入資料。這個作法的細節可以參考[這邊](/urls-variable-number-of-parameters.md)。
 
-In the application config file we have:
+在 Yii config 檔裡面：
 
 ```php
 $config = [
@@ -25,13 +25,13 @@ $config = [
     // ...
 ```
 
-We decided to add a GridView on the page`http://example.com/schools/schoolTitle`.
+We decided to add a on the page`http://example.com/schools/schoolTitle`加上 GridView。
 
 ## pretty URLs 分頁 {#pagination-pretty-urls_1}
 
-When we click on pagination link our URL is transformed to`http://example.com/schools/schoolTitle?page=2`. We want our pagination link looks like`http://example.com/schools/schoolTitle/2`.
+上面完成之後，當我們點擊下一頁的網址，會長得像是`http://example.com/schools/schoolTitle?page=2`。我們希望分頁網址長得像是`http://example.com/schools/schoolTitle/2`。
 
-Let's add new urlManager rule **higher than **existed rule. Here it is:
+所以我們再加入一條 urlManager 規則，這規則要比原先的規則**權限更高**，如下：
 
 ```php
 $config = [
