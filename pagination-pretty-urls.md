@@ -29,7 +29,7 @@ $config = [
 
 ## pretty URLs 分頁 {#pagination-pretty-urls_1}
 
-上面完成之後，當我們點擊下一頁的網址，會長得像是`http://example.com/schools/schoolTitle?page=2`。我們希望分頁網址長得像是`http://example.com/schools/schoolTitle/2`。
+完成分頁功能之後，當我們點擊下一頁的網址，會長得像是`http://example.com/schools/schoolTitle?page=2`。我們希望分頁網址長得像是`http://example.com/schools/schoolTitle/2`。
 
 所以我們再加入一條 urlManager 規則，這規則要比原先的規則**權限更高**，如下：
 
