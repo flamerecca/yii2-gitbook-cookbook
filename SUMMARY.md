@@ -32,7 +32,7 @@
 * [Reusing views via partials](reusing-views-via-partials.md)
 * [Scaling](scaling.md)
 * [Security rbac](security-rbac.md)
-* [Solid](solid.md)
+* [SOLID 原則（SOLID）](solid.md)
 * [SQL注入攻擊（SQL injection）](sql-injection.md)
 * [使用 Grunt 進行資源管理（Asset processing with Grunt）](structure-asset-processing-with-grunt.md)
 * [建構後台前台模組（Structure backend frontend modules）](structure-backend-frontend-modules.md)
