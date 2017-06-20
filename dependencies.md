@@ -1,8 +1,8 @@
 # 依賴（Dependencies） {#dependencies}
 
-Class A depends on class B when B is used within A i.e. when B is required for A to function.
+當類別A裡面使用到類別B，像是A裡面的某個函式必須用到類別B時，我們說類別 A 依賴類別 B。
 
-## Bad and good dependencies {#bad-and-good-dependencies}
+## 好的與壞的依賴關係 {#bad-and-good-dependencies}
 
 There are two metrics of dependencies:
 
@@ -13,7 +13,7 @@ Cohesion means dependency on a class with related functionality.
 
 Coupling means dependency on a class with not really related functionality.
 
-It's preferrable to have high cohesion and low coupling. That means you should get related functionality together into a group of classes usually called a module \(which is_not_Yii module and not an actual class, just a logical boundary\). Within that module it's a good idea not to over-abstract things and use interconnected classes directly. As for classes which aren't part of the module's purpose but are used by the module, such as general purpose utilities, these should not be used directly but through interface. Via this interface module states what is needed for it to function and from this point it doesn't care how these dependencies are satisfied.
+It's preferrable to have high cohesion and low coupling. That means you should get related functionality together into a group of classes usually called a module \(which is\_not\_Yii module and not an actual class, just a logical boundary\). Within that module it's a good idea not to over-abstract things and use interconnected classes directly. As for classes which aren't part of the module's purpose but are used by the module, such as general purpose utilities, these should not be used directly but through interface. Via this interface module states what is needed for it to function and from this point it doesn't care how these dependencies are satisfied.
 
 ## Achieving low coupling {#achieving-low-coupling}
 
@@ -36,5 +36,5 @@ Additionally, lots of dependencies, such as certain third party API wrapper, are
 
 That's what dependency containers are for.
 
-See[official guide](http://www.yiiframework.com/doc-2.0/guide-concept-di-container.html)for more information about Yii's dependency container.
+See [official guide](http://www.yiiframework.com/doc-2.0/guide-concept-di-container.html) for more information about Yii's dependency container.
 
