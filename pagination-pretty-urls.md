@@ -1,4 +1,4 @@
-# Pagination pretty URLs {#pagination-pretty-urls}
+# pretty URLs 分頁（Pagination pretty URLs） {#pagination-pretty-urls}
 
 For example we can render our site content by GridView. If there are a lot of content rows we use pagination. And it is necessary to provide GET request for every pagination page. Thus search crawlers can index our content. We also need our URLs to be pretty. Let's do it.
 
@@ -27,7 +27,7 @@ $config = [
 
 We decided to add a GridView on the page`http://example.com/schools/schoolTitle`.
 
-## Pagination pretty URLs {#pagination-pretty-urls_1}
+## pretty URLs 分頁 {#pagination-pretty-urls_1}
 
 When we click on pagination link our URL is transformed to`http://example.com/schools/schoolTitle?page=2`. We want our pagination link looks like`http://example.com/schools/schoolTitle/2`.
 

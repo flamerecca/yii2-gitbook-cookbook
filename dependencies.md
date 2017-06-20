@@ -4,24 +4,32 @@
 
 ## 好的與壞的依賴關係 {#bad-and-good-dependencies}
 
-There are two metrics of dependencies:
+依賴關係有兩種度量方向：
 
-* Cohesion.
-* Coupling.
+* 內聚（cohesion）
+* 耦合（coupling）
 
-Cohesion means dependency on a class with related functionality.
+簡單的說，內聚代表功能相關的類別互相依賴的程度。
 
-Coupling means dependency on a class with not really related functionality.
+耦合與內聚的觀念是相對的，代表功能並不相關的類別或模組之間互相依賴的程度。
 
-It's preferrable to have high cohesion and low coupling. That means you should get related functionality together into a group of classes usually called a module \(which is\_not\_Yii module and not an actual class, just a logical boundary\). Within that module it's a good idea not to over-abstract things and use interconnected classes directly. As for classes which aren't part of the module's purpose but are used by the module, such as general purpose utilities, these should not be used directly but through interface. Via this interface module states what is needed for it to function and from this point it doesn't care how these dependencies are satisfied.
+在軟體開發上，為了程式的可讀性、擴展性……等，會建議程式碼有高的內聚度，以及低的耦合度。所以我們應該盡可能把相關的功能放進一個模組（這邊所說的模組不專指 Yii 模組，也不是某個類別，而是一種邏輯概念）。在這個模組裡面，可以不用過度抽象化，直接使用相依的程式類別運作。
 
-## Achieving low coupling {#achieving-low-coupling}
+而被這個模組所使用，但是並不屬於該模組的其他類別，則不應該直接使用。而應該透過介面（interface）以降低耦合度。
 
-You can't eliminate dependencies altogether but you can make them more flexible.
+透過介面，模組可以得到自己運作所需要的東西，並且不和模組外的類別互相依賴。
 
-## Inversion of control {#inversion-of-control}
+## 達成低耦合 {#achieving-low-coupling}
 
-## Dependency injection {#dependency-injection}
+我們不可能完全消除程式之間的依賴，但是我們可以盡可能使程式碼的彈性提高。
+
+## 控制反轉 {#inversion-of-control}
+
+控制反轉（inversion of control，IoC）的原則，是用來降低程式之間的耦合度。
+
+## 依賴注入 {#dependency-injection}
+
+依賴注入（Dependency injection，DI）
 
 ## Dependency container {#dependency-container}
 
