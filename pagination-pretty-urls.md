@@ -1,6 +1,6 @@
 # pretty URLs 分頁（Pagination pretty URLs） {#pagination-pretty-urls}
 
-For example we can render our site content by GridView. If there are a lot of content rows we use pagination. And it is necessary to provide GET request for every pagination page. Thus search crawlers can index our content. We also need our URLs to be pretty. Let's do it.
+假設我們使用 GridView 來展示我們的網頁資料。如果有很多資料的話，我們會使用分頁。使用 GET 參數來提供分頁資訊是很重要的，因為這樣搜尋網站才能對網頁的資料建立索引。除此之外，我們也希望網址看起來漂亮。
 
 ## 初始狀態 {#initial-state}
 
@@ -25,7 +25,7 @@ $config = [
     // ...
 ```
 
-We decided to add a on the page`http://example.com/schools/schoolTitle`加上 GridView。
+我們希望可以在`http://example.com/schools/schoolTitle`加上 GridView。
 
 ## pretty URLs 分頁 {#pagination-pretty-urls_1}
 
