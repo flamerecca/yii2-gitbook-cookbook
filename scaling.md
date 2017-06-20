@@ -10,10 +10,11 @@ Setting up a Yii2 application for auto scaling is fairly straight forward:
 
 ## 先決條件 {#prerequisites}
 
-* Any well performing 平台即服務（Platform as a Service，PaaS）的系統都會支援自動縮放（autoscaling）、負載平衡（load balancing）以及 SQL 資料庫。像是 Google 雲端平台，就有自己的 Instance Group 和 Load Balancer。（Amazon Web Services，AWS） 也有AutoScaling Group 和 Elastic Load Balancer。
+* 任何完善的平台即服務（Platform as a Service，PaaS）系統，都會支援自動縮放（autoscaling）、負載平衡（load balancing）以及 SQL 資料庫等功能。像是 Google 雲端平台，就有自己的 Instance Group 和 Load Balancer。（Amazon Web Services，AWS） 也有AutoScaling Group 和 Elastic Load Balancer。
 
-* Dedicated Redis or Memcached server. Easily launched on popular PaaS platforms with
+* Dedicated Redis or Memcached server. Easily launched on popular PaaS platforms with  
   [Bitnami Cloud](https://bitnami.com/cloud). Redis generally performs better over Memcached, so this page will be focusing on working with Redis.
+
 * Dedicated database server \(Most PaaS platforms let you easily launch one i.e. Google SQL or AWS Relational Database Service\).
 
 ## 使應用無狀態（stateless）化 {#making-your-application-stateless}
