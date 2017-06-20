@@ -14,7 +14,7 @@ PHP side of ActiveForm, which is usually more than enough for majority of projec
 $('#contact-form').yiiActiveForm('validateAttribute', 'contactform-name');
 ```
 
-## 對整個表單觸發驗證  {#trigger-validation-for-the-whole-form}
+## 對整個表單觸發驗證 {#trigger-validation-for-the-whole-form}
 
 ```php
 $('#contact-form').yiiActiveForm('validate', true);
@@ -31,7 +31,6 @@ $('#contact-form').on('beforeSubmit', function (e) {
     }
     return true;
 });
-
 ```
 
 可用的事件有：
@@ -118,7 +117,7 @@ In case you want to change the validation of an attribute in JS based on a new c
 ```php
 $('#form_id').on('beforeValidate', function (e) {
             $('#form_id').yiiActiveForm('find', '#attribute').validate = function (attribute, value, messages, deferred, $form) {
-                //Custom Validation
+                //自定義驗證程式碼
             }
         return true;
     });
