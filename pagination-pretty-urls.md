@@ -25,7 +25,7 @@ $config = [
     // ...
 ```
 
-我們希望可以在`http://example.com/schools/schoolTitle`加上 GridView。
+並且我們在`http://example.com/schools/schoolTitle`加上 GridView。
 
 ## pretty URLs 分頁 {#pagination-pretty-urls_1}
 
