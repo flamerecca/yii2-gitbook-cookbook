@@ -64,7 +64,7 @@ $cookie = new Cookie([
 
 ## 跨子網域身份驗證和身份cookie {#cross-subdomain-authentication-and-identity-cookies}
 
-在自動登入或者「記住我」的這種 cookie，the same quirks as in case of subdomain cookies are applying. But this time you need to configure user component, setting`identityCookie`array to desired cookie config.
+在自動登入或者「記住我」的這種 cookie，與子網域的cookie技巧相同。不過這次必須在 user 元件裡面，在`identityCookie`陣列寫入我們想要的 cookie 設定。
 
 在 config 檔案裡面的 user 元件裡面，加入 `identityCookie`參數：
 
@@ -101,11 +101,11 @@ $config = [
 
 注意每個子網域底的 `cookieValidationKey`都應該要相同。
 
-Note that you have to configure the`session::cookieParams`property to have the samedomain as your`user::identityCookie`to ensure the`login`and`logout`work for all subdomains. This behavior is better explained on the next section.
+另外，`session::cookieParams`參數和`user::identityCookie`必須在所有的子網域都一樣，以確定所有子網域的`login`和`logout`運作正常。這部份在之後的章節，會解釋的更加詳細。
 
 ## Session cookie 參數 {#session-cookie-parameters}
 
-Session cookies parameters are important both if you have a need to maintain session while getting from one subdomain to another or when, in contrary, you host backend app under`/admin`URL and want handle session separately.
+如果你想在子網域切換時還能維持session，或者你希望後台`/admin`網址裡面的 session 要與其他地方分開處理，這兩種情況下 session cookies 參數都是很重要的。
 
 ```php
 $config = [

@@ -6,7 +6,7 @@
 * [單一表格繼承（Single table inheritance）](ar-single-table-inheritance.md)
 * [快取（Caching）](caching.md)
 * [偏好網址（Canonical URLs）](canonical-urls.md)
-* [Cookies](cookies.md)
+* [處理 cookie](cookies.md)
 * [跨網站請求偽造（CSRF）](csrf.md)
 * [依賴（Dependencies）](dependencies.md)
 * [啟用 pretty URLs（Enable pretty URLs）](enable-pretty-urls.md)
