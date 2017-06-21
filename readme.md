@@ -5,7 +5,7 @@ Yii 2.0 cookbook的翻譯。
 
 # 目錄 {#table-of-contents}
 
-* 前言
+* [前言](/preface.md)
 
 ## 基礎觀念 {#unnoticed-basics}
 
@@ -23,22 +23,22 @@ Yii 2.0 cookbook的翻譯。
 
 ## 網頁相關要領 {#web-essentials}
 
-* URLs with variable number of parameters
+* [可變參數的網址（URLs with variable number of parameters）](/urls-variable-number-of-parameters.md)
 * Outputting JSON and XML
 * Using Google fonts as assets
-* Managing cookies
+* [處理 cookie](/cookies.md)
 * Using WYSIWYG
 * AJAX???
 * Handling incoming third party POST requests
 
 ## SEO 處理要領 {#seo-essentials}
 
-* Enable pretty URLs
-* Pagination with pretty URLs
+* [啟用 pretty URLs（Enable pretty URLs）](/enable-pretty-urls.md)
+* [pretty URLs 分頁（Pagination pretty URLs）](/pagination-pretty-urls.md)
 * [加入搜尋引擎最佳化標籤（Adding SEO tags）](/adding-seo-tags.md)
-* Canonical URLs
-* Using redirects
-* Using slugs
+* [偏好網址（Canonical URLs）](/canonical-urls.md)
+* [使用重新導向（Using redirects）](/using-redirects.md)
+* [使用slug（Using slugs）](/using-slugs.md)
 * Handling trailing slash in URLs
 
 ## 表單 {#forms}
@@ -51,10 +51,10 @@ Yii 2.0 cookbook的翻譯。
 ## 安全行 {#security}
 
 * A safe approach to passwords explained
-* SQL injection
-* XSS
+* [SQL注入攻擊（SQL injection）](/SQL注入攻擊（SQL injection）)
+* [跨網站指令碼（XSS）](/xss.md)
 * RBAC
-* CSRF
+* [跨網站請求偽造（CSRF）](/csrf.md)
 
 ## 程式碼規劃與結構 {#structuring-and-organizing-code}
 
@@ -110,7 +110,7 @@ Yii 2.0 cookbook的翻譯。
 
 * Making your life easier \(XDebug, debug toolbar, gii\)
 * IDE autocompletion for custom components
-* Using custom migration template
+* [使用客製化的遷移模板（Using custom migration template）](/using-custom-migration-template.md)
 
 
 
