@@ -1,4 +1,4 @@
-# 透過 JavaScript 操作 ActiveForm {#working-with-activeform-via-javascript}
+# 透過 JavaScript 操作 ActiveForm（Working with ActiveForm via JavaScript） {#working-with-activeform-via-javascript}
 
 一般來說，[在 Yii 2.0 官方教學說明很詳盡](http://www.yiiframework.com/doc-2.0/guide-input-forms.html)的，在PHP端處理ActiveForm的方式，已經能滿足絕大多數的網頁需求了 。
 
@@ -8,7 +8,7 @@
 
 ## 準備 {#preparations}
 
-這裡我們使用基本Yii來示範，所以需要[先安裝Yii](http://www.yiiframework.com/doc-2.0/guide-start-installation.html)。
+這裡我們使用基本 Yii 來示範，所以需要[先安裝 Yii](http://www.yiiframework.com/doc-2.0/guide-start-installation.html)。
 
 ## 對單一欄位觸發驗證 {#triggering-validation-for-individual-form-fields}
 
@@ -106,7 +106,7 @@ $("#attribute-id").on('change.yii',function(){
 
 ## 取得參數的值 {#getting-attribute-value}
 
-In order to be compatible with third party widgets like \(Kartik\), the best option to retrieve the actual value of an attribute is:
+要與第三方元件相容，取得參數的值最好方法是：
 
 ```js
 $('#form_id').yiiActiveForm('find', '#attribute').value
@@ -114,7 +114,9 @@ $('#form_id').yiiActiveForm('find', '#attribute').value
 
 ## 自定義驗證 {#custom-validation}
 
-In case you want to change the validation of an attribute in JS based on a new condition, you can do it with the rule property whenClient, but in the case you need a validation that doesn't depends on rules \(only client side\), you can try this:
+根據狀況，如果我們需要透過 JavaScript 修改參數的驗證，可以使用規則的`whenClient`參數。
+
+不過，假設我們需要純客戶端的驗證方式，可以用：
 
 ```js
 $('#form_id').on('beforeValidate', function (e) {

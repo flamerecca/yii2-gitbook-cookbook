@@ -9,7 +9,7 @@
 * [跨網站請求偽造（CSRF）](csrf.md)
 * [依賴（Dependencies）](dependencies.md)
 * [啟用 pretty URLs（Enable pretty URLs）](enable-pretty-urls.md)
-* [Forms activeform js](forms-activeform-js.md)
+* [透過 JavaScript 操作 ActiveForm（Working with ActiveForm via JavaScript）](forms-activeform-js.md)
 * [Forms captcha](forms-captcha.md)
 * [Forms uploading files](forms-uploading-files.md)
 * [Forms validator multiple attributes](forms-validator-multiple-attributes.md)
