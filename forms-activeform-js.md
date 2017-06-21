@@ -1,10 +1,10 @@
 # 透過 JavaScript 操作 ActiveForm {#working-with-activeform-via-javascript}
 
-PHP side of ActiveForm, which is usually more than enough for majority of projects[ 在 Yii 2.0 官方教學說明很詳盡](http://www.yiiframework.com/doc-2.0/guide-input-forms.html)的PHP端如何處理ActiveForm，通常 。
+一般來說，[在 Yii 2.0 官方教學說明很詳盡](http://www.yiiframework.com/doc-2.0/guide-input-forms.html)的，在PHP端處理ActiveForm的方式，已經能滿足絕大多數的網頁需求了 。
 
-It is getting a bit more tricky when it comes to advanced things such as adding or removing form fields dynamically or triggering individual field validation using unusual conditions.
+不過，如果要再更進一步，比方說動態的增減欄位，或者在某些狀況下，觸發特定欄位的驗證檢查。這種狀況就有點棘手了。
 
-這邊我們介紹 ActiveForm JavaScript API。
+這邊我們介紹 ActiveForm 的 JavaScript API，以處理上述這類需求。
 
 ## 準備 {#preparations}
 
@@ -83,7 +83,7 @@ $('#contact-form').yiiActiveForm('updateAttribute', 'contactform-subject', ["I h
 $('#contact-form').yiiActiveForm('updateAttribute', 'contactform-subject', '');
 ```
 
-## Update error messages and, optionally, summary {#update-error-messages-and-optionally-summary}
+## 更新錯誤資訊或摘要 {#update-error-messages-and-optionally-summary}
 
 ```js
 $('#contact-form').yiiActiveForm('updateMessages', {
@@ -92,7 +92,7 @@ $('#contact-form').yiiActiveForm('updateMessages', {
 }, true);
 ```
 
-The last argument in the above code indicates if we need to update summary.
+最後一個參數指示出我們是否要更新摘要。
 
 ## 監控參數改變 {#listening-for-attribute-changes}
 
