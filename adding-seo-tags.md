@@ -6,7 +6,8 @@
 
 以下簡述如何在網站裡面，加上搜尋相關的metadata。
 
-{% youtube src="https://www.youtube.com/watch?v=9bZkp7q19f0" %}{% endyoutube %}
+{% youtube src="https://www.youtube.com/watch?v=9bZkp7q19f0" %}
+
 
 ## Title {#title}
 
