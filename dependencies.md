@@ -31,7 +31,7 @@
 
 依賴注入（Dependency injection，DI）
 
-## Dependency container {#dependency-container}
+## 依賴注入容器 {#dependency-container}
 
 Injecting basic dependencies is simple and easy. You're choosing a place where you don't care about dependencies, which is usually controller which you aren't going to unit-test ever, create instances of dependencies needed and pass these to dependent classes.
 
@@ -44,5 +44,5 @@ Additionally, lots of dependencies, such as certain third party API wrapper, are
 
 That's what dependency containers are for.
 
-See [official guide](http://www.yiiframework.com/doc-2.0/guide-concept-di-container.html) for more information about Yii's dependency container.
+See [官方教學](http://www.yiiframework.com/doc-2.0/guide-concept-di-container.html) for more information about Yii's dependency container.
 
