@@ -1,9 +1,7 @@
 Yii 2.0 cookbook的翻譯。
 
 翻譯自  
-[https://yii2-cookbook.readthedocs.io/](https://yii2-cookbook.readthedocs.io/)  
-  
-
+[https://yii2-cookbook.readthedocs.io/](https://yii2-cookbook.readthedocs.io/)
 
 # 目錄 {#table-of-contents}
 
@@ -37,7 +35,7 @@ Yii 2.0 cookbook的翻譯。
 
 * Enable pretty URLs
 * Pagination with pretty URLs
-* Adding SEO tags
+* [加入搜尋引擎最佳化標籤（Adding SEO tags）](/adding-seo-tags.md)
 * Canonical URLs
 * Using redirects
 * Using slugs
@@ -67,7 +65,7 @@ Yii 2.0 cookbook的翻譯。
 * Processing text
 * Implementing typed collections
 * MVC
-* SOLID
+* [SOLID 原則（SOLID）](/solid.md)
 * Dependencies
 
 ## 視圖 {#view}
@@ -86,7 +84,7 @@ Yii 2.0 cookbook的翻譯。
 * Has and belongs to many
 * Using SQL and noSQL at the same time
 * Saving related models
-* Single table inheritance
+* [單一表格繼承（Single table inheritance）](/ar-single-table-inheritance.md)
 
 ## 國際化 {#i18n}
 
