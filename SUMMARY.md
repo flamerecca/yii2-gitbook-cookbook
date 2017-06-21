@@ -1,7 +1,6 @@
 # Summary
 
-* [Introduction](readme.md)
-* [介紹](README.md)
+* [介紹](readme.md)
 * [加入搜尋引擎最佳化標籤（Adding SEO tags）](adding-seo-tags.md)
 * [單一表格繼承（Single table inheritance）](ar-single-table-inheritance.md)
 * [快取（Caching）](caching.md)
@@ -47,4 +46,6 @@
 * [多筆紀錄的處理（Working With Multiple Records）](working-with-multiple-records.md)
 * [跨網站指令碼（XSS）](xss.md)
 * [處理第三方來的POST](chu-li-di-san-fang-lai-de-post.md)
+
+
 
