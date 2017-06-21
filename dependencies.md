@@ -29,20 +29,26 @@
 
 ## 依賴注入 {#dependency-injection}
 
-依賴注入（Dependency injection，DI）
+依賴注入（Dependency injection，DI），控制反轉的一種形式。
 
 ## 依賴注入容器 {#dependency-container}
 
-Injecting basic dependencies is simple and easy. You're choosing a place where you don't care about dependencies, which is usually controller which you aren't going to unit-test ever, create instances of dependencies needed and pass these to dependent classes.
+基本的依賴注入並不困難。我們選擇某個不關心依賴關係的地方，通常是不會進行單元測試的控制器，來建立需要依賴關係的物件，並將其傳遞給相依的類別。
 
-It works well when there aren't many dependencies overall and when there are no nested dependencies. When there are many and each dependency has dependencies itself, instantiating the whole hierarchy becomes tedious process which requires lots of code and may lead to hard to debug mistakes.
+在沒有很多依賴關係，依賴關係之間也沒有出現巢狀結構時，這種方式可以運行的很好。
 
-Additionally, lots of dependencies, such as certain third party API wrapper, are the same for any class using it. So it makes sense to:
+不過如果依賴關係變多，並且依賴關係之中又有其他依賴關係時，建立整個架構就會變得非常的繁瑣，需要大量的程式碼，並且可能出現很難偵錯的問題。
 
-* Define how to instantiate such API wrapper once.
-* Instantiate it when required and only once per request.
+另外，對多數依賴關係來說，其實需要的東西是一樣的，就好像某種第三方 API 包裝一樣。
 
-That's what dependency containers are for.
+所以對框架來說：
 
-See [官方教學](http://www.yiiframework.com/doc-2.0/guide-concept-di-container.html) for more information about Yii's dependency container.
+* 一次定義如何建立這樣的 API 包裝
+* 每次請求時，才實例化該 API 
+
+是很合理的設計。
+
+這就是 Yii 提供依賴注入容器（DI Container）的用途了。
+
+更多資訊可以參考對 Yii 依賴注入容器的[官方教學](http://www.yiiframework.com/doc-2.0/guide-concept-di-container.html)。
 
