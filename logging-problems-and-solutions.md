@@ -1,4 +1,4 @@
-# 紀錄問題的解法（Logging problems and solutions）
+# 紀錄的問題和解法（Logging problems and solutions）
 
 ===============================
 

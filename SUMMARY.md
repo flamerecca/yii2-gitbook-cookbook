@@ -5,7 +5,7 @@
 
 ## log與錯誤處理
 
-* [紀錄問題的解法（Logging problems and solutions）](logging-problems-and-solutions.md)
+* [紀錄的問題和解法（Logging problems and solutions）](logging-problems-and-solutions.md)
 
 ## 網頁要領
 
