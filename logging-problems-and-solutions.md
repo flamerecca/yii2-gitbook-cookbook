@@ -33,7 +33,7 @@ When there's unhandled exception in the application Yii logs it additionally to 
 
 ## 即時紀錄 {#immediate-logging}
 
-By default Yii accumulates logs till the script is finished or till the number of logs accumulated is enough which is 1000 messages by default for both logger itself and log target. It could be that you want to log messages immediately. For example, when running an import job and checking logs to see the progress. In this case you need to change settings via application config file:
+Yii 預設會等到程式運行結束，或者等紀錄程式累積到足夠的紀錄數量──預設是一千筆──才會把紀錄寫進檔案內。不過我們有可能希望能夠即時紀錄。比方說，當我們正在做重要的測試，而且是一邊做一邊監控log檔。這種狀況之下，我們要透過修改config檔來改變設定：
 
 ```php
 'components' => [
@@ -88,17 +88,17 @@ After this you are able to write logs to separate files adding category name to 
 
 ### 問題 {#problem}
 
-當有使用者註冊時，希望可以收到 email。但是不要再自己測試註冊的時候，還寄信提醒。
+當有使用者註冊時，我們希望可以收到 email。但是不要在自己測試註冊的時候，還寄信提醒。
 
 ### 解法 {#solution}
 
-At first mark logging target inside`config.php`by key：
+At首先，在`config.php`設定紀錄目標：
 
 ```php
 'log' => [
     // ...
     'targets' => [
-            // email is a key for our target
+            // 「email」是我們紀錄目標對應的關鍵字
             'email' => [  
                 'class' => 'yii\log\EmailTarget',
                 'levels' => ['info'],
@@ -114,7 +114,7 @@ At first mark logging target inside`config.php`by key：
     {
         // '127.0.0.1' - 或換成讀者自己的 IP
         if (in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1'])) {
-            Yii::$app->log->targets['email']->enabled = false; // 這裡取消我們的targets
+            Yii::$app->log->targets['email']->enabled = false; // 這裡取消我們的target
         }
         return parent::beforeAction($action);
     }
@@ -128,7 +128,7 @@ At first mark logging target inside`config.php`by key：
 
 ### 解法 {#solution_1}
 
-If you catch an error appropriate log target doesn't work. Let's say you have such log target configuration:
+If you catch an error appropriate log target doesn't work. 假設我們原本設定的紀錄目標如下：
 
 ```php
 'components' => [
@@ -153,19 +153,19 @@ As an example let's add such code line inside`actionIndex`：
         // ...
 ```
 
-Go to`index`page and you will see this message in the browser and in the`error.log`file.
+進入`index`頁面，你會看到錯誤信息，並且`error.log`檔也會有一樣的紀錄。
 
-Let's modify our`actionIndex`:
+現在我們修改`actionIndex`:
 
 ```php
     public function actionIndex()
     {
         try {
-            throw new ServerErrorHttpException('Hey! Coding problems!'); // here is our code line now
+            throw new ServerErrorHttpException('Hey! Coding problems!'); // 這邊是原本的程式
         }
         catch(ServerErrorHttpException $ex) {
-            Yii::error($ex->getMessage()); // concrete message for us
-            throw new ServerErrorHttpException('Server problem, sorry.'); // broad message for the end user
+            Yii::error($ex->getMessage()); // 給我們看的具體訊息
+            throw new ServerErrorHttpException('Server problem, sorry.'); // 給使用者看的粗略訊息
         }
     // ..
 ```
@@ -180,7 +180,7 @@ Let's add`category`for our log target and for logging command.
 'file' => [
     'class' => 'yii\log\FileTarget',
     'levels' => ['error', 'warning'],
-    'categories' => ['serverError'], // category is added
+    'categories' => ['serverError'], // 加入種類
     'logFile' => '@runtime/logs/error.log',
 ],
 ```
@@ -198,7 +198,7 @@ As the result in the`error.log`you will see only the error related to`Hey! Codin
 
 ### 更多 {#even-more}
 
-If there is an bad request \(user side\) error you may want to display error message 'as is'. You can easily do it because our catch block works only for`ServerErrorHttpException`error types. So you are able to throw something like this:
+If there is an bad request \(user side\) error you may want to display error message 'as is'. You can easily do it because our catch block works only for`ServerErrorHttpException`error types. 所以如果我們丟出的例外是：
 
 ```php
 throw new BadRequestHttpException('Email address you provide is invalid');
