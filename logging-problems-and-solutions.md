@@ -1,13 +1,11 @@
 ===============================
 
-在Yii裡面，紀錄是有很大彈性的。基本的紀錄很簡單，但是有時需要花很多時間設定，來得到想要的紀錄方式。
-
+在Yii裡面，紀錄是有很大彈性的。基本的紀錄很簡單，但是有時需要花很多時間設定，來得到想要的紀錄方式。  
 以下是一些需求的解法，希望讀者能找到適合自己需要的。
 
 ## 404 錯誤只寫檔紀錄，其他錯誤寄 email 提醒 {#write-404-to-file-and-send-the-rest-via-email}
 
-404 錯誤太常發生，跟其他錯誤不同，不值得寄 email 提醒。不過還是值得紀錄進log檔裡面。
-
+404 錯誤太常發生，跟其他錯誤不同，不值得寄 email 提醒。不過還是值得紀錄進log檔裡面。  
 我們來實做看看：
 
 ```php
@@ -31,7 +29,7 @@
 ],
 ```
 
-When there's unhandled exception in the application Yii logs it additionally to displaying it to end user or showing customized error page. Exception message is what actually to be written and the fully qualified exception class name is the category we can use to filter messages when configuring targets. 404 can be triggered by throwing`yii\web\NotFoundHttpException`or automatically. In both cases exception class is the same and is inherited from`\yii\web\HttpException`which is a bit special in regards to logging. The speciality is the fact that HTTP status code prepended by`:`is appended to the end of the log message category. In the above we're using`categories`to include and`except`to exclude 404 log messages.
+When there's unhandled exception in the application Yii logs it additionally to displaying it to end user or showing customized error page. 例外（exception ）訊息 is what actually to be written and the fully qualified exception class name is the category we can use to filter messages when configuring targets. 404 can be triggered by throwing`yii\web\NotFoundHttpException`or automatically. In both cases exception class is the same and is inherited from`\yii\web\HttpException`which is a bit special in regards to logging. The speciality is the fact that HTTP status code prepended by`:`is appended to the end of the log message category. In the above we're using`categories`to include and`except`to exclude 404 log messages.
 
 ## 即時紀錄 {#immediate-logging}
 
@@ -94,7 +92,7 @@ After this you are able to write logs to separate files adding category name to 
 
 ### 解法 {#solution}
 
-At first mark logging target inside`config.php`by key:
+At first mark logging target inside`config.php`by key：
 
 ```php
 'log' => [
@@ -176,7 +174,7 @@ As the result in the browser you will see`Server problem, sorry.`. But in the`er
 
 Let's add`category`for our log target and for logging command.
 
-For`config`:
+對`config`：
 
 ```php
 'file' => [
@@ -187,7 +185,7 @@ For`config`:
 ],
 ```
 
-For`actionIndex`:
+對`actionIndex`：
 
 ```php
 catch(ServerErrorHttpException $ex) {
