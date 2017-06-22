@@ -1,3 +1,5 @@
+# 紀錄問題的解法（Logging problems and solutions）
+
 ===============================
 
 在Yii裡面，紀錄是有很大彈性的。基本的紀錄很簡單，但是有時需要花很多時間設定，來得到想要的紀錄方式。  
@@ -54,9 +56,9 @@ Yii 預設會等到程式運行結束，或者等紀錄程式累積到足夠的�
 
 ## 在不同檔案裡面紀錄不同狀況 {#write-different-logs-to-different-files}
 
-Usually a program has a lot of functions. Sometimes it is necessary to control these functions by logging. If everything is logged in one file this file becomes too big and too difficult to maintain. Good solution is to write different functions logs to different files.
+程式有許許多多不同的功能，我們通常會希望藉由紀錄來監控這些功能的運作。可是，如果所有的東西都紀錄在同一個檔案裡面，這個檔案會變得太大、太難以維護了。比較好的作法是將不同的功能，紀錄在個別的紀錄檔內。
 
-For example you have two functions: catalog and basket. Let's write logs to catalog.log and basket.log respectively. In this case you need to establish categories for your log messages. Make a connection between them and log targets by changing application config file:
+舉例來說，假設我們的網站有兩個功能：商品目錄以及購物籃。我們希望將紀錄分別寫進 catalog.log 和 basket.log。這時我們需要為紀錄資訊建立種類。將 config 檔修改如下，以連接不同種類的紀錄資訊與紀錄檔：
 
 ```php
 'components' => [
@@ -77,7 +79,8 @@ For example you have two functions: catalog and basket. Let's write logs to cata
 ]
 ```
 
-After this you are able to write logs to separate files adding category name to log function as second parameter. Examples:
+之後，藉由在紀錄函式的第二個參數裡加進種類名稱，我們就可以將錯誤寫進不同的紀錄檔。  
+範例：
 
 ```php
 \Yii::info('catalog info', 'catalog');
@@ -130,7 +133,7 @@ At首先，在`config.php`設定紀錄目標：
 
 ### 解法 {#solution_1}
 
-If you catch an error appropriate log target doesn't work. 假設我們原本設定的紀錄目標如下：
+如果你將例外成功的 catch ，那麼 log target 就不會生效。假設我們原本設定的紀錄目標如下：
 
 ```php
 'components' => [
@@ -146,35 +149,35 @@ If you catch an error appropriate log target doesn't work. 假設我們原本設
 ],
 ```
 
-As an example let's add such code line inside`actionIndex`：
+作為示範，我們修改`actionIndex`如下：
 
 ```php
     public function actionIndex()
     {
-        throw new ServerErrorHttpException('Hey! Coding problems!');
+        throw new ServerErrorHttpException('程式有問題喔！');
         // ...
 ```
 
-進入`index`頁面，你會看到錯誤信息，並且`error.log`檔也會有一樣的紀錄。
+這個例外沒有被 catch，進入`index`頁面，你會看到錯誤信息，並且`error.log`檔也會有一樣的紀錄。
 
-現在我們修改`actionIndex`:
+現在我們修改`actionIndex()`：
 
 ```php
     public function actionIndex()
     {
         try {
-            throw new ServerErrorHttpException('Hey! Coding problems!'); // 這邊是原本的程式
+            throw new ServerErrorHttpException('程式有問題喔！'); // 這邊是原本的程式
         }
         catch(ServerErrorHttpException $ex) {
-            Yii::error($ex->getMessage()); // 給我們看的具體訊息
-            throw new ServerErrorHttpException('Server problem, sorry.'); // 給使用者看的粗略訊息
+            Yii::error($ex->getMessage()); // 給我們自己看的具體訊息
+            throw new ServerErrorHttpException('網頁問題，抱歉'); // 給使用者看的粗略訊息
         }
     // ..
 ```
 
-As the result in the browser you will see`Server problem, sorry.`. But in the`error.log`you will see **both **error messages. In our case second message is not necessary to log.
+這樣的話，我們在瀏覽器上會看到`網頁問題，抱歉`，但是在`error.log`裡面，我們會同時看到**兩個**錯誤訊息。這邊的第二個錯誤訊息只是給使用者看，照理是不需要被紀錄的。
 
-Let's add`category`for our log target and for logging command.
+我們加上`category`來排除不必要的紀錄。
 
 對`config`：
 
@@ -187,28 +190,29 @@ Let's add`category`for our log target and for logging command.
 ],
 ```
 
-對`actionIndex`：
+對`actionIndex()`：
 
 ```php
 catch(ServerErrorHttpException $ex) {
-    Yii::error($ex->getMessage(), 'serverError'); // category is added
-    throw new ServerErrorHttpException('Server problem, sorry.');
+    Yii::error($ex->getMessage(), 'serverError'); // 加入種類
+    throw new ServerErrorHttpException('網頁問題，抱歉');
 }
 ```
 
-As the result in the`error.log`you will see only the error related to`Hey! Coding problems!`.
+這樣`error.log`裡面，我們只會看到`程式有問題喔！`的錯誤紀錄。
 
-### 更多 {#even-more}
+### 這樣做的好處 {#even-more}
 
-If there is an bad request \(user side\) error you may want to display error message 'as is'. You can easily do it because our catch block works only for`ServerErrorHttpException`error types. 。
+如果今天是遇到 bad request 例外，我們可能希望能夠照 Yii 預設的，紀錄並顯示相同的錯誤訊息給使用者。  
+用上面的方法很容易達成這個目的，因為我們在 catch 這一段，只有處理到`ServerErrorHttpException`這一類例外 。
 
 所以，如果我們丟出的例外是：
 
 ```php
-throw new BadRequestHttpException('Email address you provide is invalid');
+throw new BadRequestHttpException('提供的信箱不可用');
 ```
 
-結果使用者就能如我們希望的看到該訊息。
+那麼使用者就能如我們希望的看到該訊息。
 
 ## 其他資料 {#see-also}
 
