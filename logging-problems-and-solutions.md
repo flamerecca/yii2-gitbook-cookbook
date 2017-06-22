@@ -5,8 +5,8 @@
 
 ## 404 錯誤只寫檔紀錄，其他錯誤寄 email 提醒 {#write-404-to-file-and-send-the-rest-via-email}
 
-404 錯誤太常發生，跟其他錯誤不同，不值得寄 email 提醒。不過還是值得紀錄進log檔裡面。  
-我們來實做看看：
+遇到錯誤我們有時會希望有 email 提醒，但是 404 錯誤太常發生，跟其他錯誤不同，不值得寄 email 提醒，只值得紀錄進log檔裡面。  
+我們來實做看看這樣的需求：
 
 ```php
 'components' => [
@@ -29,16 +29,18 @@
 ],
 ```
 
-When there's unhandled exception in the application Yii logs it additionally to displaying it to end user or showing customized error page. 例外（exception ）訊息 is what actually to be written and the fully qualified exception class name is the category we can use to filter messages when configuring targets. 404 can be triggered by throwing`yii\web\NotFoundHttpException`or automatically. In both cases exception class is the same and is inherited from`\yii\web\HttpException`which is a bit special in regards to logging. The speciality is the fact that HTTP status code prepended by`:`is appended to the end of the log message category. In the above we're using`categories`to include and`except`to exclude 404 log messages.
+當遇到沒有處理的例外（exception ）狀況時，Yii 會進行紀錄，並顯示錯誤訊息或者客製化錯誤頁面給使用者。 這邊實際寫進紀錄的是例外訊息，而例外類別名稱則是當我們在設定錯誤訊息目標時，可以用來作為篩選訊息的分類。
+
+404 錯誤可能是被`yii\web\NotFoundHttpException`觸發或者自己產生。兩種狀況下，處理該例外的類別都相同，並且繼承於 `\yii\web\HttpException`類別。另外 Yii 在這類錯誤紀錄的分類裡，使用`:`加上 HTTP 狀態碼做結尾，這其實在錯誤紀錄上是比較特殊的 。所以上面我們可以用這種方式，搭配使用`categories`來包括，使用`except`來排除  404 錯誤資訊，而不會影響其他的錯誤訊息。
 
 ## 即時紀錄 {#immediate-logging}
 
-Yii 預設會等到程式運行結束，或者等紀錄程式累積到足夠的紀錄數量──預設是一千筆──才會把紀錄寫進檔案內。不過我們有可能希望能夠即時紀錄。比方說，當我們正在做重要的測試，而且是一邊做一邊監控log檔。這種狀況之下，我們要透過修改config檔來改變設定：
+Yii 預設會等到程式運行結束，或者等紀錄程式累積到足夠的紀錄數量──預設是一千筆──才會把紀錄寫進檔案內。不過我們有可能希望能夠即時紀錄。比方說，當我們正在做重要的測試，而且是一邊做一邊監控 log 檔。這種狀況之下，我們要透過修改 config 檔來改變設定：
 
 ```php
 'components' => [
     'log' => [
-        'flushInterval' => 1, // <-- 這裡
+        'flushInterval' => 1, // <-- 改這裡
         'targets' => [
             'file' => [
                 'class' => 'yii\log\FileTarget',
@@ -198,13 +200,15 @@ As the result in the`error.log`you will see only the error related to`Hey! Codin
 
 ### 更多 {#even-more}
 
-If there is an bad request \(user side\) error you may want to display error message 'as is'. You can easily do it because our catch block works only for`ServerErrorHttpException`error types. 所以如果我們丟出的例外是：
+If there is an bad request \(user side\) error you may want to display error message 'as is'. You can easily do it because our catch block works only for`ServerErrorHttpException`error types. 。
+
+所以，如果我們丟出的例外是：
 
 ```php
 throw new BadRequestHttpException('Email address you provide is invalid');
 ```
 
-As the result end user will see the message 'as is' in his browser.
+結果使用者就能如我們希望的看到該訊息。
 
 ## 其他資料 {#see-also}
 
