@@ -6,6 +6,7 @@
   * [Logging problems and solutions](logging-problems-and-solutions.md)
 * 網頁要領
   * [可變參數的網址（URLs with variable number of parameters）](urls-variable-number-of-parameters.md)
+    * [準備](urls-variable-number-of-parameters.md#get-ready) 
   * [Response formats](response-formats.md)
   * [處理 cookie](cookies.md)
   * [Incoming post](incoming-post.md)
