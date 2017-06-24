@@ -8,7 +8,7 @@ Additionally, if third party is posting via XMLHttpRequest \(browser AJAX\), we 
 
 首先，永遠不要把 CSRF 保護整個取消。如果CSRF會影響POST傳輸，僅僅針對單一控制器，甚至控制器的單一 action 取消就好。
 
-### 為特定控制器取消 CSRF  {#disabling-csrf-for-a-specific-controller}
+### 為特定控制器取消 CSRF {#disabling-csrf-for-a-specific-controller}
 
 為特定控制器取消 CSRF 保護很簡單：
 
@@ -18,7 +18,7 @@ class MyController extends Controller
     public $enableCsrfValidation = false;
 ```
 
-就這樣，我們加上一個公開參數 `enableCsrfValidation`，並將其設為 `false`。
+就這樣，我們加上一個公開參數 `enableCsrfValidation`，並將其設為 `false`即可。
 
 ### 為特定控制器 action 取消 CSRF {#disabling-csrf-for-specific-controller-action}
 
