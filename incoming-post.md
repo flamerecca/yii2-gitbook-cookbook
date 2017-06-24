@@ -1,16 +1,16 @@
 # Handling incoming third party POST requests {#handling-incoming-third-party-post-requests}
 
-By default Yii uses CSRF protection that verifies that POST requests could be made only by the same application. It enhances overall security significantly but there are cases when CSRF should be disabled i.e. when you expect incoming POST requests from a third party service.
+Yii 預設啟用 CSRF protection that verifies that POST requests could be made only by the same application. It enhances overall security significantly but there are cases when CSRF should be disabled i.e. when you expect incoming POST requests from a third party service.
 
 Additionally, if third party is posting via XMLHttpRequest \(browser AJAX\), we need to send additional headers to allow CORS \([cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)\).
 
-## How to do it {#how-to-do-it}
+## 怎麼作到 {#how-to-do-it}
 
-First of all, never disable CSRF protection altogether. If you need it to be disabled, do it for specific controller or even controller action.
+首先，永遠不要把 CSRF 保護整個取消。如果CSRF會影響POST傳輸，僅僅針對單一控制器，甚至控制器的單一 action 取消就好。
 
-### Disabling CSRF for a specific controller {#disabling-csrf-for-a-specific-controller}
+### 為特定控制器取消 CSRF  {#disabling-csrf-for-a-specific-controller}
 
-Disabling protection for specific controller is easy:
+為特定控制器取消 CSRF 保護很簡單：
 
 ```php
 class MyController extends Controller
@@ -18,11 +18,11 @@ class MyController extends Controller
     public $enableCsrfValidation = false;
 ```
 
-We've added a public property`enableCsrfValidation`and set it to false.
+就這樣，我們加上一個公開參數 `enableCsrfValidation`，並將其設為 `false`。
 
-### Disabling CSRF for specific controller action {#disabling-csrf-for-specific-controller-action}
+### 為特定控制器 action 取消 CSRF {#disabling-csrf-for-specific-controller-action}
 
-In case of disabling only a single action it's a bit more code:
+如果我們只想要對特定 action 取消，則稍微麻煩一點：
 
 ```php
 class MyController extends Controller
@@ -34,14 +34,13 @@ class MyController extends Controller
         }
         return parent::beforeAction($action);
     }
-
 ```
 
-We've implemented`beforeAction`controller method. It is invoked right before an action is executed so we're checking if executed action id matches id of the action we want to disable CSRF protection for and, if it's true, disabling it. Note that it's important to call parent method and call it last.
+這邊我們實做`beforeAction()`函式。 It is invoked right before an action is executed so we're checking if executed action id matches id of the action we want to disable CSRF protection for and, if it's true, disabling it. 注意在`beforeAction`的最後一定要`return parent::beforeAction($action);`
 
-### Sending CORS headers {#sending-cors-headers}
+### 送出 CORS 標頭 {#sending-cors-headers}
 
-Yii has a[special Cors filter](http://www.yiiframework.com/doc-2.0/yii-filters-cors.html)that allows you sending headers required to allow CORS.
+Yii has a [special Cors filter](http://www.yiiframework.com/doc-2.0/yii-filters-cors.html) that allows you sending headers required to allow CORS.
 
 To allow AJAX requests to the whole controller you can use it like that:
 
