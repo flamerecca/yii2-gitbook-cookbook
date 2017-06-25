@@ -18,7 +18,7 @@ class MyController extends Controller
     public $enableCsrfValidation = false;
 ```
 
-就這樣，我們加上一個公開參數 `enableCsrfValidation`，並將其設為 `false`即可。
+就這樣，我們加上一個公開參數 `enableCsrfValidation`，並將其設為`false`即可。
 
 ### 為特定控制器 action 取消 CSRF {#disabling-csrf-for-specific-controller-action}
 
@@ -36,13 +36,13 @@ class MyController extends Controller
     }
 ```
 
-這邊我們實做`beforeAction()`函式。 It is invoked right before an action is executed so we're checking if executed action id matches id of the action we want to disable CSRF protection for and, if it's true, disabling it. 注意在`beforeAction`的最後一定要`return parent::beforeAction($action);`
+這邊我們實做`beforeAction()`函式。 該函式會在整個 action 執行之前被呼叫。根據我們補充的程式，如果該函式的名字在我們的陣列裡面，則將 CSRF 保護關掉。注意在`beforeAction()`的最後，一定要`return parent::beforeAction($action);`
 
 ### 送出 CORS 標頭 {#sending-cors-headers}
 
-Yii has a [special Cors filter](http://www.yiiframework.com/doc-2.0/yii-filters-cors.html) that allows you sending headers required to allow CORS.
+Yii 有一個自己的 [Cors filter](http://www.yiiframework.com/doc-2.0/yii-filters-cors.html)，幫助我們要允許 CORS 的時候，傳輸對應的標頭。
 
-To allow AJAX requests to the whole controller you can use it like that:
+在整個控制器上面允許 AJAX requests，你需要：
 
 ```php
 class MyController extends Controller
@@ -57,7 +57,7 @@ class MyController extends Controller
     }
 ```
 
-In order to do it for a specific action, use the following:
+如果只允許某個 action 的 AJAX requests，你需要：
 
 ```php
 class MyController extends Controller
