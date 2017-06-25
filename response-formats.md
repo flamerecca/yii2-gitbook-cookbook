@@ -2,7 +2,7 @@
 
 現在的網頁與手機應用已經不只是產生 HTML 格式了。新的架構流行讓伺服器 API 傳輸資料給前端，由前端處理UI的部份。而不是由伺服器端的程式處理外觀的部份。
 
-傳輸資料時，通常會選用 JSON 與 XML 格式，所以對任何現代的框架，透過這兩種格式資料是必須的功能。 
+傳輸資料時，通常會選用 JSON 與 XML 格式，所以對任何現代的框架，透過這兩種格式資料是必須的功能。
 
 ## 回應格式 {#response-formats}
 
@@ -183,7 +183,7 @@ public function actionIndex()
 
 ## 自定義回應格式 {#custom-response-format}
 
-如果 JSON 與 XML 格式都不能滿足我們的需求，我們得自己定義回傳的格式。這邊的例子為了好玩一點，我們假設得回傳 PHP 陣列作為回傳格式。
+如果 JSON 與 XML 格式都不能滿足我們的需求，我們得自己定義回傳的格式。這邊的例子為了好玩一點，我們假設得回傳 PHP 程式碼作為回傳格式。
 
 首先，我們要自製一個格式產生器（formatter），建立`components/PhpArrayFormatter.php`：
 
@@ -206,7 +206,7 @@ class PhpArrayFormatter implements ResponseFormatterInterface
 }
 ```
 
-Now we need to registed it in application config \(usually it's`config/web.php`\):
+現在，我們需要將這個程式紀錄進Yii 的 config 內（一般會是`config/web.php`）：
 
 ```
 return [
@@ -222,7 +222,7 @@ return [
 ];
 ```
 
-現在這個格式已經準備好了，如果我們在`controllers/SiteController`create a new method`actionTest`:
+現在這個格式產生器已經準備好了，如果我們在`controllers/SiteController`建立`actionTest()`：
 
 ```php
 public function actionTest()
@@ -245,9 +245,9 @@ return [
 
 ## 讓使用者選擇回傳格式 {#choosing-format-based-on-content-type-requested}
 
-You can use the`ContentNegotiator`controller filter in order to choose format based on what is requested. In order to do so you need to implement`behaviors`method in controller:
+我們可以使用`ContentNegotiator`這個控制器過濾（controller filter）來選擇對應的格式。要這樣做，我們得先在控制器裡面實做`behaviors()`函式：
 
-```
+```php
 public function behaviors()
 {
     return [
@@ -277,7 +277,7 @@ public function actionView($id)
 }
 ```
 
-That's it. Now you can test it via the following URLs:
+好了，現在我們可以測試看看下面的網址：
 
 * `/index.php?r=user/index&_format=xml`
 * `/index.php?r=user/index&_format=json`
