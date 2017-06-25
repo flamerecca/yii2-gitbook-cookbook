@@ -1,12 +1,16 @@
-# Handling incoming third party POST requests {#handling-incoming-third-party-post-requests}
+# 處理第三方來的POST請求（Handling incoming third party POST requests） {#handling-incoming-third-party-post-requests}
 
-Yii 預設啟用 CSRF protection that verifies that POST requests could be made only by the same application. It enhances overall security significantly but there are cases when CSRF should be disabled i.e. when you expect incoming POST requests from a third party service.
+Yii 預設會啟用 [CSRF](/csrf.md) 保護，以驗證 POST請求是來自己方的程式。這是提昇安全性非常重要的環節。
 
-Additionally, if third party is posting via XMLHttpRequest \(browser AJAX\), we need to send additional headers to allow CORS \([cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)\).
+不過，有時候我們也可能會暫時關閉這個保護，比方說需要允許其他程式透過 POST請求的時候。
+
+另外，如果第三方透過 XMLHttpRequest （瀏覽器的 AJAX）存取資料，我們可能需要傳送符合[跨來源資源共享](https://zh.wikipedia.org/wiki/跨來源資源共享)（Cross-origin resource sharing，CORS）的標頭。
 
 ## 怎麼作到 {#how-to-do-it}
 
-首先，永遠不要把 CSRF 保護整個取消。如果CSRF會影響POST傳輸，僅僅針對單一控制器，甚至控制器的單一 action 取消就好。
+首先，永遠不要把 CSRF 保護整個取消。
+
+如果CSRF會影響POST傳輸，僅僅針對單一控制器，甚至控制器的單一 action 取消就好。
 
 ### 為特定控制器取消 CSRF {#disabling-csrf-for-a-specific-controller}
 
