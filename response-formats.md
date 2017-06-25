@@ -2,7 +2,7 @@
 
 Web and mobile applications are more than just rendered HTML nowadays. Modern architecture moves the UI to the client, where all user interactions are handled by the client-side, utilizing server APIs to drive the frontend. The JSON and XML formats are often used for serializing and transmitting structured data over a network, so the ability to create such responses is a must for any modern server framework.
 
-## Response formats {#response-formats}
+## 回應格式 {#response-formats}
 
 As you probably know, in Yii2 you need to`return`the result from your action, instead of echoing it directly:
 
@@ -40,7 +40,9 @@ Valid formats are:
 
 Default is`FORMAT_HTML`.
 
-## JSON response {#json-response}
+## JSON 格式 {#json-response}
+
+### 回傳陣列
 
 Let's return an array:
 
@@ -55,7 +57,7 @@ public function actionIndex()
 
 And - voila! - we have JSON response right out of the box:
 
-### Result
+#### 結果
 
 ```js
 {
@@ -64,10 +66,11 @@ And - voila! - we have JSON response right out of the box:
     "2": "of",
     "data": ["associative", "array"]
 }
-
 ```
 
 **Note**: you'll get an exception if response format is not set.
+
+### 回傳物件
 
 As we already know, we can return objects too.
 
@@ -78,12 +81,11 @@ public function actionView($id)
     $user = \app\models\User::find($id);
     return $user;
 }
-
 ```
 
 Now $user is an instance of`ActiveRecord`class that implements`Arrayable`interface, so it can be easily converted to JSON:
 
-**Result**
+#### **結果**
 
 ```js
 {
@@ -92,6 +94,8 @@ Now $user is an instance of`ActiveRecord`class that implements`Arrayable`interfa
     "email": "john@example.com"
 }
 ```
+
+### 回傳物件陣列
 
 We can even return an array of objects:
 
@@ -102,12 +106,11 @@ public function actionIndex()
     $users = \app\models\User::find()->all();
     return $users;
 }
-
 ```
 
 Now`$users`is an array of ActiveRecord objects, but under the hood Yii uses`\yii\helpers\Json::encode()`that traverses and converts the passed data, taking care of types by itself:
 
-**Result**
+#### 結果
 
 ```js
 [
@@ -123,10 +126,9 @@ Now`$users`is an array of ActiveRecord objects, but under the hood Yii uses`\yii
     },
     ...
 ]
-
 ```
 
-## XML response {#xml-response}
+## XML 回應 {#xml-response}
 
 Just change response format to`FORMAT_XML`and that't it. Now you have XML:
 
@@ -139,7 +141,7 @@ public function actionIndex()
 }
 ```
 
-**Result**
+#### 結果
 
 ```
 <response>
@@ -164,7 +166,7 @@ public function actionIndex()
 }
 ```
 
-**Result:**
+#### 結果
 
 ```
 <response>
@@ -232,7 +234,6 @@ public function actionTest()
         'hello' => 'world!',
     ];
 }
-
 ```
 
 That's it. After executing it, Yii will respond with the following:
@@ -242,10 +243,9 @@ That's it. After executing it, Yii will respond with the following:
 return [
     'hello' => 'world!',
 ];
-
 ```
 
-## Choosing format based on content type requested {#choosing-format-based-on-content-type-requested}
+## 讓使用者選擇回傳格式 {#choosing-format-based-on-content-type-requested}
 
 You can use the`ContentNegotiator`controller filter in order to choose format based on what is requested. In order to do so you need to implement`behaviors`method in controller:
 
@@ -281,7 +281,7 @@ public function actionView($id)
 
 That's it. Now you can test it via the following URLs:
 
-* `/index.php?r=user/index&_format=xml  `
+* `/index.php?r=user/index&_format=xml`
 * `/index.php?r=user/index&_format=json`
 
 
