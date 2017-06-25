@@ -208,7 +208,7 @@ class PhpArrayFormatter implements ResponseFormatterInterface
 
 現在，我們需要將這個程式紀錄進Yii 的 config 內（一般會是`config/web.php`）：
 
-```
+```php
 return [
     // ...
     'components' => [
