@@ -1,6 +1,8 @@
 # Working with different response types {#working-with-different-response-types}
 
-Web and mobile applications are more than just rendered HTML nowadays. Modern architecture moves the UI to the client, where all user interactions are handled by the client-side, utilizing server APIs to drive the frontend. The JSON and XML formats are often used for serializing and transmitting structured data over a network, so the ability to create such responses is a must for any modern server framework.
+現在的網頁與手機應用已經不只是產生 HTML 格式了。Modern architecture moves the UI to the client, where all user interactions are handled by the client-side, utilizing server APIs to drive the frontend. 
+
+JSON 與 XML 格式 are often used for serializing and transmitting structured data over a network, so the ability to create such responses is a must for any modern server framework.
 
 ## 回應格式 {#response-formats}
 
@@ -72,9 +74,9 @@ And - voila! - we have JSON response right out of the box:
 
 ### 回傳物件
 
-As we already know, we can return objects too.
+如上面的作法，我們也可以回傳物件：
 
-```
+```php
 public function actionView($id)
 {
     \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
