@@ -11,7 +11,7 @@
 
 * [可變參數的網址（URLs with variable number of parameters）](urls-variable-number-of-parameters.md)
 * [處理第三方來的POST請求（Handling incoming third party POST requests）](incoming-post.md)
-* [Response formats](response-formats.md)
+* [處理不同回應格式（Working with different response types）](response-formats.md)
 * [處理 cookie](cookies.md)
 
 ## SEO 要領

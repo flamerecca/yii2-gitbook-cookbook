@@ -106,7 +106,7 @@ public function actionIndex()
 }
 ```
 
-Now`$users`is an array of ActiveRecord objects, but under the hood Yii uses`\yii\helpers\Json::encode()`that traverses and converts the passed data, taking care of types by itself:
+這樣`$users`會是ActiveRecord 物件的陣列，而不是單純陣列或者單一物件。不過，Yii 的`\yii\helpers\Json::encode()`有辦法對陣列拆解處理並傳回資料，所以能夠處理這種情況：
 
 #### 結果
 
