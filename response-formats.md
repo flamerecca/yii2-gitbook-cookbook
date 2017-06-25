@@ -1,6 +1,6 @@
-# Working with different response types {#working-with-different-response-types}
+# 處理不同回應格式（Working with different response types） {#working-with-different-response-types}
 
-現在的網頁與手機應用已經不只是產生 HTML 格式了。Modern architecture moves the UI to the client, where all user interactions are handled by the client-side, utilizing server APIs to drive the frontend. 
+現在的網頁與手機應用已經不只是產生 HTML 格式了。Modern architecture moves the UI to the client, where all user interactions are handled by the client-side, utilizing server APIs to drive the frontend.
 
 JSON 與 XML 格式 are often used for serializing and transmitting structured data over a network, so the ability to create such responses is a must for any modern server framework.
 
