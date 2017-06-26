@@ -3,7 +3,7 @@ Yii 2.0 cookbook的翻譯。
 翻譯自  
 [https://yii2-cookbook.readthedocs.io/](https://yii2-cookbook.readthedocs.io/)
 
-# 目錄 {#table-of-contents}
+## 目錄
 
 * [前言](/preface.md)
 
