@@ -9,27 +9,28 @@ For example,
 /hello/world/ - 301 redirect to /hello/world
 ```
 
-## Using UrlNormalizer {#using-urlnormalizer}
+## 使用 UrlNormalizer {#using-urlnormalizer}
 
-Since Yii 2.0.10 there's`UrlNormalizer`class you can use to deal with slash and no-slash URLs in a very convenient way. Check out the "[URL normalization](http://www.yiiframework.com/doc-2.0/guide-runtime-routing.html#url-normalization)" section in the official guide for details.
+從 Yii 2.0.10 開始，有了`UrlNormalizer`類別，可以簡單的處理斜線結尾或者無斜線結尾的網址。
 
-## Redirecting via web server config {#redirecting-via-web-server-config}
+請參考 Yii 官方教學 [URL normalization](http://www.yiiframework.com/doc-2.0/guide-runtime-routing.html#url-normalization) 章節。
 
-Besides PHP, there's a way to achieve redirection using web server.
+## 透過伺服器 config 重新導向 {#redirecting-via-web-server-config}
 
-## Redirecting via nginx {#redirecting-via-nginx}
+除了使用 PHP 程式，我們也可以使用伺服器來重新導向。
 
-Redirecting to no-slash URLs.
+## 透過 nginx {#redirecting-via-nginx}
+
+導向至尾端沒有斜線的網址：
 
 ```
 location / {
     rewrite ^(.*)/$ $1 permanent;
     try_files $uri $uri/ /index.php?$args;
 }
-
 ```
 
-Redirecting to slash URLs.
+導向至尾端有斜線的網址：
 
 ```
 location / {
@@ -38,9 +39,9 @@ location / {
 }
 ```
 
-## Redirecting via Apache {#redirecting-via-apache}
+## 透過 Apache {#redirecting-via-apache}
 
-Redirecting to no-slash URLs.
+導向至尾端沒有斜線的網址：
 
 ```
 RewriteEngine On
@@ -48,7 +49,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ /$1 [L,R=301]
 ```
 
-Redirecting to slash URLs.
+導向至尾端有斜線的網址：
 
 ```
 RewriteEngine On
