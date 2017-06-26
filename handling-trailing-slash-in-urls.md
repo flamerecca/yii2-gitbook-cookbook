@@ -1,12 +1,14 @@
-# Handling trailing slash in URLs {#handling-trailing-slash-in-urls}
+# 處理斜線結尾的網址（Handling trailing slash in URLs） {#handling-trailing-slash-in-urls}
 
-By default Yii handles URLs without trailing slash and gives out 404 for URLs with it. It is a good idea to choose either using or not using slash but handling both and doing 301 redirect from one variant to another.
+Yii 預設網址沒有斜線，如果使用結尾有斜線的網址，會導致 404 找不到頁面。
 
-For example,
+如果選定結尾有或者沒有斜線，並且在另一種狀況時使用 301 重新導向，而不是找不到頁面，一般來說是比較好的設計。
+
+舉例來說，
 
 ```
 /hello/world - 200
-/hello/world/ - 301 redirect to /hello/world
+/hello/world/ - 301 重導向至 /hello/world
 ```
 
 ## 使用 UrlNormalizer {#using-urlnormalizer}

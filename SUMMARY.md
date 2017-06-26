@@ -24,7 +24,7 @@
 * [偏好網址（Canonical URLs）](canonical-urls.md)
 * [使用重新導向（Using redirects）](using-redirects.md)
 * [使用slug（Using slugs）](using-slugs.md)
-* [Handling trailing slash in urls](handling-trailing-slash-in-urls.md)
+* [處理斜線結尾的網址（Handling trailing slash in URLs）](handling-trailing-slash-in-urls.md)
 
 ## 表單
 
@@ -86,6 +86,4 @@
 
 * [Ide autocompletion](ide-autocompletion.md)
 * [使用客製化的遷移模板（Using custom migration template）](using-custom-migration-template.md)
-
-
 
