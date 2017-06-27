@@ -2,7 +2,7 @@
 
 ## 目錄
 
-* [介紹](readme.md)
+* [介紹](/README.md)
 * [前言](preface.md)
 
 ## log與錯誤處理
@@ -86,4 +86,6 @@
 
 * [Ide autocompletion](ide-autocompletion.md)
 * [使用客製化的遷移模板（Using custom migration template）](using-custom-migration-template.md)
+
+
 
