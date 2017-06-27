@@ -8,7 +8,7 @@
 
 Yii provides a set of ready to use classes to add CAPTCHA to any form. 我們來複習一下怎麼作。
 
-首先，we need an action that will display an image containing text. Typical place for it is`SiteController`. Since there's ready to use action, it could be added via`actions()`函式：
+首先，我們要有一個 action\(\) 來顯示含有文字的圖片，we need an action that will display an image containing text. Typical place for it is`SiteController`. Since there's ready to use action, it could be added via`actions()`函式：
 
 ```php
 class SiteController extends Controller
@@ -76,9 +76,9 @@ A good solution for it is to mix a custom task into the challenge. Example of su
 
 Let's try implementing it. Yii CAPTCHA is really easy to extend. The component itself doesn't need to be touched since both code generation, code verification and image generation happens in`CaptchaAction`which is used in a controller. In basic project template it's used in`SiteController`.
 
-So, first of all, create`components/MathCaptchaAction.php`:
+那麼首先，建立`components/MathCaptchaAction.php`：
 
-```
+```php
 <?php
 namespace app\components;
 
