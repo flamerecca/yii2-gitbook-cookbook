@@ -1,10 +1,10 @@
 # 使用與客製化 CAPTCHA（Using and customizing CAPTCHA）
 
-[According to Wikipedia](http://en.wikipedia.org/wiki/Captcha) CAPTCHA means "Completely Automated Public Turing test to tell Computers and Humans Apart". In other words, CAPTCHA provides a problem human can solve easily but computer can't. The purpose of it is to prevent automated abuse such as posting comments containing links to malicious websites or voting for a particular candidate in an election.
+[根據維基百科](https://zh.wikipedia.org/wiki/%E9%AA%8C%E8%AF%81%E7%A0%81)，CAPTCHA 代表「Completely Automated Public Turing test to tell Computers and Humans Apart」（全自動區分電腦和人類的公開圖靈測試）。簡單說，CAPTCHA 提供一個人可以簡單回答，但是機器不行的問題。這個東西的目的，是在於避免程式濫用某些功能，比方說自動留下包含惡意網址的留言，或者在網頁投票上面洗票……等等。
 
-Typical problem that is still quite tricky for computer algorithms is image recognition. That's why a common CAPTCHA shows an image with some text user should read and enter into input field.
+一個電腦還是頗為棘手的問題是圖形辨識（image recognition）。這就是為什麼常見的 CAPTCHA 總是顯示一張包含文字的圖片，然後請使用者輸入該圖片的文字。
 
-## How add CAPTCHA to a form {#how-add-captcha-to-a-form}
+## 怎麼在表單中加入 CAPTCHA {#how-add-captcha-to-a-form}
 
 Yii provides a set of ready to use classes to add CAPTCHA to any form. Let's review how it could be done.
 
@@ -66,7 +66,7 @@ That's it. Now robots won't pass. At least dumb ones.
 
 If the image is not being displayed a good way to test if captcha requirements are installed is by accessing the captcha action directly. So for example if you are using a controller called site try typing in "[http://blah.com/index.php/site/captcha](http://blah.com/index.php/site/captcha)" which should display an image. If not then turn on tracing and check for errors.
 
-## Simple math captcha {#simple-math-captcha}
+## 簡單數學的 captcha {#simple-math-captcha}
 
 Nowadays CAPTCHA robots are relatively good at parsing image so while by using typical CAPTCHA you're significanly lowering number of spammy actions, some robots will still be able to parse the image and enter the verification code correctly.
 
