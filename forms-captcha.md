@@ -1,4 +1,4 @@
-# 使用與客製化CAPTCHA（Using and customizing CAPTCHA）
+# 使用與客製化 CAPTCHA（Using and customizing CAPTCHA）
 
 [According to Wikipedia](http://en.wikipedia.org/wiki/Captcha) CAPTCHA means "Completely Automated Public Turing test to tell Computers and Humans Apart". In other words, CAPTCHA provides a problem human can solve easily but computer can't. The purpose of it is to prevent automated abuse such as posting comments containing links to malicious websites or voting for a particular candidate in an election.
 
@@ -64,7 +64,7 @@ Now we can actually display image and verification input box in a view containin
 
 That's it. Now robots won't pass. At least dumb ones.
 
-If the image is not being displayed a good way to test if captcha requirements are installed is by accessing the captcha action directly. So for example if you are using a controller called site try typing in "http://blah.com/index.php/site/captcha" which should display an image. If not then turn on tracing and check for errors.
+If the image is not being displayed a good way to test if captcha requirements are installed is by accessing the captcha action directly. So for example if you are using a controller called site try typing in "[http://blah.com/index.php/site/captcha](http://blah.com/index.php/site/captcha)" which should display an image. If not then turn on tracing and check for errors.
 
 ## Simple math captcha {#simple-math-captcha}
 
