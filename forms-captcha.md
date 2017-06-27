@@ -6,7 +6,7 @@
 
 ## 怎麼在表單中加入 CAPTCHA {#how-add-captcha-to-a-form}
 
-Yii provides a set of ready to use classes to add CAPTCHA to any form. 我們來複習一下怎麼作到。
+Yii provides a set of ready to use classes to add CAPTCHA to any form. 我們來複習一下怎麼作。
 
 首先，we need an action that will display an image containing text. Typical place for it is`SiteController`. Since there's ready to use action, it could be added via`actions()`函式：
 
@@ -29,7 +29,7 @@ class SiteController extends Controller
 }
 ```
 
-In the above we're reusing`yii\captcha\CaptchaAction`as`site/captcha`route.`fixedVerifyCode`is set for test environment in order for the test to know which answer is correct.
+上面的程式碼裡，我們使用`yii\captcha\CaptchaAction`as`site/captcha`route.`fixedVerifyCode`is set for test environment in order for the test to know which answer is correct.
 
 Now in the form model \(it could be either ActiveRecord or Model\) we need to add a property that will contain user input for verification code and validation rule for it:
 
