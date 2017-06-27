@@ -1,16 +1,16 @@
 # 使用與客製化 CAPTCHA（Using and customizing CAPTCHA）
 
-[根據維基百科](https://zh.wikipedia.org/wiki/%E9%AA%8C%E8%AF%81%E7%A0%81)，CAPTCHA 代表「Completely Automated Public Turing test to tell Computers and Humans Apart」（全自動區分電腦和人類的公開圖靈測試）。簡單說，CAPTCHA 提供一個人可以簡單回答，但是機器不行的問題。這個東西的目的，是在於避免程式濫用某些功能，比方說自動留下包含惡意網址的留言，或者在網頁投票上面洗票……等等。
+[根據維基百科](https://zh.wikipedia.org/wiki/验证码)，CAPTCHA 代表「Completely Automated Public Turing test to tell Computers and Humans Apart」（全自動區分電腦和人類的公開圖靈測試）。簡單說，CAPTCHA 提供一個人可以簡單回答，但是機器不行的問題。這個東西的目的，是在於避免程式濫用某些功能，比方說自動留下包含惡意網址的留言，或者在網頁投票上面洗票……等等。
 
 一個電腦還是頗為棘手的問題是圖形辨識（image recognition）。這就是為什麼常見的 CAPTCHA 總是顯示一張包含文字的圖片，然後請使用者輸入該圖片的文字。
 
 ## 怎麼在表單中加入 CAPTCHA {#how-add-captcha-to-a-form}
 
-Yii provides a set of ready to use classes to add CAPTCHA to any form. Let's review how it could be done.
+Yii provides a set of ready to use classes to add CAPTCHA to any form. 我們來複習一下怎麼作到。
 
-First of all, we need an action that will display an image containing text. Typical place for it is`SiteController`. Since there's ready to use action, it could be added via`actions()`method:
+首先，we need an action that will display an image containing text. Typical place for it is`SiteController`. Since there's ready to use action, it could be added via`actions()`函式：
 
-```
+```php
 class SiteController extends Controller
 {
     // ...
