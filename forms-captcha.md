@@ -6,9 +6,9 @@
 
 ## 怎麼在表單中加入 CAPTCHA {#how-add-captcha-to-a-form}
 
-Yii provides a set of ready to use classes to add CAPTCHA to any form. 我們來複習一下怎麼作。
+Yii 提供一些類別，用來實做於表單中加入CAPTCHA的功能。我們來複習一下怎麼作。
 
-首先，我們要有一個 action\(\) 來顯示含有文字的圖片，we need an action that will display an image containing text. Typical place for it is`SiteController`. Since there's ready to use action, it could be added via`actions()`函式：
+首先，我們要有一個 action 函式來顯示含有文字的圖片。一般這會放在`SiteController`裡面。 既然可以使用action，我們就放在`actions()`內：
 
 ```php
 class SiteController extends Controller
@@ -29,11 +29,11 @@ class SiteController extends Controller
 }
 ```
 
-上面的程式碼裡，我們使用`yii\captcha\CaptchaAction`as`site/captcha`route.`fixedVerifyCode`is set for test environment in order for the test to know which answer is correct.
+上面的程式碼裡，我們使用`yii\captcha\CaptchaAction`作為`site/captcha`route，並設置`fixedVerifyCode`is set for test environment in order for the test to know which answer is correct.
 
-Now in the form model \(it could be either ActiveRecord or Model\) we need to add a property that will contain user input for verification code and validation rule for it:
+現在在 form 模型裡面，我們加上一個\(it could be either ActiveRecord or Model\) we need to add a property that will contain user input for verification code and validation rule for it:
 
-```
+```php
 class ContactForm extends Model
 {
     // ...
@@ -52,9 +52,9 @@ class ContactForm extends Model
 }
 ```
 
-Now we can actually display image and verification input box in a view containing a form:
+然後，我們在表單裡面，顯示圖片以及驗證輸入欄位：
 
-```
+```php
 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
     // ...
     <?= $form->field($model, 'verifyCode')->widget(Captcha::className()) ?>
@@ -62,15 +62,15 @@ Now we can actually display image and verification input box in a view containin
 <?php ActiveForm::end(); ?>
 ```
 
-That's it. Now robots won't pass. At least dumb ones.
+好了，現在機器人沒法自動貼文了，起碼笨的機器人不行。
 
 If the image is not being displayed a good way to test if captcha requirements are installed is by accessing the captcha action directly. So for example if you are using a controller called site try typing in "[http://blah.com/index.php/site/captcha](http://blah.com/index.php/site/captcha)" which should display an image. If not then turn on tracing and check for errors.
 
 ## 簡單數學的 captcha {#simple-math-captcha}
 
-Nowadays CAPTCHA robots are relatively good at parsing image so while by using typical CAPTCHA you're significanly lowering number of spammy actions, some robots will still be able to parse the image and enter the verification code correctly.
+現在的 CAPTCHA 破解機器人很先進，對於圖形辨識的問題越來越拿手了。所以使用傳統的圖形驗證 CAPTCHA 雖然可以降低機器人的貼文，但是還是有部份的程式可以成功破解這些驗證。
 
-In order to prevent it we have to increase the challenge. We could add extra ripple and special effects to the letters on the image but while it could make it harder for computer, it certainly will make it significantly harder for humans which isn't really what we want.
+要解決這個問題，必須提昇 CAPTCHA 的難度。In order to prevent it we have to increase the challenge. We could add extra ripple and special effects to the letters on the image but while it could make it harder for computer, it certainly will make it significantly harder for humans which isn't really what we want.
 
 A good solution for it is to mix a custom task into the challenge. Example of such task could be a simple math question such as "2 + 1 = ?". Of course, the more unique this question is, the more secure is the CAPTCHA.
 
@@ -123,7 +123,7 @@ In the code above we've adjusted code generation to be random number from 0 to 1
 
 Now what's left is to change default captcha action class name to our class name in`controllers/SiteController.php`,`actions()`method:
 
-```
+```php
 public function actions()
 {
     return [
