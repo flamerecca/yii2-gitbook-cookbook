@@ -1,4 +1,4 @@
-# 使用與客製化 CAPTCHA（Using and customizing CAPTCHA）
+使用與客製化 CAPTCHA（Using and customizing CAPTCHA）
 
 [根據維基百科](https://zh.wikipedia.org/wiki/验证码)，CAPTCHA 代表「Completely Automated Public Turing test to tell Computers and Humans Apart」（全自動區分電腦和人類的公開圖靈測試）。簡單說，CAPTCHA 提供一個人可以簡單回答，但是機器不行的問題。這個東西的目的，是在於避免程式濫用某些功能，比方說自動留下包含惡意網址的留言，或者在網頁投票上面洗票……等等。
 
