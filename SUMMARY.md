@@ -28,7 +28,7 @@
 
 ## 表單
 
-* [Forms captcha](forms-captcha.md)
+* [使用與客製化 CAPTCHA（Using and customizing CAPTCHA）](forms-captcha.md)
 * [透過 JavaScript 操作 ActiveForm（Working with ActiveForm via JavaScript）](forms-activeform-js.md)
 * [Forms uploading files](forms-uploading-files.md)
 * [Forms validator multiple attributes](forms-validator-multiple-attributes.md)
@@ -86,6 +86,4 @@
 
 * [Ide autocompletion](ide-autocompletion.md)
 * [使用客製化的遷移模板（Using custom migration template）](using-custom-migration-template.md)
-
-
 
