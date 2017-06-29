@@ -29,7 +29,7 @@ class SiteController extends Controller
 }
 ```
 
-上面的程式碼裡，我們使用`yii\captcha\CaptchaAction`作為`site/captcha`的路徑，並設置`fixedVerifyCode`，作為測試環境時固定正確答案用。 現在在 form 模型裡面，我們加上一個\(it could be either ActiveRecord or Model\) we need to add a property that will contain user input for verification code and validation rule for it:
+上面的程式碼裡，我們使用`yii\captcha\CaptchaAction`作為`site/captcha`的路徑，並設置`fixedVerifyCode`，作為測試環境時固定正確答案用。 現在在 form 模型裡面（也可以是其他的模型或者 ActiveRecord），我們加上一個參數`$verifyCode`來儲存使用者輸入，以加入驗證 CAPTCHA 正確的規則：
 
 ```php
 class ContactForm extends Model
@@ -62,19 +62,19 @@ class ContactForm extends Model
 
 好了，現在機器人沒法自動貼文了，起碼笨的機器人不行。
 
-If the image is not being displayed a good way to test if captcha requirements are installed is by accessing the captcha action directly. So for example if you are using a controller called site try typing in "[http://blah.com/index.php/site/captcha](http://blah.com/index.php/site/captcha)" which should display an image. If not then turn on tracing and check for errors.
+如果圖片沒有成功送出，一個測試的好方法，是直接存取圖片對應的 action 來偵測錯誤。 假設生成圖片的控制器是 site，可以測試「[http://我們的網址/index.php/site/captcha](http://blah.com/index.php/site/captcha)」來看看有沒有圖片。 如果沒有成功，可以開啟追蹤功能，來尋找錯誤的部份。
 
 ## 簡單數學的 captcha {#simple-math-captcha}
 
-現在的 CAPTCHA 破解機器人很先進，對於圖形辨識的問題越來越拿手了。所以使用傳統的圖形驗證 CAPTCHA 雖然可以降低機器人的貼文，但是還是有部份的程式可以成功破解這些驗證。
+現在的 CAPTCHA 破解機器人很先進，對於圖形辨識的問題越來越拿手了。所以使用傳統的圖形驗證 CAPTCHA，雖然可以降低機器人的貼文，但是還是有部份的程式可以成功破解這些驗證。
 
-要解決這個問題，必須提昇 CAPTCHA 的難度。In order to prevent it we have to increase the challenge. We could add extra ripple and special effects to the letters on the image but while it could make it harder for computer, it certainly will make it significantly harder for humans which isn't really what we want.
+要解決這個問題，必須提昇 CAPTCHA 的難度。我們可以透過增加圖片的雜訊來提昇辨識難度，這樣能成功的讓電腦辨識圖片的難度提高。但是這麼做的同時，也會讓使用者更難以辨識圖上的文字，而這不是很符合我們的期望。
 
-A good solution for it is to mix a custom task into the challenge. Example of such task could be a simple math question such as "2 + 1 = ?". Of course, the more unique this question is, the more secure is the CAPTCHA.
+另一個不錯的解決方法，是加入一些自定義的問題。比方說圖片顯示的不是單純的文字，而是簡單的數學問題，像是「2 + 1 = ?」。當然，問題越是特殊，CAPTCHA的安全度就越高。
 
-Let's try implementing it. Yii CAPTCHA is really easy to extend. The component itself doesn't need to be touched since both code generation, code verification and image generation happens in`CaptchaAction`which is used in a controller. In basic project template it's used in`SiteController`.
+我們來實做看看。Yii 的 CAPTCHA 非常容易擴充。，The component itself doesn't need to be touched since both code generation, code verification and image generation happens in控制器裡面的`CaptchaAction。`在基本套件的 Yii 裡面，這會放在`SiteController`。
 
-那麼首先，建立`components/MathCaptchaAction.php`：
+首先，建立`components/MathCaptchaAction.php`：
 
 ```php
 <?php
@@ -117,9 +117,9 @@ class MathCaptchaAction extends CaptchaAction
 }
 ```
 
-In the code above we've adjusted code generation to be random number from 0 to 100. During image rendering we're generating simple math expression based on the current code.
+上面的程式裡面，我們將`generateVerifyCode()`修改成產出一到一百的隨機亂數。在生成圖片的部份，使用`getText()`產生出一個簡單的數學問題，然後用`renderImage()`生成圖片。
 
-Now what's left is to change default captcha action class name to our class name in`controllers/SiteController.php`,`actions()`method:
+然後，我們要把`controllers/SiteController.php`裡面原本預設的 captcha 行為，改成我們自己設計的行為。在`actions()`函式裡面：
 
 ```php
 public function actions()
