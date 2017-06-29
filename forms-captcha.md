@@ -29,9 +29,7 @@ class SiteController extends Controller
 }
 ```
 
-上面的程式碼裡，我們使用`yii\captcha\CaptchaAction`作為`site/captcha`route，並設置`fixedVerifyCode`is set for test environment in order for the test to know which answer is correct.
-
-現在在 form 模型裡面，我們加上一個\(it could be either ActiveRecord or Model\) we need to add a property that will contain user input for verification code and validation rule for it:
+上面的程式碼裡，我們使用`yii\captcha\CaptchaAction`作為`site/captcha`的路徑，並設置`fixedVerifyCode`，作為測試環境時固定正確答案用。 現在在 form 模型裡面，我們加上一個\(it could be either ActiveRecord or Model\) we need to add a property that will contain user input for verification code and validation rule for it:
 
 ```php
 class ContactForm extends Model
