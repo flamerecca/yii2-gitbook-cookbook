@@ -1,4 +1,4 @@
-使用與客製化 CAPTCHA（Using and customizing CAPTCHA）
+驗證碼生成因為使用與客製化 CAPTCHA（Using and customizing CAPTCHA）
 
 [根據維基百科](https://zh.wikipedia.org/wiki/验证码)，CAPTCHA 代表「Completely Automated Public Turing test to tell Computers and Humans Apart」（全自動區分電腦和人類的公開圖靈測試）。簡單說，CAPTCHA 提供一個人可以簡單回答，但是機器不行的問題。這個東西的目的，是在於避免程式濫用某些功能，比方說自動留下包含惡意網址的留言，或者在網頁投票上面洗票……等等。
 
@@ -72,7 +72,7 @@ class ContactForm extends Model
 
 另一個不錯的解決方法，是加入一些自定義的問題。比方說圖片顯示的不是單純的文字，而是簡單的數學問題，像是「2 + 1 = ?」。當然，問題越是特殊，CAPTCHA的安全度就越高。
 
-我們來實做看看。Yii 的 CAPTCHA 非常容易擴充。，The component itself doesn't need to be touched since both code generation, code verification and image generation happens in控制器裡面的`CaptchaAction。`在基本套件的 Yii 裡面，這會放在`SiteController`。
+我們來實做看看。Yii 的 CAPTCHA 非常容易擴充，CAPTCHA component 本身不需要更改，因為驗證碼生成、驗證碼確認以及圖片生成都放在`CaptchaAction`裡面。在基本套件的 Yii 內，會將`CaptchaAction`放在`SiteController`裡面。
 
 首先，建立`components/MathCaptchaAction.php`：
 
