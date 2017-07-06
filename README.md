@@ -16,7 +16,7 @@ Yii 2.0 cookbook的翻譯。
 
 ## 紀錄與錯誤處理 {#logging-and-error-handling}
 
-* Logging: problems and solutions
+* [紀錄的問題和解法（Logging: problems and solutions）](/logging-problems-and-solutions.md)
 * Customizing 404 page
 * Handling errors and exceptions
 * Understanding error stack trace
@@ -24,12 +24,12 @@ Yii 2.0 cookbook的翻譯。
 ## 網頁相關要領 {#web-essentials}
 
 * [可變參數的網址（URLs with variable number of parameters）](/urls-variable-number-of-parameters.md)
-* Outputting JSON and XML
+* [處理不同回應格式（Working with different response types）](/response-formats.md)
 * Using Google fonts as assets
 * [處理 cookie](/cookies.md)
 * Using WYSIWYG
 * AJAX???
-* Handling incoming third party POST requests
+* [處理第三方來的POST請求（Handling incoming third party POST requests）](/incoming-post.md)
 
 ## SEO 處理要領 {#seo-essentials}
 
@@ -39,12 +39,12 @@ Yii 2.0 cookbook的翻譯。
 * [偏好網址（Canonical URLs）](/canonical-urls.md)
 * [使用重新導向（Using redirects）](/using-redirects.md)
 * [使用slug（Using slugs）](/using-slugs.md)
-* Handling trailing slash in URLs
+* [處理斜線結尾的網址（Handling trailing slash in URLs）](/handling-trailing-slash-in-urls.md)
 
 ## 表單 {#forms}
 
-* Using and customizing captcha
-* Working with ActiveForm via JavaScript
+* [使用與客製化 CAPTCHA（Using and customizing CAPTCHA）](/forms-captcha.md)
+* [透過 JavaScript 操作 ActiveForm（Working with ActiveForm via JavaScript）](/forms-activeform-js.md)
 * Uploading files
 * Custom validator for multiple attributes
 
@@ -58,15 +58,15 @@ Yii 2.0 cookbook的翻譯。
 
 ## 程式碼規劃與結構 {#structuring-and-organizing-code}
 
-* Backend and frontend via modules
-* Asset processing with Grunt
+* [建構後台前台模組（Structure backend frontend modules）](/structure-backend-frontend-modules.md)
+* [使用 Grunt 進行資源管理（Asset processing with Grunt）](/structure-asset-processing-with-grunt.md)
 * Asset processing with Gulp
-* Using global functions
+* [使用全域函式（Using global functions）](/structure-global-functions.md)
 * Processing text
-* Implementing typed collections
-* MVC
+* [實做有型態的集合（Implementing typed collections）](/structure-collections.md)
+* [MVC 模式（MVC）](/mvc.md)
 * [SOLID 原則（SOLID）](/solid.md)
-* Dependencies
+* [依賴（Dependencies）](/dependencies.md)
 
 ## 視圖 {#view}
 
@@ -74,10 +74,12 @@ Yii 2.0 cookbook的翻譯。
 * Using blocks
 * Using decorators
 * When to use Widgets and when not to
-* Switching themes dynamically
+* [動態改變佈景（Switching themes dynamically）](/switching-themes.md)
 * Post-processing response
 
 ## 模型 {#models}
+
+* [多筆紀錄的處理（Working With Multiple Records）](/working-with-multiple-records.md)
 
 ## Active Record {#active-record}
 
@@ -98,12 +100,12 @@ Yii 2.0 cookbook的翻譯。
 * Speeding up sessions
 * Implementing backgroud tasks \(cronjobs\)
 * Running Yii on HHVM
-* Caching
+* [快取（Caching）](/caching.md)
 * Configuring a Yii2 Application for an Autoscaling Stack
 
 ## 外部程式碼 {#external-code}
 
-* Using Yii in third party apps
+* [在第三方程式中使用Yii（Using Yii in third party apps）](/using-yii-in-third-party-apps.md)
 * Using third party code with Yii
 
 ## 工具 {#tools}
