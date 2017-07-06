@@ -1,10 +1,10 @@
 # 透過表單上傳檔案（Forms uploading files） {#uploading-files}
 
-上傳檔案的方式在[教學裡面已經解釋了](http://www.yiiframework.com/doc-2.0/guide-input-file-upload.html)，不過but it won't hurt to elaborate it a bit more because often, when Active Record model is reused as a form it causes confusion when a field storing file path is reused for file upload.
+上傳檔案的方式在[教學裡面已經解釋了](http://www.yiiframework.com/doc-2.0/guide-input-file-upload.html)，不過還是需要再詳細說明一下，因為當我們使用 Active Record 作為表單的物件時，如果有上傳檔案，時常會將上傳檔案與檔案路徑這兩者混淆在一起。
 
 ## 目標 {#objective}
 
-We'll have a posts manager with a form. 在表單裡面，我們可以上傳一張圖片，附上標題與文字。Image is not mandatory. Existing image path should not be set to null when saving without image uploaded.
+我們希望有個表單可以處理貼文。在表單裡面，我們可以上傳圖片，標題與文字。這邊的圖片不是必須的。並且當圖片已經存在所以沒有上傳時，不應該將圖片路徑設成 null。
 
 ## 準備 {#preparations}
 
@@ -20,13 +20,13 @@ CREATE TABLE post
 );
 ```
 
-Next, let's generate`Post`model with Gii and a CRUD in`PostController`.
+接著使用 Gii 工具建立`Post`模型以及在`PostController`裡面建立對應的CRUD。
 
 現在，準備開始撰寫留言的程式了。
 
 ## 留言模型修正 {#post-model-adjustments}
 
-Post model's`image`stores a path to the image uploaded it should not be confused with the actual file uploaded so we'll need a separate field for that purpose. Since the file isn't saved to database we don't need to store it. Let's just add a public field called`upload`:
+Post 模型的`image`儲存上傳圖片的路徑。注意這邊不應該將檔案路徑與檔案本身搞混。所以我們用另一個變數進行區分。因為檔案本身不需要儲存在資料庫內，我們直接加入一個變數`$upload`：
 
 ```php
 class Post extends \yii\db\ActiveRecord
@@ -51,13 +51,13 @@ public function rules()
 }
 ```
 
-In the above we removed everything concerning`image`because it's not user input and added file validation for`upload`.
+驗證規則裡面，因為與使用者輸入無關，我們將`$image`相關的驗證移除，並加入針對`$upload`的驗證。
 
 ## 表單 {#a-form}
 
-A form in the`views/post/_form.php`needs two things. First, we should remove a field for`image`. Second, we should add a file upload field for`upload`:
+`views/post/_form.php`的表單需要改變兩個部份。首先，我們移除`image`欄位。第二，我們加入上傳檔案`upload`的欄位：
 
-```
+```php
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
@@ -75,7 +75,7 @@ A form in the`views/post/_form.php`needs two things. First, we should remove a f
 
 ## 處理上傳 {#processing-upload}
 
-The handling, for simplicity sake, is done in`PostController`. Two actions:`actionCreate`and`actionUpdate`. Both are repetitive so the first step is to extract handling into separate method:
+處理上傳的部份，我們簡單的放進`PostController`內。兩個 action：`actionCreate()`和`actionUpdate()`。兩邊都同樣需要處理驗證跟儲存，所以我們將這段分離成`handlePostSave()`函式：
 
 ```php
 public function actionCreate()
@@ -107,15 +107,16 @@ protected function handlePostSave(Post $model)
 {
     if ($model->load(Yii::$app->request->post())) {
         $model->upload = UploadedFile::getInstance($model, 'upload');
-
         if ($model->validate()) {
+            //更新
             if ($model->upload) {
                 $filePath = 'uploads/' . $model->upload->baseName . '.' . $model->upload->extension;
+                //上傳檔案
                 if ($model->upload->saveAs($filePath)) {
                     $model->image = $filePath;
                 }
             }
-
+            //更新失敗
             if ($model->save(false)) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -124,11 +125,13 @@ protected function handlePostSave(Post $model)
 }
 ```
 
-In the code above right after filling model from POST we're also filling its`upload`field with an instance of the file uploaded. The important thing is that it should be done before validation. After validating a form, if there's file uploaded we're saving it and writing path into model's`image`field. Last, regular`save()`is called with a`false`argument which means "don't validate". It's done this way because we've just validated above and sure it's OK.
+上面的程式碼內，一拿到從POST過來的資料，我們就將檔案實體放進`upload`裡面。這邊的重點是，這件事情必須在驗證之前做。驗證過後，如果檔案已經上傳了，After validating a form, if there's file uploaded we're saving it and writing path into model's`image`field. Last, regular`save()`is called with a`false`argument which means "don't validate". It's done this way because we've just validated above and sure it's OK.
 
-That's it. Objective achieved.
+好了，我們的目標達成了。
 
-## A note on forms and Active Record {#a-note-on-forms-and-active-record}
+## 網頁表單與 Active Record 的一點心得 {#a-note-on-forms-and-active-record}
 
-For the sake of simplicity and laziness, Active Record is often reused for forms directly. There are scenarious making it doable and usually it doesn't cause any problems. However, there are situations when what's in the form actually differs from what is saved into database. In this case it is preferrable to create a separate form model which is not Active Record. Data saving should be done in this model instead of controller directly.
+為求簡化，Active Record 常常直接用在表單裡面。在許多狀況下，這種作法沒有問題。不過，有時候網頁表單的資料，與存進資料庫資料的結構並不相同。這種狀況下，會建議不要直接使用 Active Record，而是建立另外的表單模型。
+
+資料儲存應該在模型裡面處理，而不是在控制器裡面。
 
