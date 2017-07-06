@@ -1,12 +1,12 @@
-# Uploading files {#uploading-files}
+# 透過表單上傳檔案（Forms uploading files） {#uploading-files}
 
-Uploading files is[explained in the guide](http://www.yiiframework.com/doc-2.0/guide-input-file-upload.html)but it won't hurt to elaborate it a bit more because often, when Active Record model is reused as a form it causes confusion when a field storing file path is reused for file upload.
+上傳檔案的方式在[教學裡面已經解釋了](http://www.yiiframework.com/doc-2.0/guide-input-file-upload.html)，不過but it won't hurt to elaborate it a bit more because often, when Active Record model is reused as a form it causes confusion when a field storing file path is reused for file upload.
 
-## Objective {#objective}
+## 目標 {#objective}
 
-We'll have a posts manager with a form. In the form we'll be able to upload an image, enter title and text. Image is not mandatory. Existing image path should not be set to null when saving without image uploaded.
+We'll have a posts manager with a form. 在表單裡面，我們可以上傳一張圖片，附上標題與文字。Image is not mandatory. Existing image path should not be set to null when saving without image uploaded.
 
-## Preparations {#preparations}
+## 準備 {#preparations}
 
 We'll need a database table with the following structure:
 
@@ -24,7 +24,7 @@ Next, let's generate`Post`model with Gii and a CRUD in`PostController`.
 
 Now we're ready to start.
 
-## Post model adjustments {#post-model-adjustments}
+## Post 模型修正 {#post-model-adjustments}
 
 Post model's`image`stores a path to the image uploaded it should not be confused with the actual file uploaded so we'll need a separate field for that purpose. Since the file isn't saved to database we don't need to store it. Let's just add a public field called`upload`:
 
@@ -49,12 +49,11 @@ public function rules()
         [['upload'], 'file', 'extensions' => 'png, jpg'],
     ];
 }
-
 ```
 
 In the above we removed everything concerning`image`because it's not user input and added file validation for`upload`.
 
-## A form {#a-form}
+## 表單 {#a-form}
 
 A form in the`views/post/_form.php`needs two things. First, we should remove a field for`image`. Second, we should add a file upload field for`upload`:
 
@@ -72,14 +71,13 @@ A form in the`views/post/_form.php`needs two things. First, we should remove a f
     </div>
 
 <?php ActiveForm::end(); ?>
-
 ```
 
-## Processing upload {#processing-upload}
+## 處理上傳 {#processing-upload}
 
 The handling, for simplicity sake, is done in`PostController`. Two actions:`actionCreate`and`actionUpdate`. Both are repetitive so the first step is to extract handling into separate method:
 
-```
+```php
 public function actionCreate()
 {
     $model = new Post();
@@ -100,12 +98,11 @@ public function actionUpdate($id)
         'model' => $model,
     ]);
 }
-
 ```
 
 Now let's implement`handlePostSave()`:
 
-```
+```php
 protected function handlePostSave(Post $model)
 {
     if ($model->load(Yii::$app->request->post())) {
@@ -133,6 +130,5 @@ That's it. Objective achieved.
 
 ## A note on forms and Active Record {#a-note-on-forms-and-active-record}
 
-For the sake of simplicity and laziness, Active Record is often reused for forms directly. There are scenarious making it doable and usually it doesn't cause any problems. However, there are situations when what's in the form actually differs from what is saved into database. In this case it is preferrable to create a separate form model which is not Active Record. Data saving should be done in this model instead of controller directly.  
-
+For the sake of simplicity and laziness, Active Record is often reused for forms directly. There are scenarious making it doable and usually it doesn't cause any problems. However, there are situations when what's in the form actually differs from what is saved into database. In this case it is preferrable to create a separate form model which is not Active Record. Data saving should be done in this model instead of controller directly.
 
