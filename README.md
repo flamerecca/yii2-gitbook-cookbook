@@ -113,6 +113,3 @@ Yii 2.0 cookbook的翻譯。
 * Making your life easier \(XDebug, debug toolbar, gii\)
 * IDE autocompletion for custom components
 * [使用客製化的遷移模板（Using custom migration template）](/using-custom-migration-template.md)
-
-
-
