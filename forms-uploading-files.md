@@ -8,7 +8,7 @@ We'll have a posts manager with a form. 在表單裡面，我們可以上傳一�
 
 ## 準備 {#preparations}
 
-We'll need a database table with the following structure:
+我們建立資料庫表格如下：
 
 ```SQL
 CREATE TABLE post
@@ -22,9 +22,9 @@ CREATE TABLE post
 
 Next, let's generate`Post`model with Gii and a CRUD in`PostController`.
 
-Now we're ready to start.
+現在，準備開始撰寫留言的程式了。
 
-## Post 模型修正 {#post-model-adjustments}
+## 留言模型修正 {#post-model-adjustments}
 
 Post model's`image`stores a path to the image uploaded it should not be confused with the actual file uploaded so we'll need a separate field for that purpose. Since the file isn't saved to database we don't need to store it. Let's just add a public field called`upload`:
 
@@ -34,7 +34,7 @@ class Post extends \yii\db\ActiveRecord
     public $upload;
 ```
 
-Now we need to adjust validation rules:
+然後，修改驗證規則：
 
 ```php
 /**
@@ -100,7 +100,7 @@ public function actionUpdate($id)
 }
 ```
 
-Now let's implement`handlePostSave()`:
+然後我們實做`handlePostSave()`：
 
 ```php
 protected function handlePostSave(Post $model)
