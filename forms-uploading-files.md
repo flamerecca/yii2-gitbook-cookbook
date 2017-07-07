@@ -107,8 +107,9 @@ protected function handlePostSave(Post $model)
 {
     if ($model->load(Yii::$app->request->post())) {
         $model->upload = UploadedFile::getInstance($model, 'upload');
+        //驗證
         if ($model->validate()) {
-            //更新
+            //更新檔案
             if ($model->upload) {
                 $filePath = 'uploads/' . $model->upload->baseName . '.' . $model->upload->extension;
                 //上傳檔案
@@ -125,7 +126,9 @@ protected function handlePostSave(Post $model)
 }
 ```
 
-上面的程式碼內，一拿到從POST過來的資料，我們就將檔案實體放進`upload`裡面。這邊的重點是，這件事情必須在驗證之前做。驗證過後，如果檔案已經上傳了，After validating a form, if there's file uploaded we're saving it and writing path into model's`image`field. Last, regular`save()`is called with a`false`argument which means "don't validate". It's done this way because we've just validated above and sure it's OK.
+上面的程式碼內，一拿到從POST過來的資料，我們就將檔案實體放進`$upload`裡面。這邊的重點是，這件事情必須在驗證之前做。
+
+驗證過後，如果檔案已經成功上傳了，我們就儲存檔案，並將檔案路徑寫進`$image`。 最後，我們呼叫`save()`的時候，使用`false`參數，代表「不驗證」。因為我們在前面已經驗證過了，不需要重複。
 
 好了，我們的目標達成了。
 

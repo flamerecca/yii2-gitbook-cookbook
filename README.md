@@ -45,7 +45,7 @@ Yii 2.0 cookbook的翻譯。
 
 * [使用與客製化 CAPTCHA（Using and customizing CAPTCHA）](/forms-captcha.md)
 * [透過 JavaScript 操作 ActiveForm（Working with ActiveForm via JavaScript）](/forms-activeform-js.md)
-* Uploading files
+* [透過表單上傳檔案（Forms uploading files）](/forms-uploading-files.md)
 * Custom validator for multiple attributes
 
 ## 安全行 {#security}
@@ -113,3 +113,6 @@ Yii 2.0 cookbook的翻譯。
 * Making your life easier \(XDebug, debug toolbar, gii\)
 * IDE autocompletion for custom components
 * [使用客製化的遷移模板（Using custom migration template）](/using-custom-migration-template.md)
+
+
+
