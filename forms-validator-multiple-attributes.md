@@ -70,9 +70,9 @@ trait BatchValidationTrait
 }
 ```
 
-Then we need to create custom validator and use the created trait:
+然後，我們建立自己的驗證類別，並使用剛剛的特性：
 
-```
+```php
 <?php
 
 namespace app\components;
@@ -87,7 +87,7 @@ class CustomValidator extends Validator
 
 To support inline validation as well we can extend default inline validator and also use this trait:
 
-```
+```php
 <?php
 
 namespace app\components;
@@ -104,7 +104,7 @@ Couple more changes are needed.
 
 First to use our`CustomInlineValidator`instead of default`InlineValidator`we need to override \[\[\yii\validators\Validator::createValidator\(\)\]\] method in`CustomValidator`:
 
-```
+```php
 public static function createValidator($type, $model, $attributes, $params = [])
 {
     $params['attributes'] = $attributes;
@@ -131,7 +131,7 @@ public static function createValidator($type, $model, $attributes, $params = [])
 
 And finally to support our custom validator in model we can create the trait and override \[\[\yii\base\Model::createValidators\(\)\]\] like this:
 
-```
+```php
 <?php
 
 namespace app\components;
@@ -167,7 +167,7 @@ trait CustomValidationTrait
 
 Now we can implement custom validator by extending from`CustomValidator`:
 
-```
+```php
 <?php
 
 namespace app\validators;
@@ -192,7 +192,7 @@ class ChildrenFundsValidator extends CustomValidator
 
 Because`$attribute`contains the list of all related attributes, we can use loop in case of adding errors for all attributes is needed:
 
-```
+```php
 foreach ($attribute as $singleAttribute) {
     $this->addError($attribute, 'Your salary is not enough for children.');
 }
@@ -200,29 +200,33 @@ foreach ($attribute as $singleAttribute) {
 
 Now it's possible to specify all related attributes in according validation rule:
 
-    [
-        ['personalSalary', 'spouseSalary', 'childrenCount'],
-        \app\validators\ChildrenFundsValidator::className(),
-        'batch' => `true`,
-        'when' => function ($model) {
-            return $model->childrenCount > 0;
-        }
-    ],
+```php
+[
+    ['personalSalary', 'spouseSalary', 'childrenCount'],
+    \app\validators\ChildrenFundsValidator::className(),
+    'batch' => `true`,
+    'when' => function ($model) {
+        return $model->childrenCount > 0;
+    }
+],
+```
 
 For inline validation the rule will be:
 
-    [
-        ['personalSalary', 'spouseSalary', 'childrenCount'],
-        'validateChildrenFunds',
-        'batch' => `true`,
-        'when' => function ($model) {
-            return $model->childrenCount > 0;
-        }
-    ],
+```php
+[
+    ['personalSalary', 'spouseSalary', 'childrenCount'],
+    'validateChildrenFunds',
+    'batch' => `true`,
+    'when' => function ($model) {
+        return $model->childrenCount > 0;
+    }
+],
+```
 
 And here is according validation method:
 
-```
+```php
 public function validateChildrenFunds($attribute, $params)
 {
     // $attribute here is not a single attribute, it's an array containing all related attributes
