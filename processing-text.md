@@ -1,8 +1,8 @@
 # 處理文字（Processing text） {#processing-text}
 
-When implementing post or article publishing, it's very important to choose right tool for the job. Common approach is to use WYSIWYG \(what you see is what you get\) editor that produces HTML but that has significant cons. The most prominent con is that it's easy to break website design and to produce excessive and ugly HTML. The pro is that it's quite natural for people worked with MS Word or alike text processors.
+When implementing post or article publishing, it's very important to choose right tool for the job. Common approach is to use 所見即所得（what you see is what you get，WYSIWYG） editor that produces HTML but that has significant cons. The most prominent con is that it's easy to break website design and to produce excessive and ugly HTML. The pro is that it's quite natural for people worked with MS Word or alike text processors.
 
-不過現在，我們已經一些標記語言，像是 markdown。 While being very simple, it has everything to do basic text formatting: emphasis, hyperlinks, headers, tables, code blocks etc. For tricky cases it still accepts HTML.
+不過現在，我們已經有一些標記語言，像是 markdown。雖然語言結構很簡單，不過已經滿足基本文字格式的所有需求：粗體、超連接、標題、表格、程式碼區塊……等等。For tricky cases it still accepts HTML.
 
 ## 將 markdown 轉換成 HTML {#converting-markdown-to-html}
 
@@ -33,5 +33,5 @@ $safeHtml = HtmlPurifier::process($unsafeHtml);
 
 ## 其他選擇 {#alternatives}
 
-Markdown 並不是唯一的標記語言，對其他標記語言有興趣的話可以[參閱維基百科](https://zh.wikipedia.org/wiki/%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80)。
+Markdown 並不是唯一的標記語言，對其他標記語言有興趣的話可以[參閱維基百科](https://zh.wikipedia.org/wiki/轻量级标记语言)。
 
