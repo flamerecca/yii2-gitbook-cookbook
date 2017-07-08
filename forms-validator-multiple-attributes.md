@@ -1,10 +1,12 @@
 # Custom validator for multiple attributes {#custom-validator-for-multiple-attributes}
 
-Which creating custom validator is [教學裡面已經解釋了](https://github.com/yiisoft/yii2/blob/master/docs/guide/input-validation.md#creating-validator-), there are cases when you need to validate multiple attributes at once. For example, it can be hard to choose which one is more relevant or you consider it misleading in rules. In this recipe we'll implement`CustomValidator`which supports for validating multiple attributes at once.
+教學裡面已經解釋了怎麼[設計自己的驗證](https://github.com/yiisoft/yii2/blob/master/docs/guide/input-validation.md#creating-validator-)，there are cases when you need to validate multiple attributes at once. For example, it can be hard to choose which one is more relevant or you consider it misleading in rules. 
+
+這邊，我們實做一個`CustomValidator`來同時驗證多個參數。
 
 ## 怎麼做 {#how-to-do-it}
 
-By default if multiple attributes are used for validation, the loop will be used to apply the same validation to each of them. Let's use a separate trait and override \[\[yii\base\Validator:validateAttributes\(\)\]\]:
+如果要檢查多個參數，預設會將所有的參數用相同的方式驗證。我們使用不同的特性（trait），並 override `yii\base\Validator:validateAttributes()`：
 
 ```php
 <?php
@@ -85,7 +87,7 @@ class CustomValidator extends Validator
 }
 ```
 
-To support inline validation as well we can extend default inline validator and also use this trait:
+如果我們希望即時驗證（inline validation），i我們可以用相同的特性，但是改繼承即時驗證器：
 
 ```php
 <?php
@@ -100,7 +102,7 @@ class CustomInlineValidator extends InlineValidator
 }
 ```
 
-Couple more changes are needed.
+之後，還有幾個地方又修改。
 
 First to use our`CustomInlineValidator`instead of default`InlineValidator`we need to override \[\[\yii\validators\Validator::createValidator\(\)\]\] method in`CustomValidator`:
 
@@ -242,12 +244,10 @@ public function validateChildrenFunds($attribute, $params)
 
 ## 總結 {#summary}
 
-The advantages of this approach:
+這樣做的好處：
 
 * It better reflects all attributes that participate in validation \(the rules become more readable\);
-* It respects the options \[\[yii\validators\Validator::skipOnError\]\] and \[\[yii\validators\Validator::skipOnEmpty\]\] for
-  **each**
-  used attribute \(not only for that you decided to choose as more relevant\).
+* It respects the options \[\[yii\validators\Validator::skipOnError\]\] and \[\[yii\validators\Validator::skipOnEmpty\]\] for **each **used attribute \(not only for that you decided to choose as more relevant\).
 
 If you have problems with implementing client validation, you can:
 
