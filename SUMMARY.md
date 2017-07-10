@@ -45,7 +45,7 @@
 * [建構後台前台模組（Structure backend frontend modules）](structure-backend-frontend-modules.md)
 * [使用 Grunt 進行資源管理（Asset processing with Grunt）](structure-asset-processing-with-grunt.md)
 * [使用全域函式（Using global functions）](structure-global-functions.md)
-* [Processing text](processing-text.md)
+* [處理文字（Processing text）](processing-text.md)
 * [實做有型態的集合（Implementing typed collections）](structure-collections.md)
 * [MVC 模式（MVC）](mvc.md)
 * [SOLID 原則（SOLID）](solid.md)
