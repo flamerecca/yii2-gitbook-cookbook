@@ -1,8 +1,8 @@
 # Reusing views via partials {#reusing-views-via-partials}
 
-One of the main developing principles is DRY - don't repeat yourself. Duplication happens everywhere during development of the project including views. In order to fix it let's create reusable views.
+一個開發很重要的原則是「不要自我重複」（don't repeat yourself，DRY）。 重複的程式碼在開發期間到處都會出現，包括視圖的部份，這邊我們建立一些可重複使用的視圖，來解決這問題。
 
-## Creating partial view {#creating-partial-view}
+## 建立 partial view {#creating-partial-view}
 
 Here's a part of a standard`views/site/index.php`code:
 
@@ -21,7 +21,7 @@ $this->title = 'My Yii Application';
 //...
 ```
 
-For example, we want to show`<div class="jumbotron">`HTML block both on the front page and inside`views/site/about.php`view which is for_about_page. Let's create a separate view file`views/site/_jumbotron.php`and place the following code inside:
+For example, we want to show`<div class="jumbotron">`HTML block both on the front page and inside`views/site/about.php`view which is for\_about\_page. Let's create a separate view file`views/site/_jumbotron.php`and place the following code inside:
 
 ```
 <div class="jumbotron">
@@ -31,7 +31,7 @@ For example, we want to show`<div class="jumbotron">`HTML block both on the fron
 </div>
 ```
 
-## Using partial view {#using-partial-view}
+## 使用 partial view {#using-partial-view}
 
 Replace`<div class="jumbotron">`HTML block inside`views/site/index.php`with the following code:
 
@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 In the code above we're relying on[`View::render()`](http://www.yiiframework.com/doc-2.0/yii-base-view.html#render%28%29-detail)method which renders a view specified and returns its output which we're echoing immediately.
 
-## Adding variables {#adding-variables}
+## 加入變數 {#adding-variables}
 
 Let's customize message displayed in jumbotron. By default it will be the same message but user should be able to pass custom message via`message`parameter.
 
