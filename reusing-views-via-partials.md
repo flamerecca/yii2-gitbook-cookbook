@@ -4,9 +4,9 @@
 
 ## 建立 partial view {#creating-partial-view}
 
-Here's a part of a standard`views/site/index.php`code:
+下面是常見的`views/site/index.php`程式碼：
 
-```
+```php
 <?php
 /* @var $this yii\web\View */
 $this->title = 'My Yii Application';
@@ -21,7 +21,7 @@ $this->title = 'My Yii Application';
 //...
 ```
 
-For example, we want to show`<div class="jumbotron">`HTML block both on the front page and inside`views/site/about.php`view which is for\_about\_page. Let's create a separate view file`views/site/_jumbotron.php`and place the following code inside:
+舉例來說，we want to show`<div class="jumbotron">`HTML block both on the front page and inside`views/site/about.php`view which is for\_about\_page. Let's create a separate view file`views/site/_jumbotron.php`and place the following code inside:
 
 ```
 <div class="jumbotron">
