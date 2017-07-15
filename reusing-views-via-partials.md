@@ -21,9 +21,11 @@ $this->title = 'My Yii Application';
 //...
 ```
 
-舉例來說，we want to show`<div class="jumbotron">`HTML block both on the front page and inside`views/site/about.php`view which is for\_about\_page. Let's create a separate view file`views/site/_jumbotron.php`and place the following code inside:
+舉例來說，我們希望`<div class="jumbotron">`HTML 區塊的部份，可以同時出現在首頁與「關於我們」`views/site/about.php`裡面。並且這段區塊不要自我重複。
 
-```
+我們來建立獨立的視圖檔`views/site/_jumbotron.php`，並把下面的HTML放進來：
+
+```php
 <div class="jumbotron">
     <h1>Congratulations!</h1>
     <p class="lead">You have successfully created your Yii-powered application.</p>
@@ -33,7 +35,7 @@ $this->title = 'My Yii Application';
 
 ## 使用 partial view {#using-partial-view}
 
-Replace`<div class="jumbotron">`HTML block inside`views/site/index.php`with the following code:
+將原本`views/site/index.php `內，`<div class="jumbotron">`HTML 區塊的東西，改成如下：
 
 ```
 <?php
@@ -41,7 +43,7 @@ Replace`<div class="jumbotron">`HTML block inside`views/site/index.php`with the 
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
-<?=$this->render('_jumbotron.php')?>; // this line replaces standard block
+<?=$this->render('_jumbotron.php')?>; // 取代原本的 jumbotron 區塊
 <div class="body-content">
 //...
 ```
@@ -65,9 +67,9 @@ In the code above we're relying on[`View::render()`](http://www.yiiframework.com
 
 Let's customize message displayed in jumbotron. By default it will be the same message but user should be able to pass custom message via`message`parameter.
 
-First of all, customize`views/site/_jumbotron.php`:
+首先， customize`views/site/_jumbotron.php`:
 
-```
+```php
 <?php
 $message = isset($message) ? $message : 'You have successfully created your Yii-powered application.';
 ?>
@@ -78,9 +80,9 @@ $message = isset($message) ? $message : 'You have successfully created your Yii-
 </div>
 ```
 
-Now let's pass custom message for about page:
+然後在「關於我們」裡面，傳入`message`參數：
 
-```
+```php
 <?php
 use yii\helpers\Html;
 /* @var $this yii\web\View */
