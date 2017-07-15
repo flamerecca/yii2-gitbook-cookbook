@@ -35,7 +35,7 @@ $this->title = 'My Yii Application';
 
 ## 使用 partial view {#using-partial-view}
 
-將原本`views/site/index.php `內，`<div class="jumbotron">`HTML 區塊的東西，改成如下：
+將原本`views/site/index.php`內，`<div class="jumbotron">`HTML 區塊的東西，改成如下：
 
 ```
 <?php
@@ -67,7 +67,7 @@ In the code above we're relying on[`View::render()`](http://www.yiiframework.com
 
 Let's customize message displayed in jumbotron. By default it will be the same message but user should be able to pass custom message via`message`parameter.
 
-首先， customize`views/site/_jumbotron.php`:
+首先， 我們自製的`views/site/_jumbotron.php`，改成：
 
 ```php
 <?php
@@ -92,7 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-about">
     <?=$this->render('_jumbotron.php', [
         'message' => 'This is about page!',
-    ])?>; // our line
+    ])?>; // 我們的程式碼
 ```
 
 
