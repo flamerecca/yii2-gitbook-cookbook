@@ -37,7 +37,7 @@ $this->title = 'My Yii Application';
 
 將原本`views/site/index.php`內，`<div class="jumbotron">`HTML 區塊的東西，改成如下：
 
-```
+```php
 <?php
 /* @var $this yii\web\View */
 $this->title = 'My Yii Application';
@@ -48,9 +48,9 @@ $this->title = 'My Yii Application';
 //...
 ```
 
-Let's add the same code line inside`views/site/about.php`\(or inside another view\):
+在「關於我們」`views/site/about.php`裡面，加入一樣的程式碼（也可以加在其他的視圖內）：
 
-```
+```php
 <?php
 use yii\helpers\Html;
 /* @var $this yii\web\View */
@@ -58,7 +58,7 @@ $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
-    <?=$this->render('_jumbotron.php')?>; // our line
+    <?=$this->render('_jumbotron.php')?>; // 取代原本的 jumbotron 區塊
 ```
 
 In the code above we're relying on[`View::render()`](http://www.yiiframework.com/doc-2.0/yii-base-view.html#render%28%29-detail)method which renders a view specified and returns its output which we're echoing immediately.
