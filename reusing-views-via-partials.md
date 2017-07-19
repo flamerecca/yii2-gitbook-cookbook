@@ -1,4 +1,4 @@
-# Reusing views via partials {#reusing-views-via-partials}
+# 透過 partial 重新使用視圖（Reusing views via partials） {#reusing-views-via-partials}
 
 一個開發很重要的原則是「不要自我重複」（don't repeat yourself，DRY）。 重複的程式碼在開發期間到處都會出現，包括視圖的部份，這邊我們建立一些可重複使用的視圖，來解決這問題。
 
@@ -61,11 +61,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?=$this->render('_jumbotron.php')?>; // 取代原本的 jumbotron 區塊
 ```
 
-上面的程式碼內，我們靠[`View::render()`](http://www.yiiframework.com/doc-2.0/yii-base-view.html#render%28%29-detail)函式生成指定的 which renders a view specified and returns its output which we're echoing immediately.
+上面的程式碼內，我們靠[`View::render()`](http://www.yiiframework.com/doc-2.0/yii-base-view.html#render%28%29-detail)函式處理指定的視圖，並回傳HTML格式的輸出，讓我們可以送出至使用者。 
 
 ## 加入變數 {#adding-variables}
 
-Let's customize message displayed in jumbotron. By default it will be the same message but user should be able to pass custom message via`message`parameter.
+再來，我們讓 jumbotron 裡面的訊息也可以改變。原本的視圖裡面訊息是固定的，要能改變，我們透過加入一個`message`參數，並且依照需求傳入不同資料。
 
 首先， 我們自製的`views/site/_jumbotron.php`，改成：
 
