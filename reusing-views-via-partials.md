@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?=$this->render('_jumbotron.php')?>; // 取代原本的 jumbotron 區塊
 ```
 
-In the code above we're relying on[`View::render()`](http://www.yiiframework.com/doc-2.0/yii-base-view.html#render%28%29-detail)method which renders a view specified and returns its output which we're echoing immediately.
+上面的程式碼內，我們靠[`View::render()`](http://www.yiiframework.com/doc-2.0/yii-base-view.html#render%28%29-detail)函式生成指定的 which renders a view specified and returns its output which we're echoing immediately.
 
 ## 加入變數 {#adding-variables}
 
