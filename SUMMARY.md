@@ -55,7 +55,7 @@
 
 * [透過 partial 重新使用視圖（Reusing views via partials）](reusing-views-via-partials.md)
 * [動態改變佈景（Switching themes dynamically）](switching-themes.md)
-* [Response post processing](response-post-processing.md)
+* [回應後期處理（Post-processing response）](response-post-processing.md)
 
 ## 模型
 
