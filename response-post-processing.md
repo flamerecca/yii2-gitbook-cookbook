@@ -25,5 +25,5 @@ Yii::$app->getResponse()->on(Response::EVENT_AFTER_PREPARE, function($event) {
 });
 ```
 
-上面的程式碼，我們使用了`Response::EVENT_AFTER_PREPARE`，讓函式可以hich is triggered right before sending content to a browser. In the callback`$event->sender`is our response object which keeps data to be sent in`content`參數。所以我們在這裡找尋並替換標籤。
+上面的程式碼，我們使用了`Response::EVENT_AFTER_PREPARE`，讓該函式可以在傳至瀏覽器之前呼叫。在回傳事件裡面的`$event->sender`是我們包裝回應的物件，回應的內容則裝在`content`參數內。所以我們在`$event->sender->content`找尋並替換標籤。
 
