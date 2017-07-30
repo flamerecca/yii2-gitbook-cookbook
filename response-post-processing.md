@@ -1,16 +1,16 @@
-# Post-processing response
+# 回應後期處理（Post-processing response）
 
-Sometimes there's a need to post-process repsonse which is to be sent to browser. A good example is short tags like the ones in Wordpress engine. You use it like the following:
+有時候，我們需要對傳到瀏覽器的資料，進行後期處理（post-process）。比方說 Wordpress 引擎使用的標籤：
 
 ```
 This is [username]. We have [visitor_count] visitors on website.
 ```
 
-And both are automatically replaced by corresponding content.
+然後 username 和 visitor\_count 會自動換成對應的內容。
 
-## How to do it
+## 作法
 
-Yii is very flexible so it's easy to achieve:
+Yii 在這方面的彈性很高，所以很容易達成：
 
 ```php
 Yii::$app->getResponse()->on(Response::EVENT_AFTER_PREPARE, function($event) {
@@ -25,5 +25,5 @@ Yii::$app->getResponse()->on(Response::EVENT_AFTER_PREPARE, function($event) {
 });
 ```
 
-In the code above we're using`Response::EVENT_AFTER_PREPARE`which is triggered right before sending content to a browser. In the callback`$event->sender`is our response object which keeps data to be sent in`content`property. So we are finding and replacing short tags there.
+上面的程式碼，我們使用了`Response::EVENT_AFTER_PREPARE`，讓函式可以hich is triggered right before sending content to a browser. In the callback`$event->sender`is our response object which keeps data to be sent in`content`參數。所以我們在這裡找尋並替換標籤。
 
