@@ -1,6 +1,6 @@
 # Custom validator for multiple attributes {#custom-validator-for-multiple-attributes}
 
-教學裡面已經解釋了怎麼[設計自己的驗證](https://github.com/yiisoft/yii2/blob/master/docs/guide/input-validation.md#creating-validator-)，there are cases when you need to validate multiple attributes at once. For example, it can be hard to choose which one is more relevant or you consider it misleading in rules. 
+教學裡面已經解釋了怎麼[設計自己的驗證](https://github.com/yiisoft/yii2/blob/master/docs/guide/input-validation.md#creating-validator-)，there are cases when you need to validate multiple attributes at once. For example, it can be hard to choose which one is more relevant or you consider it misleading in rules.
 
 這邊，我們實做一個`CustomValidator`來同時驗證多個參數。
 
@@ -87,7 +87,7 @@ class CustomValidator extends Validator
 }
 ```
 
-如果我們希望即時驗證（inline validation），i我們可以用相同的特性，但是改繼承即時驗證器：
+如果我們希望即時驗證（inline validation），我們可以用相同的特性，但是改繼承即時驗證器：
 
 ```php
 <?php
@@ -104,7 +104,7 @@ class CustomInlineValidator extends InlineValidator
 
 之後，還有幾個地方又修改。
 
-First to use our`CustomInlineValidator`instead of default`InlineValidator`we need to override \[\[\yii\validators\Validator::createValidator\(\)\]\] method in`CustomValidator`:
+首先，換掉原本的`InlineValidator`，使用自製的`CustomInlineValidator`，我們需要覆蓋`CustomValidator`的\[\[\yii\validators\Validator::createValidator\(\)\]\] 函式：
 
 ```php
 public static function createValidator($type, $model, $attributes, $params = [])
@@ -167,7 +167,7 @@ trait CustomValidationTrait
 }
 ```
 
-Now we can implement custom validator by extending from`CustomValidator`:
+現在，我們可以透過繼承`CustomValidator`，實做我們自己的驗證器：
 
 ```php
 <?php
