@@ -11,19 +11,19 @@
 
 ## 運行控制台應用命令 {#running-console-application-command}
 
-Running console application command is preferred way to run code. First, implement[Yii's console command](http://www.yiiframework.com/doc-2.0/guide-tutorial-console.html). Then add it to crontab file:
+Running console application command is preferred way to run code. First, implement[Yii's console command](http://www.yiiframework.com/doc-2.0/guide-tutorial-console.html). 然後在 crontab 檔案裡面加入：
 
 ```
 42 0 * * * php /path/to/yii.php hello/index
 ```
 
-In the above`/path/to/yii`is full absolute path to`yii`console entry script. For both basic and advanced project templates it's right in the project root. Then follows usual command syntax.
+crontab 裡面的`/path/to/yii`必須是完整路徑，full absolute path to`yii`console entry script. For both basic and advanced project templates it's right in the project root. Then follows usual command syntax.
 
-`42 0 * * *`is crontab's configuration specifying when to run the command. Refer to cron docs and use[crontab.guru](http://crontab.guru/)service to verify syntax.
+`42 0 * * *`是s crontab's configuration specifying when to run the command. Refer to cron docs and use [crontab.guru](http://crontab.guru/) service to verify syntax.
 
 ### 瀏覽器模擬 {#browser-emulation}
 
-Browser emulation may be handy if you don't have access to local crontab, if you're triggering command externally or if you need the same environment as web application has.
+如果你沒有運行本機端程式的權限，只能透過外部來進行操作的話，瀏覽器模擬是個很便利的方案。透過模擬使用者的行為，我們也可以處理一些定期排程的行為。
 
 The difference here is that instead of console controller you're putting your code into web controller and then fetching corresponding page via one of the following commands:
 
