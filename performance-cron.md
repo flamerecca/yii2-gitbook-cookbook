@@ -1,15 +1,15 @@
-# 用cronjobs實做背景任務（Implementing backgroud tasks with cronjobs） {#implementing-backgroud-tasks-cronjobs}
+# 用 cronjobs 實做背景任務（Implementing backgroud tasks with cronjobs） {#implementing-backgroud-tasks-cronjobs}
 
-There are at least two ways to run scheduled background tasks:
+要定期運行背景程式，至少有以下兩種方式：
 
 * 運行控制台應用命令
 * 瀏覽器模擬
 
-Scheduling itself is the same for both ways. The difference is in actually running a command.
+兩種方式都需要一個處理排程的程式，其不同的部份在於透過什麼方式來達成我們想做到的事情。
 
-Under Linux and MacOS it's common to use [cronjobs](https://en.wikipedia.org/wiki/Cron). Windows users should check [SchTasks or at](http://technet.microsoft.com/en-us/library/cc725744.aspx).
+在 Linux 和 MacOS系統，一般使用 [cronjobs](https://en.wikipedia.org/wiki/Cron) 處理排程，Windows 系統的使用者可以參閱 [SchTasks](http://technet.microsoft.com/en-us/library/cc725744.aspx)。
 
-## Running console application command {#running-console-application-command}
+## 運行控制台應用命令 {#running-console-application-command}
 
 Running console application command is preferred way to run code. First, implement[Yii's console command](http://www.yiiframework.com/doc-2.0/guide-tutorial-console.html). Then add it to crontab file:
 
@@ -21,7 +21,7 @@ In the above`/path/to/yii`is full absolute path to`yii`console entry script. For
 
 `42 0 * * *`is crontab's configuration specifying when to run the command. Refer to cron docs and use[crontab.guru](http://crontab.guru/)service to verify syntax.
 
-### Browser emulation {#browser-emulation}
+### 瀏覽器模擬 {#browser-emulation}
 
 Browser emulation may be handy if you don't have access to local crontab, if you're triggering command externally or if you need the same environment as web application has.
 
