@@ -21,7 +21,7 @@ sudo apt-get install hhvm
 
 ## Nginx 設置 {#nginx-config}
 
-You can have both HHVM and php-fpm on the same server. Switching between them using nginx is easy since both are working as fastcgi. You can even have these side by side. In order to do it you should run regular PHP on one port and HHVM on another.
+你可以在一個伺服氣上同時運行 HHVM 和 php-fpm。 Switching between them using nginx is easy since both are working as fastcgi. You can even have these side by side. In order to do it you should run regular PHP on one port and HHVM on another.
 
 ```nginx
 server {
@@ -63,17 +63,19 @@ server {
 }
 ```
 
-As you can see, configurations are identical except port number.
+如上，除了 port 不同以外，其他設置是一樣的。
 
 ## 測試 {#test-it-first}
 
 HHVM 或多或少有[與其他框架一起測試運作](http://hhvm.com/frameworks/)，Yii 也包括在內，除了一些小問題之外應該都可以運行。
 
-不過Still, there are [many incompatibilities compared to PHP](https://github.com/facebook/hhvm/labels/php5 incompatibility)so make sure to test application well before going live.
+不過，HHVM 與 PHP相比[還是有許多不便](https://github.com/facebook/hhvm/labels/php5 incompatibility)，所以要實際上線之前，一定要重新測試過整個網頁。
 
 ## 錯誤回報 {#error-reporting}
 
-HHVM behavior about errors is different than PHP one so by default you're getting nothing but a blank white screen instead of an error. Add the following to HHVM config to fix it:
+HHVM 的錯誤回報與 PHP 的不同，根據預設，如果 HHVM 程式出現錯誤，你只會看到空白頁面，而不是錯誤訊息。
+
+在 HHVM 的 config 裡面，加入以下條件，來修正這個問題：
 
 ```
 hhvm.debug.server_error_message = true
