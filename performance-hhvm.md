@@ -1,6 +1,6 @@
 # 在 HHVM 上面運行Yii 2.0（Running Yii 2.0 on HHVM） {#running-yii-20-on-hhvm}
 
-HHVM 簡單說，是Facebook 所作的另一種 PHP 引擎替代品，其運行效能比起目前的 PHP 5.6 有顯著提高（比起 PHP 5.5 和 PHP 5.4 提高更多）。通常對一般的 PHP 程式，藉由引進HHVM，我們可以獲得約 10–40% 的效能提昇。如果是 For processing-intensive ones it could be times faster than with usual Zend PHP.
+HHVM 簡單說，是Facebook 所作的另一種 PHP 引擎替代品，其運行效能比起目前的 PHP 5.6 有顯著提高（比起 PHP 5.5 和 PHP 5.4 提高更多）。通常對一般的 PHP 程式，藉由引進HHVM，我們可以獲得約 10–40% 的效能提昇。如果是行程密集（processing-intensive）的程式，HHVM 比起常用的Zend PHP，可能會有數倍效率的提昇。
 
 ## 只限 Linux {#linux-only}
 
