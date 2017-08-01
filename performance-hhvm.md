@@ -1,14 +1,14 @@
 # 在 HHVM 上面運行Yii 2.0（Running Yii 2.0 on HHVM） {#running-yii-20-on-hhvm}
 
-HHVM is an alternative PHP engine made by Facebook which is performing significantly better than current PHP 5.6 \(and much better than PHP 5.5 or PHP 5.4\). You can get 10–40% performance improvement for virtually any application. For processing-intensive ones it could be times faster than with usual Zend PHP.
+HHVM 簡單說，是Facebook 所作的另一種 PHP 引擎替代品，其運行效能比起目前的 PHP 5.6 有顯著提高（比起 PHP 5.5 和 PHP 5.4 提高更多）。通常對一般的 PHP 程式，藉由引進HHVM，我們可以獲得約 10–40% 的效能提昇。如果是 For processing-intensive ones it could be times faster than with usual Zend PHP.
 
 ## 只限 Linux {#linux-only}
 
-HHVM is linux only. It doesn't have anything for Windows and for MacOS it works in limited mode without JIT compiler.
+HHVM 只限 Linux可以使用，沒有對應 Windows 的產品，而在 MacOS 環境下，只有有限的功能，沒有JIT編譯器（JIT compiler）。
 
 ## 安裝 HHVM {#installing-hhvm}
 
-Installing is easy. Here's how to do it for Debian:
+HHVM 的安裝很簡單，下面是在 Debian 的安裝方法：
 
 ```
 sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449
@@ -17,7 +17,7 @@ sudo apt-get update
 sudo apt-get install hhvm
 ```
 
-Instructions for other distributions[are available](https://github.com/facebook/hhvm/wiki/Getting-Started).
+其他的發布方式教學[在這](https://docs.hhvm.com/hhvm/getting-started/getting-started)。
 
 ## Nginx 設置 {#nginx-config}
 
@@ -67,7 +67,9 @@ As you can see, configurations are identical except port number.
 
 ## 測試 {#test-it-first}
 
-HHVM is more or less[tested to work with most frameworks out there](http://hhvm.com/frameworks/). Yii isn't exception. Except minor issues everything should work. Still, there are[many incompatibilities compared to PHP](https://github.com/facebook/hhvm/labels/php5 incompatibility)so make sure to test application well before going live.
+HHVM 或多或少有[與其他框架一起測試運作](http://hhvm.com/frameworks/)，Yii 也包括在內，除了一些小問題之外應該都可以運行。
+
+不過Still, there are [many incompatibilities compared to PHP](https://github.com/facebook/hhvm/labels/php5 incompatibility)so make sure to test application well before going live.
 
 ## 錯誤回報 {#error-reporting}
 
