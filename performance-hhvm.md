@@ -21,7 +21,9 @@ sudo apt-get install hhvm
 
 ## Nginx 設置 {#nginx-config}
 
-你可以在一個伺服氣上同時運行 HHVM 和 php-fpm。 Switching between them using nginx is easy since both are working as fastcgi. You can even have these side by side. In order to do it you should run regular PHP on one port and HHVM on another.
+你可以在一個伺服器上同時運行 HHVM 和 php-fpm。因為這兩個都是透過 fastcgi 來運作，所以互相轉換很容易。我們甚至可以同時運作這兩者。
+
+如果要這樣做，我們必須將一般的 PHP 與 HHVM，運行在不同的 port 上面。
 
 ```nginx
 server {
@@ -63,7 +65,7 @@ server {
 }
 ```
 
-如上，除了 port 不同以外，其他設置是一樣的。
+如上，除了 port 不同以外，其他設置是幾乎一樣的。
 
 ## 測試 {#test-it-first}
 

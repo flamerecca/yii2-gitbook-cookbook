@@ -74,7 +74,7 @@
 ## 效能
 
 * [用 cronjobs 實做背景任務（Implementing backgroud tasks with cronjobs）](performance-cron.md)
-* [Performance hhvm](performance-hhvm.md)
+* [在 HHVM 上面運行Yii 2.0（Running Yii 2.0 on HHVM）](performance-hhvm.md)
 * [快取（Caching）](caching.md)
 * [Scaling](scaling.md)
 
