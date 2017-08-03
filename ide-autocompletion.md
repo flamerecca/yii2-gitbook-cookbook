@@ -2,7 +2,7 @@
 
 因為其提供的各種好處，在現在的程式開發內，使用 IDE 已經是相當基本的事情。IDE 可以幫忙檢查打字錯誤、偵測程式問題、建議程式碼可以改進的地方，以及程式碼自動完成。
 
-對 Yii 2.0 來說，用 IDE 來開發已經相當合適，除了針對  not in case of custom application components，像是`Yii::$app->mycomponent->something`。
+對 Yii 2.0 來說，用 IDE 來開發已經相當合適，不過一個例外是針對自己定義的應用程式元件，像是`Yii::$app->mycomponent->something`。
 
 ## 使用自定義 Yii 類別 {#using-custom-yii-class}
 
@@ -56,7 +56,7 @@ class ConsoleApplication extends yii\console\Application
 }
 ```
 
-In the above PHPDoc of `BaseApplication`、`WebApplication`、`ConsoleApplication`will be used by IDE to autocomplete your custom components described via`@property`.
+上面針對`BaseApplication`、`WebApplication`、`ConsoleApplication`的 PHPDoc 註解，ill be used by IDE to autocomplete your custom components described via`@property`.
 
 > **備註：** To avoid "Multiple Implementations" PHPStorm warning and make autocomplete faster ， exclude or "Mark as Plain Text"`vendor/yiisoft/yii2/Yii.php`file.
 
@@ -66,7 +66,7 @@ In the above PHPDoc of `BaseApplication`、`WebApplication`、`ConsoleApplicatio
 
 You can generate custom`Yii`class automatically, using the components definitions from the application config. Check out [bazilio91/yii2-stubs-generator](https://github.com/bazilio91/yii2-stubs-generator) 套件。
 
-### Customizing User component {#customizing-user-component}
+### 自定義使用者元件 {#customizing-user-component}
 
 In order to get autocompletion for User's Identity i.e.`Yii::$app->user->identity`,`app\components\User`class should look like the following:
 
