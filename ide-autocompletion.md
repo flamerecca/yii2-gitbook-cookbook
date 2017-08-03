@@ -1,10 +1,12 @@
 # IDE autocompletion for custom components {#ide-autocompletion-for-custom-components}
 
-Using IDE for development is quite typical nowadays because of the comfort it provides. It detects typos and errors, suggests code improvements and, of course, provides code autocomplete. For Yii 2.0 it works quite good out of the box but not in case of custom application components i.e.`Yii::$app->mycomponent->something`。
+因為其提供的各種好處，在現在的程式開發內，使用 IDE 已經是相當基本的事情。IDE 可以幫忙檢查打字錯誤、偵測程式問題、建議程式碼可以改進的地方，以及程式碼自動完成。
+
+對 Yii 2.0 來說，用 IDE 來開發已經相當合適，除了針對  not in case of custom application components，像是`Yii::$app->mycomponent->something`。
 
 ## 使用自定義 Yii 類別 {#using-custom-yii-class}
 
-The best way to give IDE some hints is to use your own`Yii`file which isn't actually used when running code. This file could be named`Yii.php`and the content could be the following:
+The best way to give IDE some hints，是建立一個實際上沒有運作的`Yii`檔。This file could be named`Yii.php`and the content could be the following:
 
 ```php
 <?php
@@ -54,15 +56,15 @@ class ConsoleApplication extends yii\console\Application
 }
 ```
 
-In the above PHPDoc of`BaseApplication`、`WebApplication`、`ConsoleApplication`will be used by IDE to autocomplete your custom components described via`@property`.
+In the above PHPDoc of `BaseApplication`、`WebApplication`、`ConsoleApplication`will be used by IDE to autocomplete your custom components described via`@property`.
 
-> **Note**: To avoid "Multiple Implementations" PHPStorm warning and make autocomplete faster exclude or "Mark as Plain Text"`vendor/yiisoft/yii2/Yii.php`file.
+> **備註：** To avoid "Multiple Implementations" PHPStorm warning and make autocomplete faster ， exclude or "Mark as Plain Text"`vendor/yiisoft/yii2/Yii.php`file.
 
-That's it. Now`Yii::$app->user`will be our`\app\components\User`component instead of default one. The same applies for all other`@property`-declared components.
+好了，現在`Yii::$app->user`不再是預設的user，而是註解內的`\app\components\User`元件。 The same applies for all other`@property`-declared components.
 
-## Custom Yii class autogeneration {#custom-yii-class-autogeneration}
+## 自動產生 Custom Yii 類別 {#custom-yii-class-autogeneration}
 
-You can generate custom`Yii`class automatically, using the components definitions from the application config. Check out[bazilio91/yii2-stubs-generator](https://github.com/bazilio91/yii2-stubs-generator)extention.
+You can generate custom`Yii`class automatically, using the components definitions from the application config. Check out [bazilio91/yii2-stubs-generator](https://github.com/bazilio91/yii2-stubs-generator) 套件。
 
 ### Customizing User component {#customizing-user-component}
 
