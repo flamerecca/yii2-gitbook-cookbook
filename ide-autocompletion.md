@@ -1,8 +1,8 @@
 # IDE autocompletion for custom components {#ide-autocompletion-for-custom-components}
 
-Using IDE for development is quite typical nowadays because of the comfort it provides. It detects typos and errors, suggests code improvements and, of course, provides code autocomplete. For Yii 2.0 it works quite good out of the box but not in case of custom application components i.e.`Yii::$app->mycomponent->something`.
+Using IDE for development is quite typical nowadays because of the comfort it provides. It detects typos and errors, suggests code improvements and, of course, provides code autocomplete. For Yii 2.0 it works quite good out of the box but not in case of custom application components i.e.`Yii::$app->mycomponent->something`。
 
-## Using custom Yii class {#using-custom-yii-class}
+## 使用自定義 Yii 類別 {#using-custom-yii-class}
 
 The best way to give IDE some hints is to use your own`Yii`file which isn't actually used when running code. This file could be named`Yii.php`and the content could be the following:
 
@@ -52,10 +52,9 @@ class WebApplication extends yii\web\Application
 class ConsoleApplication extends yii\console\Application
 {
 }
-
 ```
 
-In the above PHPDoc of`BaseApplication`,`WebApplication`,`ConsoleApplication`will be used by IDE to autocomplete your custom components described via`@property`.
+In the above PHPDoc of`BaseApplication`、`WebApplication`、`ConsoleApplication`will be used by IDE to autocomplete your custom components described via`@property`.
 
 > **Note**: To avoid "Multiple Implementations" PHPStorm warning and make autocomplete faster exclude or "Mark as Plain Text"`vendor/yiisoft/yii2/Yii.php`file.
 
@@ -86,7 +85,7 @@ class User extends \yii\web\User
 }
 ```
 
-As a result, Yii config file may look this way:
+最後， Yii config 可能會看起來像是這樣：
 
 ```php
 return [
