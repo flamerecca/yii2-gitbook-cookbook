@@ -84,6 +84,6 @@
 
 ## 工具
 
-* [Ide autocompletion](ide-autocompletion.md)
+* [自定義元件的 IDE 自動產生（IDE autocompletion for custom components）](ide-autocompletion.md)
 * [使用客製化的遷移模板（Using custom migration template）](using-custom-migration-template.md)
 

@@ -1,8 +1,8 @@
 # Configuring a Yii2 Application for an Multiple Servers Stack {#configuring-a-yii2-application-for-an-multiple-servers-stack}
 
-These instructions are focused on configuring Yii2 to be a stateless application. Stateless application means each of your servers should be the exact same copy as possible. They should not store data in the instance. Stateless instances means more scalable architecture. Current deployment method described is pretty basic. More efficient and complex deployment methods may be described in the future.
+這邊的教學集中在如何讓  Yii2 建立的程式能夠無狀態（stateless ）化。 無狀態的意思是每一個主機不儲存狀態資料，每台主機的內容幾乎都是一樣的。程式不會在主機實體上面儲存資料。 這種架構擴展的彈性度，比起傳統的架構更高。目前這邊所說的架構相當簡單，更加複雜的架構會在未來的篇章說明。 
 
-Generally in web development, scaling means horizontal scaling, adding more servers to handle more amount of traffics. This can be done manually or automatically in popular deployment platform. In autoscaled environment, the platform can detect large amount of traffics and handle it by temporarily adding additional servers.
+在網頁開發上，一般來說擴展代表的是水平擴展（horizontal scaling）Generally in web development, scaling means horizontal scaling, adding more servers to handle more amount of traffics. This can be done manually or automatically in popular deployment platform. In autoscaled environment, the platform can detect large amount of traffics and handle it by temporarily adding additional servers.
 
 To set up a scalable application, the application needs to be made stateless, generally nothing should be written directly to the application hosting server, so no local session or cache storage. The session, cache, and database needs to be hosted on dedicated server.
 
@@ -10,12 +10,18 @@ Setting up a Yii2 application for auto scaling is fairly straight forward:
 
 ## 先決條件 {#prerequisites}
 
-* 任何完善的平台即服務（Platform as a Service，PaaS）系統，都會支援自動縮放（autoscaling）、負載平衡（load balancing）以及 SQL 資料庫等功能。像是 Google 雲端平台，就有自己的 Instance Group 和 Load Balancer。（Amazon Web Services，AWS） 也有AutoScaling Group 和 Elastic Load Balancer。
+* 任何完善的平台即服務（Platform as a Service，PaaS）系統
 
-* Dedicated Redis or Memcached server. Easily launched on popular PaaS platforms with  
-  [Bitnami Cloud](https://bitnami.com/cloud). Redis generally performs better over Memcached, so this page will be focusing on working with Redis.
+  * 一個完整的 PaaS 系統會支援自動縮放（autoscaling）、負載平衡（load balancing）以及 SQL 資料庫等功能。像是 Google 雲端平台，就有自己的 Instance Group 和 Load Balancer。Amazon Web Services，或者 AWS， 也有AutoScaling Group 和 Elastic Load Balancer。
 
-* Dedicated database server \(Most PaaS platforms let you easily launch one i.e. Google SQL or AWS Relational Database Service\).
+* Dedicated Redis or Memcached server. 
+
+  * Easily launched on popular PaaS platforms with  
+    [Bitnami Cloud](https://bitnami.com/cloud). Redis 一般來說運作的比 Memcached 要好，所以這邊只講在 Redis 上的作法。
+
+* 完善的資料庫
+
+  *  \(Most PaaS platforms let you easily launch one i.e. Google SQL or AWS Relational Database Service\).
 
 ## 使應用無狀態（stateless）化 {#making-your-application-stateless}
 
