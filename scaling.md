@@ -2,11 +2,11 @@
 
 這邊的教學集中在如何讓  Yii2 建立的程式能夠無狀態（stateless ）化。 無狀態的意思是每一個主機不儲存狀態資料，每台主機的內容幾乎都是一樣的。程式不會在主機實體上面儲存資料。 這種架構擴展的彈性度，比起傳統的架構更高。目前這邊所說的架構相當簡單，更加複雜的架構會在未來的篇章說明。
 
-在網頁開發上，一般來說擴展代表的是水平擴展（horizontal scaling）Generally in web development, scaling means horizontal scaling, adding more servers to handle more amount of traffics. This can be done manually or automatically in popular deployment platform. In autoscaled environment, the platform can detect large amount of traffics and handle it by temporarily adding additional servers.
+在網頁開發上，一般來說擴展代表的是水平擴展（horizontal scaling），也就是加入更多的伺服器來處理更多流量。可以手動增添伺服器，或者，再大多數平台，可以自動增添伺服器。在自動擴展的環境之下，平台可以自動偵測變多的流量，並主動增添伺服器。
 
-To set up a scalable application, the application needs to be made stateless, generally nothing should be written directly to the application hosting server, so no local session or cache storage. The session, cache, and database needs to be hosted on dedicated server.
+要建立一個可擴展的應用，該應用必須要是無狀態的，換句話說，沒有資料應該直接寫入主機，所以沒有本地端的 session 或 cache 。所有的 session，cache，以及資料庫必須放在獨立的伺服器上面。
 
-Setting up a Yii2 application for auto scaling is fairly straight forward:
+設置一個能自動擴展的 Yii2 服務相當直覺。下面我們來說明怎麼做。
 
 ## 先決條件 {#prerequisites}
 
@@ -24,38 +24,32 @@ Setting up a Yii2 application for auto scaling is fairly straight forward:
 
 ## 使應用無狀態（stateless）化 {#making-your-application-stateless}
 
-Use a Yii2 supported Session Storage/Caching/Logging service such as Redis. Refer to the following resources for further instructions:
+使用 Yii2 支援的 Session Storage/Caching/Logging 服務，像是 Redis。更多細節可以參考下面的資料：
 
 * [Yii2 類別 yii\redis\Session](http://www.yiiframework.com/doc-2.0/yii-redis-session.html)
 * [Yii2 類別 yii\redis\Cache](http://www.yiiframework.com/doc-2.0/yii-redis-cache.html)
 * [Yii2 Redis Logging 元件](https://github.com/JackyChan/yii2-redis-log)
 
-When you run on a PaaS platform, make sure to use the Redis server's internal IP and not the external IP. This is essential for your application's speed.
+當我們使用 PaaS 平台，要注意是使用 Redis 伺服器的內部 IP 而不是外部 IP。這對應用的速度非常重要。
 
-A redis server doesn't require much disk space. It runs on RAM. This guide recommends any new application to start with at least 1GB RAM, and vertically scaling up the instance \(i.e. upgrade to a more RAM\) depending on usage. You can measure your RAM usage by SSH'ing into the redis server and running`top`.
+redis 伺服器主要是在 RAM 上面運作，不需要很多硬碟空間。這邊建議先至少使用1GB RAM，然後在有需要的時候做垂直擴展，或者說，換成有更大RAM的機器。我們可以透過 SSH 連線進 Redis 主機，然後運作`top`指令，來度量我們使用的 RAM 大小。
 
-Also configure your application to use your hosted database server \(hosted by i.e. Google SQL\).
+另外，將應用設置成不是連進本機的資料庫，而是使用外部的SQL主機，比方說是Google SQL。
 
 ## 配置堆疊 {#configuring-the-stack}
 
-The instructions below may be subject to change and improvement.
+以下說明可能會有改變和改進。
 
-Set up a temporary single instance server to configure your application with.
+設置臨時的一個服務器，以用來配置我們的應用程序。
 
 The application must be deployed to the server by Git, so that multiple servers will stay up to date with the application. This guide recommends the following process:
 
 * `git clone`
-  the application into the configured
-  `www`
-  directory. The publicly accessed directory path can be varied depending on the platform.
-* Set up a cron job to
-  `git pull`
-  the directory every minute.
-* Set up a cron job to
-  `composer install`
-  the directory every minute.
+  the application into the configured`www`directory. The publicly accessed directory path can be varied depending on the platform.
+* Set up a cron job to`git pull`the directory every minute.
+* Set up a cron job to`composer install`the directory every minute.
 
-When the application is up and running on the temporary server, create a snapshot of the server and use it to create your scalable server group.
+當應用When the application is up and running on the temporary server, create a snapshot of the server and use it to create your scalable server group.
 
 Most PaaS platforms such as Google Cloud Managed Instance Groups and Amazon Elastic Beanstalk let you configure 'start up' commands. The start up command should also install/update the application \(using`git clone`or`git pull`depending on if the service image already contains the application's git or not\), and a`composer install`command to install all composer packages.
 
@@ -69,7 +63,7 @@ There are couple of deployment mechanism that is provided by different platform 
 
 ## 資源管理 {#assets-management}
 
-By default Yii generate assets on the fly and store in`web/assets`directory with names that depends on the file created time. If you deploy in multiple servers, the deployment time in each server can be different even by several seconds. This can be caused by the difference of latency to the code storage or other factors or especially in autoscaling environment when a new instance can be spun hours after last deployment.
+Yii 預設是程式運作時產生資源，並儲存在`web/assets`資料夾裡面，以產生的時間命名。如果使用多個伺服器， If you deploy in multiple servers, the deployment time in each server can be different even by several seconds. This can be caused by the difference of latency to the code storage or other factors or especially in autoscaling environment when a new instance can be spun hours after last deployment.
 
 This can cause inconsistencies for URLs generated by different servers for a single asset. Setting the server affinity in the load balancer can avoid this, meaning requests by same user will be directed to the very same server hit by the first request. But this solution is not recommended since you may cache the result of your page in a persistent centralized storage. Furthermore, in autoscaling environment underutilized server can be shut down anytime leaving the next requests served by different server that generated different URL.
 
@@ -88,7 +82,7 @@ $config = [
     ]
 ```
 
-If you use HTTP caching configuration in your Apache or NGINX server to serve assets like JS/CSS/JPG/etc, you may want to enable the[`appendTimestamp`](http://www.yiiframework.com/doc-2.0/yii-web-assetmanager.html#%24appendTimestamp-detail)so that when an asset gets updated the old asset will be invalidated in the cache.
+如果我們使用 HTTP caching configuration in your Apache or NGINX server to serve assets like JS/CSS/JPG/etc, you may want to enable the[`appendTimestamp`](http://www.yiiframework.com/doc-2.0/yii-web-assetmanager.html#%24appendTimestamp-detail)so that when an asset gets updated the old asset will be invalidated in the cache.
 
 ```php
 $config = [
@@ -103,7 +97,7 @@ $config = [
 ];
 ```
 
-Load balancing without server affinity increases scalability but raises one more issue regarding the assets: assets availability in all servers. Consider request**1**for a page is being received by server**A**. Server**A**will generate assets and write them in local directory. Then the HTML output returned to the browser which then generates request**2**for the asset. If you configure the server affinity, this request will hit server **A **given the server is still available and the server will return the requested asset. But in this case the request may or may not hit server**A**. It can hit server**B**that still has not generated the asset in local directory thus returning`404 Not Found`. Server**B**will eventually generate the assets. The more servers you have the longer time they need to catch up with each others and that increases the number of`404 Not Found`for the assets.
+負載平衡（Load balancing） without server affinity increases scalability but raises one more issue regarding the assets: assets availability in all servers. Consider request **1 **for a page is being received by server**A**. Server**A**will generate assets and write them in local directory. Then the HTML output returned to the browser which then generates request**2**for the asset. If you configure the server affinity, this request will hit server **A **given the server is still available and the server will return the requested asset. But in this case the request may or may not hit server**A**. It can hit server**B**that still has not generated the asset in local directory thus returning`404 Not Found`. Server**B**will eventually generate the assets. The more servers you have the longer time they need to catch up with each others and that increases the number of`404 Not Found`for the assets.
 
 The best thing you can do to avoid this is by using[Asset Combination and Compression](http://www.yiiframework.com/doc-2.0/guide-structure-assets.html#combining-compressing-assets). As described above, when you deploy your application, generally deployment platform can be set to execute hook such as`composer install`. Here you can also execute asset combination and compression using`yii asset assets.php config/assets-prod.php`. Just remember everytime you add new asset in your application, you need to add that asset in the`asset.php`configuration.
 
