@@ -1,6 +1,6 @@
 # Configuring a Yii2 Application for an Multiple Servers Stack {#configuring-a-yii2-application-for-an-multiple-servers-stack}
 
-這邊的教學集中在如何讓  Yii2 建立的程式能夠無狀態（stateless ）化。 無狀態的意思是每一個主機不儲存狀態資料，每台主機的內容幾乎都是一樣的。程式不會在主機實體上面儲存資料。 這種架構擴展的彈性度，比起傳統的架構更高。目前這邊所說的架構相當簡單，更加複雜的架構會在未來的篇章說明。 
+這邊的教學集中在如何讓  Yii2 建立的程式能夠無狀態（stateless ）化。 無狀態的意思是每一個主機不儲存狀態資料，每台主機的內容幾乎都是一樣的。程式不會在主機實體上面儲存資料。 這種架構擴展的彈性度，比起傳統的架構更高。目前這邊所說的架構相當簡單，更加複雜的架構會在未來的篇章說明。
 
 在網頁開發上，一般來說擴展代表的是水平擴展（horizontal scaling）Generally in web development, scaling means horizontal scaling, adding more servers to handle more amount of traffics. This can be done manually or automatically in popular deployment platform. In autoscaled environment, the platform can detect large amount of traffics and handle it by temporarily adding additional servers.
 
@@ -14,14 +14,13 @@ Setting up a Yii2 application for auto scaling is fairly straight forward:
 
   * 一個完整的 PaaS 系統會支援自動縮放（autoscaling）、負載平衡（load balancing）以及 SQL 資料庫等功能。像是 Google 雲端平台，就有自己的 Instance Group 和 Load Balancer。Amazon Web Services，或者 AWS， 也有AutoScaling Group 和 Elastic Load Balancer。
 
-* Dedicated Redis or Memcached server. 
+* 專用的 Redis 或者 Memcached 伺服器
 
-  * Easily launched on popular PaaS platforms with  
-    [Bitnami Cloud](https://bitnami.com/cloud). Redis 一般來說運作的比 Memcached 要好，所以這邊只講在 Redis 上的作法。
+  * 使用 [Bitnami Cloud](https://bitnami.com/cloud) 可以簡單的發布在多數主流的PaaS服務上，Redis 一般來說運作的比 Memcached 要好，所以這邊只講使用 Redis 的作法。
 
-* 完善的資料庫
+* 專用的資料庫
 
-  *  \(Most PaaS platforms let you easily launch one i.e. Google SQL or AWS Relational Database Service\).
+  * 大多 PaaS 服務都可以簡單的使用資料庫，比方說 Google SQL 或者 AWS Relational Database Service。
 
 ## 使應用無狀態（stateless）化 {#making-your-application-stateless}
 
@@ -104,7 +103,7 @@ $config = [
 ];
 ```
 
-Load balancing without server affinity increases scalability but raises one more issue regarding the assets: assets availability in all servers. Consider request**1**for a page is being received by server**A**. Server**A**will generate assets and write them in local directory. Then the HTML output returned to the browser which then generates request**2**for the asset. If you configure the server affinity, this request will hit server**A**given the server is still available and the server will return the requested asset. But in this case the request may or may not hit server**A**. It can hit server**B**that still has not generated the asset in local directory thus returning`404 Not Found`. Server**B**will eventually generate the assets. The more servers you have the longer time they need to catch up with each others and that increases the number of`404 Not Found`for the assets.
+Load balancing without server affinity increases scalability but raises one more issue regarding the assets: assets availability in all servers. Consider request**1**for a page is being received by server**A**. Server**A**will generate assets and write them in local directory. Then the HTML output returned to the browser which then generates request**2**for the asset. If you configure the server affinity, this request will hit server **A **given the server is still available and the server will return the requested asset. But in this case the request may or may not hit server**A**. It can hit server**B**that still has not generated the asset in local directory thus returning`404 Not Found`. Server**B**will eventually generate the assets. The more servers you have the longer time they need to catch up with each others and that increases the number of`404 Not Found`for the assets.
 
 The best thing you can do to avoid this is by using[Asset Combination and Compression](http://www.yiiframework.com/doc-2.0/guide-structure-assets.html#combining-compressing-assets). As described above, when you deploy your application, generally deployment platform can be set to execute hook such as`composer install`. Here you can also execute asset combination and compression using`yii asset assets.php config/assets-prod.php`. Just remember everytime you add new asset in your application, you need to add that asset in the`asset.php`configuration.
 
