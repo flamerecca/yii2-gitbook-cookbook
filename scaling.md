@@ -60,9 +60,9 @@ redis 伺服器主要是在 RAM 上面運作，不需要很多硬碟空間。這
 
 ---
 
-上述的機制很單純，但是足以運作一個可自動增減的應用。The mechanism described above is really simple yet sufficient enough to have your application up and running. There can be another process incorporated in the mechanism such as deployment failure prevention, version rollback, zero downtime, etc. 這些會在其他的地方進行介紹。
+上述的機制很單純，但是足以運作一個可自動增減的應用。還有一些步驟可以補強該機制，像是佈署失敗避免、版本回溯、零停機（zero downtime）……等。這些會在其他的地方進行介紹。
 
-Google Cloud 和 Amazon Web Services 等不同平台還有提供一些其他的佈署方案。這些佈署方案也會在其他的地方介紹。
+Google Cloud 和 Amazon Web Services 等不同平台，還有提供一些其他的佈署方案。這些佈署方案也會在其他的地方介紹。
 
 ## 資源管理 {#assets-management}
 
@@ -102,7 +102,7 @@ $config = [
 
 沒有伺服器關係（server affinity）的負載平衡（Load balancing）可以提高擴展彈性，但是除了資源共用的問題，又多了一個情況： 對所有伺服器的資源可用性問題。
 
-假設使用者對頁面的請求 **1**，傳遞到了伺服器 **A**。伺服器 **A **依據該請求，產生對應的資源，並儲存在本地資料夾裡面。Then the HTML output returned to the browser which then generates request **2 **for the asset. 如果我們設置了伺服器關係，請求 **2** 應該會到達If you configure the server affinity, this request will hit server **A **given the server is still available and the server will return the requested asset. 但是，這個請求實際上不一定會到達伺服器 **A**。而是可能到達尚未產生資源的伺服器 **B**，這樣的話就會產生`404 Not Found`錯誤。雖然最終伺服器 **B **還是會產生這些資源，但是仍舊有產生錯誤的機會。伺服器集合有越多伺服器的話，資源同步的時間就會越長，這種資源同步誤差產生的`404 Not Found`錯誤機會就會越高。
+假設使用者對頁面的請求 **1**，傳遞到了伺服器 **A**。伺服器 **A **依據該請求，產生對應的資源，並儲存在本地資料夾裡面。然後Then the HTML output returned to the browser which then generates request **2 **for the asset. 如果我們設置了伺服器關係，請求 **2** 應該會到達If you configure the server affinity, this request will hit server **A **given the server is still available and the server will return the requested asset. 但是，這個請求實際上不一定會到達伺服器 **A**。而是可能到達尚未產生資源的伺服器 **B**，這樣的話就會產生`404 Not Found`錯誤。雖然最終伺服器 **B **還是會產生這些資源，但是仍舊有產生錯誤的機會。伺服器集合有越多伺服器的話，資源同步的時間就會越長，這種資源同步誤差產生的`404 Not Found`錯誤機會就會越高。
 
 避免這個問題最好的作法是使用 [Asset Combination and Compression](http://www.yiiframework.com/doc-2.0/guide-structure-assets.html#combining-compressing-assets). 。如上所述，when you deploy your application, generally deployment platform can be set to execute hook such as`composer install`. Here you can also execute asset combination and compression using`yii asset assets.php config/assets-prod.php`. Just remember everytime you add new asset in your application, you need to add that asset in the`asset.php`configuration.
 
