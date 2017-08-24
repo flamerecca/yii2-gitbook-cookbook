@@ -247,7 +247,7 @@ public function validateChildrenFunds($attribute, $params)
 這樣做的好處：
 
 * It better reflects all attributes that participate in validation，規則可讀性更高。
-* It respects the options \[\[yii\validators\Validator::skipOnError\]\] and \[\[yii\validators\Validator::skipOnEmpty\]\] for **each **used attribute \(not only for that you decided to choose as more relevant\).
+* 這種作法讓選項 \[\[yii\validators\Validator::skipOnError\]\] and \[\[yii\validators\Validator::skipOnEmpty\]\] for **each **used attribute \(not only for that you decided to choose as more relevant\).
 
 如果實做驗證的部份有問題，我們可以：
 
