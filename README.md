@@ -101,7 +101,7 @@ Yii 2.0 cookbook的翻譯。
 * Implementing backgroud tasks \(cronjobs\)
 * Running Yii on HHVM
 * [快取（Caching）](/caching.md)
-* Configuring a Yii2 Application for an Autoscaling Stack
+* [多伺服器下設置 Yii2 應用（Configuring a Yii2 Application for an Multiple Servers Stack）](/scaling.md)
 
 ## 外部程式碼 {#external-code}
 
