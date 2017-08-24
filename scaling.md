@@ -1,4 +1,4 @@
-# Configuring a Yii2 Application for an Multiple Servers Stack {#configuring-a-yii2-application-for-an-multiple-servers-stack}
+# 多伺服器下設置 Yii2 應用（Configuring a Yii2 Application for an Multiple Servers Stack） {#configuring-a-yii2-application-for-an-multiple-servers-stack}
 
 這邊的教學集中在如何讓  Yii2 建立的程式能夠無狀態（stateless ）化。 無狀態的意思是每一個主機不儲存狀態資料，每台主機的內容幾乎都是一樣的。程式不會在主機實體上面儲存資料。 這種架構擴展的彈性度，比起傳統的架構更高。目前這邊所說的架構比較簡單，更加複雜的架構會在未來的篇章說明。
 
