@@ -192,7 +192,7 @@ class ChildrenFundsValidator extends CustomValidator
 }
 ```
 
-Because`$attribute`contains the list of all related attributes, we can use loop in case of adding errors for all attributes is needed:
+因為`$attribute`包含 the list of all related attributes, we can use loop in case of adding errors for all attributes is needed:
 
 ```php
 foreach ($attribute as $singleAttribute) {
@@ -246,7 +246,7 @@ public function validateChildrenFunds($attribute, $params)
 
 這樣做的好處：
 
-* It better reflects all attributes that participate in validation \(the rules become more readable\);
+* It better reflects all attributes that participate in validation，規則可讀性更高。
 * It respects the options \[\[yii\validators\Validator::skipOnError\]\] and \[\[yii\validators\Validator::skipOnEmpty\]\] for **each **used attribute \(not only for that you decided to choose as more relevant\).
 
 If you have problems with implementing client validation, you can:
