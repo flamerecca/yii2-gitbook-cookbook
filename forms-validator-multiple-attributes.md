@@ -249,10 +249,10 @@ public function validateChildrenFunds($attribute, $params)
 * It better reflects all attributes that participate in validation，規則可讀性更高。
 * It respects the options \[\[yii\validators\Validator::skipOnError\]\] and \[\[yii\validators\Validator::skipOnEmpty\]\] for **each **used attribute \(not only for that you decided to choose as more relevant\).
 
-If you have problems with implementing client validation, you can:
+如果實做驗證的部份有問題，我們可以：
 
-* combine \[\[yii\widgets\ActiveForm::enableAjaxValidation\|enableClientValidation\]\] and \[\[yii\widgets\ActiveForm::enableAjaxValidation\|enableAjaxValidation\]\] options, so multiple attributes will be validated with AJAX without page reload;
-* implement validation outside of \[\[yii\validators\Validator::clientValidateAttribute\]\] because it's designed to work with single attribute.
+* 結合 \[\[yii\widgets\ActiveForm::enableAjaxValidation\|enableClientValidation\]\] 和\[\[yii\widgets\ActiveForm::enableAjaxValidation\|enableAjaxValidation\]\] 選項，讓多個參數可以同時透過AJAX驗證，不需要重新載入頁面。
+* 因為 \[\[yii\validators\Validator::clientValidateAttribute\]\] 本來就是設計給單一參數驗證的，從頭實做自己的驗證方式。
 
 
 
