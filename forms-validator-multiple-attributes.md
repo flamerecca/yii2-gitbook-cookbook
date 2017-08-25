@@ -1,6 +1,6 @@
 # Custom validator for multiple attributes {#custom-validator-for-multiple-attributes}
 
-Yii 2.0 教學裡面已經解釋了怎麼[設計自己的驗證](https://github.com/yiisoft/yii2/blob/master/docs/guide/input-validation.md#creating-validator-)，there are cases when you need to validate multiple attributes at once. For example, it can be hard to choose which one is more relevant or you consider it misleading in rules.
+Yii 2.0 教學裡面已經解釋了怎麼[設計自己的驗證](https://github.com/yiisoft/yii2/blob/master/docs/guide/input-validation.md#creating-validator-)，不過有些時候，你可能需要同時驗證多個參數。比方說，, it can be hard to choose which one is more relevant or you consider it misleading in rules.
 
 這邊，我們實做一個`CustomValidator`來同時驗證多個參數。
 
