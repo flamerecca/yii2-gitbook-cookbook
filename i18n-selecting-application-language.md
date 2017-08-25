@@ -27,81 +27,24 @@ Note that it should be done every request before any output in order for outputt
 
 Detecting language automatically could help your application to conquer international markets if done properly. The following code shows selecting a language using information supplied by user’s browser and a list of languages your application supports:
 
-```
-$supportedLanguages
- = [
-'en'
-, 
-'ru'
-];
-
-$languages
- = Yii::
-$app
--
->
-request-
->
-getPreferredLanguage(
-$supportedLanguages
-);
+```php
+$supportedLanguages = ['en', 'ru'];
+$languages = Yii::$app->request->getPreferredLanguage($supportedLanguages);
 ```
 
 Note that language should be set prior to controller action so it’s a good idea to create language selection component:
 
-```
-namespace
-app
-\
-components
-;
-
-use
-yii
-\
-base
-\
-BootstrapInterface
-;
-
-class
-LanguageSelector
-implements
-BootstrapInterface
+```php
+namespace app\components;
+use yii\base\BootstrapInterface;
+class LanguageSelector implements BootstrapInterface
 {
+    public $supportedLanguages = [];
 
-public
-$supportedLanguages
- = [];
-
-
-public
-function
-bootstrap
-(
-$app
-)
-{
-
-$preferredLanguage
- = 
-$app
--
->
-request-
->
-getPreferredLanguage(
-$this
--
->
-supportedLanguages);
-
-$app
--
->
-language = 
-$preferredLanguage
-;
+    public function bootstrap($app)
+    {
+        $preferredLanguage = $app->request->getPreferredLanguage($this->supportedLanguages);
+        $app->language = $preferredLanguage;
     }
 }
 ```
