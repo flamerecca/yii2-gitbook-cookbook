@@ -1,6 +1,6 @@
 # Selecting application language {#selecting-application-language}
 
-當我們開發國際化網站時，總是需要支援多種語言。Yii has built in solution for handling message translations but doesn’t provide anything about selecting a language because implementation depends of requirements.
+當我們開發國際化網站時，總是需要支援多種語言。Yii 有內建的has built in solution for handling message translations ，但是沒有提供語言選項的方式，因為該需求的實做會隨著網站不同而有相當的改變。
 
 這邊， we’ll describe some typical cases of language selection and provide ideas and code snippets so you’ll be able to pick what’s required and implement it in your project.
 
@@ -51,35 +51,15 @@ class LanguageSelector implements BootstrapInterface
 
 In order to use the component you should specify it in the application config like the following:
 
-```
-return
- [
-
-'bootstrap'
- =
->
- [
+```php
+return [
+    'bootstrap' => [
         [
-
-'class'
- =
->
-'app\components\LanguageSelector'
-,
-
-'supportedLanguages'
- =
->
- [
-'en_US'
-, 
-'ru_RU'
-],
+            'class' => 'app\components\LanguageSelector',
+            'supportedLanguages' => ['en_US', 'ru_RU'],
         ],
     ],
-
-// ...
-
+    // ...
 ];
 ```
 
@@ -89,11 +69,11 @@ As was mentioned above, it could be implemented in custom`UrlManager`, custom`Ur
 
 While it sounds like a great idea to always detect language, it’s usually not enough. Detection could fail so user will get language he doesn’t know, user may know many languages but prefer, for example, English for information about travelling. These problems could be solved by providing visible enough language selector that somehow remembers what was selected and uses it for the application further.
 
-So the solution consists of three parts:
+解決問題時，要處理三個部份：
 
-1. Language selector.
-2. Storing what was selected.
-3. Reusing what was stored.
+1. 語言選擇
+2. 儲存該選擇
+3. 重複使用該選擇
 
 Let’s start with language selector widget. Overall it’s a simple select widget pre-filled with an array of language code =&gt; language name pairs.
 
