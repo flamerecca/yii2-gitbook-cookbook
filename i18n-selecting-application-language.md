@@ -77,135 +77,33 @@ While it sounds like a great idea to always detect language, it’s usually not 
 
 Let’s start with language selector widget. Overall it’s a simple select widget pre-filled with an array of language code =&gt; language name pairs.
 
-```
-<
-?
-= Html::beginForm() 
-?
->
-<
-?
-= Html::dropDownList(
-'language'
-, Yii::
-$app
--
->
-language, [
-'en-US'
- =
->
-'English'
-, 
-'zh-CN'
- =
->
-'Chinese'
-]) 
-?
->
-<
-?
-= Html::submitButton(
-'Change'
-) 
-?
->
-<
-?
-= Html::endForm() 
-?
->
+```php
+<?= Html::beginForm() ?>
+<?= Html::dropDownList('language', Yii::$app->language, ['en-US' => 'English', 'zh-CN' => 'Chinese']) ?>
+<?= Html::submitButton('Change') ?>
+<?= Html::endForm() ?>
 ```
 
 Form handling should be done in controller. A good place to do it is`SiteController::actionLanguage`:
 
-```
-$language
- = Yii::
-$app
--
->
-request-
->
-post(
-'language'
-);
-Yii::
-$app
--
->
-language = 
-$language
-;
+```php
+$language = Yii::$app->request->post('language');
+Yii::$app->language = $language;
 
-
-$languageCookie
- = 
-new
- Cookie([
-
-'name'
- =
->
-'language'
-,
-
-'value'
- =
->
-$language
-,
-
-'expire'
- =
->
- time() + 
-60
- * 
-60
- * 
-24
- * 
-30
-, 
-// 30 days
-
+$languageCookie = new Cookie([
+    'name' => 'language',
+    'value' => $language,
+    'expire' => time() + 60 * 60 * 24 * 30, // 30 days
 ]);
-Yii::
-$app
--
->
-response-
->
-cookies-
->
-add(
-$languageCookie
-);
+Yii::$app->response->cookies->add($languageCookie);
 ```
 
-We’re using cookie to store the language. But it could be, for example, database:
+上面我們使用 cookie 儲存語言。但是也可以是其他的方式，像是資料庫：
 
-```
-$user
- = Yii::
-$app
--
->
-user;
-
-$user
--
->
-language = 
-$language
-;
-
-$user
--
->
-save();
+```php
+$user = Yii::$app->user;
+$user->language = $language;
+$user->save();
 ```
 
 Now we can improve`LanguageSelector`a bit:
