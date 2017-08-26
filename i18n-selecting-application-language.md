@@ -6,13 +6,13 @@
 
 ## 如何設置網站語言 {#how-to-set-application-language}
 
-Setting application language is pretty simple. 我們可以使用如下的程式碼：
+在 Yii 設置應用語言相當簡單。我們可以使用如下的程式碼：
 
 ```php
 Yii::$app->language = 'ru_RU';
 ```
 
-or via application config such as`config/main.php`:
+或者透過 config，像是`config/main.php`：
 
 ```php
 return [
