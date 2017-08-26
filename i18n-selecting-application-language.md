@@ -183,5 +183,5 @@ class LanguageUrlRule extends UrlRule
 
 ### 套件 {#ready-to-use-extension}
 
-[yii2-localeurls extension](https://github.com/codemix/yii2-localeurls) implements reliable and quite customizable way of handling language in URLs.
+[yii2-localeurls 套件](https://github.com/codemix/yii2-localeurls) 實做了一個網址內處理語言上面一個相當可靠，並且彈性很高的方式。
 
