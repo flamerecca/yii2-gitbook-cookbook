@@ -2,7 +2,7 @@
 
 當我們開發國際化網站時，總是需要支援多種語言。Yii 有內建的has built in solution for handling message translations ，但是沒有提供語言選項的方式，因為該需求的實做會隨著網站不同而有相當的改變。
 
-這邊， we’ll describe some typical cases of language selection and provide ideas and code snippets so you’ll be able to pick what’s required and implement it in your project.
+這邊， we’ll describe some typical cases of language selection ，and provide ideas and code snippets so you’ll be able to pick what’s required and implement it in your project.
 
 ## 如何設置網站語言 {#how-to-set-application-language}
 
@@ -32,7 +32,7 @@ $supportedLanguages = ['en', 'ru'];
 $languages = Yii::$app->request->getPreferredLanguage($supportedLanguages);
 ```
 
-Note that language should be set prior to controller action so it’s a good idea to create language selection component:
+這邊的語言會在控制器 action 之前選擇好，：it’s a good idea to create language selection component:
 
 ```php
 namespace app\components;
@@ -183,5 +183,5 @@ class LanguageUrlRule extends UrlRule
 
 ### 套件 {#ready-to-use-extension}
 
-[yii2-localeurls 套件](https://github.com/codemix/yii2-localeurls) 實做了一個網址內處理語言上面一個相當可靠，並且彈性很高的方式。
+[yii2-localeurls 套件](https://github.com/codemix/yii2-localeurls)實做了一個網址內處理語言上面一個相當可靠，並且彈性很高的方式。
 
