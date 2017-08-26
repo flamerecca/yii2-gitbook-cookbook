@@ -25,7 +25,7 @@ Note that it should be done every request before any output in order for outputt
 
 ## 自動偵測使用語言 {#detecting-language-automatically}
 
-Detecting language automatically could help your application to conquer international markets if done properly. The following code shows selecting a language using information supplied by user’s browser and a list of languages your application supports:
+如果處理得好，自動偵測語言可以讓你的網站在國際市場更有競爭力。The following code shows selecting a language using information supplied by user’s browser and a list of languages your application supports:
 
 ```php
 $supportedLanguages = ['en', 'ru'];
