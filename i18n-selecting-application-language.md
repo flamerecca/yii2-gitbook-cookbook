@@ -108,171 +108,55 @@ $user->save();
 
 Now we can improve`LanguageSelector`a bit:
 
-```
-namespace
-app
-\
-components
-;
+```php
+namespace app\components;
+use yii\base\BootstrapInterface;
 
-use
-yii
-\
-base
-\
-BootstrapInterface
-;
-
-
-class
-LanguageSelector
-implements
-BootstrapInterface
+class LanguageSelector implements BootstrapInterface
 {
+    public $supportedLanguages = [];
 
-public
-$supportedLanguages
- = [];
+    public function bootstrap($app)
+    {
+        $preferredLanguage = isset($app->request->cookies['language']) ? (string)$app->request->cookies['language'] : null;
+        // or in case of database:
+        // $preferredLanguage = $app->user->language;
 
-
-public
-function
-bootstrap
-(
-$app
-)
-{
-
-$preferredLanguage
- = 
-isset
-(
-$app
--
->
-request-
->
-cookies[
-'language'
-]) ? (string)
-$app
--
->
-request-
->
-cookies[
-'language'
-] : 
-null
-;
-
-// or in case of database:
-// $preferredLanguage = $app-
->
-user-
->
-language;
-if
- (
-empty
-(
-$preferredLanguage
-)) {
-
-$preferredLanguage
- = 
-$app
--
->
-request-
->
-getPreferredLanguage(
-$this
--
->
-supportedLanguages);
+        if (empty($preferredLanguage)) {
+            $preferredLanguage = $app->request->getPreferredLanguage($this->supportedLanguages);
         }
 
-
-$app
--
->
-language = 
-$preferredLanguage
-;
+        $app->language = $preferredLanguage;
     }
 }
 ```
 
 ## 使用網址或子網域設置語言 {#language-in-url-subdomain}
 
-So far we’ve found a way to detect language, select it manually and store it. For intranet applications and applications for which search engine indexing isn’t important, it is already enough. For others you need to expose each application language to the world.
+目前為止， we’ve found a way to detect language, select it manually and store it. For intranet applications and applications for which search engine indexing isn’t important, it is already enough. For others you need to expose each application language to the world.
 
 The best way to do it is to include language in the URL such as`http://example.com/ru/about`or subdomain such as`http://ru.example.com/about`.
 
 The most straightforward implementation is about creating URL manager rules for each URL you have. In these rules you need to define language part i.e.:
 
-```
-'
-<
-language
->
-/
-<
-page
->
-'
- =
->
-'site/page'
-,
+```php
+'<language>/<page>' => 'site/page',
 ```
 
 The con of this approach is that it is repetitive. You have to define it for all URLs you have and you have to put current language to parameters list each time you’re creating an URL such as:
 
-```
-<
-?
-= Html::a(
-'DE'
-, [
-'post/view'
-, 
-'language'
- =
->
-'de'
-]); 
-?
->
+```php
+<?= Html::a('DE', ['post/view', 'language' => 'de']); ?>
 ```
 
 Thanks to Yii we have an ability to replace default URL class with our own right from config file:
 
-```
-return
- [
-
-'components'
- =
->
- [
-
-'urlManager'
- =
->
- [
-
-'ruleConfig'
- =
->
- [
-
-'class'
- =
->
-'app\components\LanguageUrlRule'
-
+```php
+return [
+    'components' => [
+        'urlManager' => [
+           'ruleConfig' => [
+                'class' => 'app\components\LanguageUrlRule'
             ],
         ],
     ],
@@ -281,69 +165,18 @@ return
 
 Here’s what language aware URL rule class could look like:
 
-```
-class
-LanguageUrlRule
-extends
-UrlRule
+```php
+class LanguageUrlRule extends UrlRule
 {
-
-public
-function
-init
-()
-{
-
-if
- (
-$this
--
->
-pattern !== 
-null
-) {
-
-$this
--
->
-pattern = 
-'
-<
-language
->
-/'
- . 
-$this
--
->
-pattern;
-
-// for subdomain it should be:
-// $this-
->
-pattern =  'http://
-<
-language
->
-.example.com/' . $this-
->
-pattern,
-
+    public function init()
+    {
+        if ($this->pattern !== null) {
+            $this->pattern = '<language>/' . $this->pattern;
+            // for subdomain it should be:
+            // $this->pattern =  'http://<language>.example.com/' . $this->pattern,
         }
-
-$this
--
->
-defaults[
-'language'
-] = Yii::
-$app
--
->
-language;
-
-parent
-::init();
+        $this->defaults['language'] = Yii::$app->language;
+        parent::init();
     }
 }
 ```
