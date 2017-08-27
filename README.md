@@ -62,7 +62,7 @@ Yii 2.0 cookbook的翻譯。
 * [使用 Grunt 進行資源管理（Asset processing with Grunt）](/structure-asset-processing-with-grunt.md)
 * Asset processing with Gulp
 * [使用全域函式（Using global functions）](/structure-global-functions.md)
-* Processing text
+* [處理文字（Processing text）](/processing-text.md)
 * [實做有型態的集合（Implementing typed collections）](/structure-collections.md)
 * [MVC 模式（MVC）](/mvc.md)
 * [SOLID 原則（SOLID）](/solid.md)
@@ -70,12 +70,12 @@ Yii 2.0 cookbook的翻譯。
 
 ## 視圖 {#view}
 
-* Reusing views via partials
+* [透過 partial 重新使用視圖（Reusing views via partials）](/reusing-views-via-partials.md)
 * Using blocks
 * Using decorators
 * When to use Widgets and when not to
 * [動態改變佈景（Switching themes dynamically）](/switching-themes.md)
-* Post-processing response
+* [回應後期處理（Post-processing response）](/response-post-processing.md)
 
 ## 模型 {#models}
 
@@ -98,8 +98,8 @@ Yii 2.0 cookbook的翻譯。
 
 * Necessary production setup
 * Speeding up sessions
-* Implementing backgroud tasks \(cronjobs\)
-* Running Yii on HHVM
+* [用 cronjobs 實做背景任務（Implementing backgroud tasks with cronjobs）](/performance-cron.md)
+* [在 HHVM 上面運行Yii 2.0（Running Yii 2.0 on HHVM）](/performance-hhvm.md)
 * [快取（Caching）](/caching.md)
 * [多伺服器下設置 Yii2 應用（Configuring a Yii2 Application for an Multiple Servers Stack）](/scaling.md)
 
@@ -111,7 +111,7 @@ Yii 2.0 cookbook的翻譯。
 ## 工具 {#tools}
 
 * Making your life easier \(XDebug, debug toolbar, gii\)
-* IDE autocompletion for custom components
+* [自定義元件的 IDE 自動產生（IDE autocompletion for custom components）](/ide-autocompletion.md)
 * [使用客製化的遷移模板（Using custom migration template）](/using-custom-migration-template.md)
 
 
