@@ -1,12 +1,12 @@
-# Using machine translation as translation source {#using-machine-translation-as-translation-source}
+# 使用 yandex 作為翻譯來源（using yandex as translation source） {#using-machine-translation-as-translation-source}
 
-Sometimes we need to translate the site into other languages but do not really know the language. In this case machine tranlation such as Google or Yandex may be helpful. At least for testing purposes. It is not recommended to use machine translation as production ready solution, but it can help to test UI and prepare project for more professional translation.
+有時候我們需要將網頁轉換成我們不懂的語言。這時候機器翻譯，像是 Google 或者 Yandex，起碼用來測試時可能是個解決方法。雖然這邊不建議在正式環境下使用機器翻譯的網頁，但是機器翻譯可以幫助測試 UI，並作為一個過渡期，讓整個專案能未來使用更完整的翻譯。
 
-## 作法 {#how-to-do-it}
+## 環境建立 {#how-to-do-it}
 
-As an example we'll implement machine translation via Yandex APIs. We need respond to`MissingTranslationEvent`. It is more convenient to extract event handler method in a component. To store translated messages we'll use`DbMessageSource`thus[appropriate database migration should be applied](http://www.yiiframework.com/doc-2.0/yii-i18n-dbmessagesource.html).
+這裡，我們實做使用 Yandex APIs 來作為機器翻譯的範例。 我們需要回應`MissingTranslationEvent`。 這邊使用 component 裡面的 event handler函式會更方便，所以會繼承`\yii\base\Component`。儲存翻譯的部份，因為我們有使用`DbMessageSource`，所以[需要提供適當的資料庫遷移](http://www.yiiframework.com/doc-2.0/yii-i18n-dbmessagesource.html)。
 
-Create`YandexTranslation`component:
+建立`YandexTranslation`元件如下：
 
 ```php
 namespace common\components;
@@ -75,7 +75,7 @@ class YandexTranslation extends \yii\base\Component
 }
 ```
 
-Now we need to configure a new translator:
+然後，在 config 裡面設置翻譯器：
 
 ```php
 'components' => [
@@ -96,7 +96,8 @@ Now we need to configure a new translator:
 ],
 ```
 
-## 運作原理 {#how-it-works}
+## 使用方法 {#how-it-works}
 
-To use machine translator put`machine`category in`t`function:`Yii::t('machine', 'Text to translate')`. Do not forget to enable cache in production.
+要使用我們設置好的翻譯器，在 Yii 的`t`函式裡面，加入`machine`類別，像是：`Yii::t('machine', 'Text to translate')`。  
+因為翻譯的速度並不快，記得要使用 cache，以免網頁速度受到嚴重影響。
 
