@@ -1,6 +1,8 @@
 # Using IDs as translation source {#using-ids-as-translation-source}
 
-Default way of translating content in Yii is to use English as a source language. It is quite convenient but there's another convenient way some developers prefer: using IDs such as`thank.you`.
+Yii 翻譯語言的預設值，是用英文作為原始語言。這設定很多時候很方便，但是另一個也很方便的方式，是將翻譯語言設置成某個開發者自定義的ID，比方說`thank.you`。
+
+
 
 ## 環境建立 {#how-to-do-it}
 
@@ -26,7 +28,7 @@ Using keys is very easy. In order to do it, specify`sourceLanguage`as`key`in you
 ],
 ```
 
-Note that you have to provide translation for the application language \(which is`en_US`by default\) as well.
+注意，這樣設置之後，我們對應用程式本身語言，通常是`en_US`，也必須提供翻譯。
 
 ## 使用方法 {#how-it-works}
 
