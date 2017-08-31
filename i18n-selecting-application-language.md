@@ -67,7 +67,7 @@ As was mentioned above, it could be implemented in custom`UrlManager`, custom`Ur
 
 ## 手動選擇支援的語言 {#support-selecting-language-manually}
 
-While it sounds like a great idea to always detect language, it’s usually not enough. Detection could fail so user will get language he doesn’t know, user may know many languages but prefer, for example, English for information about travelling. These problems could be solved by providing visible enough language selector that somehow remembers what was selected and uses it for the application further.
+While it sounds like a great idea to always detect language, it’s usually not enough. 偵測可能失敗，並讓使用者導向他無法看懂的語言，或者將使用者導向他能看懂，但是不是首選的語言。for example, English for information about travelling. 這些問題 These problems could be solved by providing visible enough language selector that somehow remembers what was selected and uses it for the application further.
 
 解決問題時，要處理三個部份：
 
