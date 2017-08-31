@@ -49,7 +49,7 @@ class LanguageSelector implements BootstrapInterface
 }
 ```
 
-In order to use the component you should specify it in the application config like the following:
+In order to use the component， you should specify it in the application config 如下：
 
 ```php
 return [
@@ -75,7 +75,7 @@ While it sounds like a great idea to always detect language, it’s usually not 
 2. 儲存該選擇
 3. 重複使用該選擇
 
-首先我們來看語言選擇的套件。 Overall it’s a simple select widget pre-filled with an array of language code =&gt; language name pairs.
+首先我們來看語言選擇的套件。 基本上，it’s a simple select widget pre-filled with an array of language code =&gt; language name pairs.
 
 ```php
 <?= Html::beginForm() ?>
@@ -133,9 +133,9 @@ class LanguageSelector implements BootstrapInterface
 
 ## 使用網址或子網域設置語言 {#language-in-url-subdomain}
 
-目前為止， we’ve found a way to detect language, select it manually and store it. For intranet applications and applications for which search engine indexing isn’t important, it is already enough. For others you need to expose each application language to the world.
+目前為止，我們提到了偵測語言，手動選擇語言以及儲存的方法。 對內部網路的應用，或者搜尋引擎的排序不重要的時候來說， 這樣已經相當足夠了。不過有些時候，比方需要讓搜尋引擎好處理的時候，我們需要公開我們目前使用的語言。
 
-The best way to do it is to include language in the URL such as`http://example.com/ru/about`or subdomain such as`http://ru.example.com/about`.
+最好的方法是將使用的語言包含在網址裡面，像是`http://example.com/ru/about`。或者使用子網域，像是`http://ru.example.com/about`。
 
 The most straightforward implementation is about creating URL manager rules for each URL you have. In these rules you need to define language part i.e.:
 
@@ -149,7 +149,7 @@ The con of this approach is that it is repetitive. You have to define it for all
 <?= Html::a('DE', ['post/view', 'language' => 'de']); ?>
 ```
 
-Thanks to Yii we have an ability to replace default URL class with our own right from config file:
+Thanks to Yii ，we have an ability to replace default URL class with our own right from config file：
 
 ```php
 return [
