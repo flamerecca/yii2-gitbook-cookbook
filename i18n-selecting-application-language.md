@@ -2,7 +2,7 @@
 
 當我們開發國際化網站時，總是需要支援多種語言。Yii 有內建的訊息翻譯方式，但是沒有提供語言選項的方式，因為該需求的實做會隨著網站不同而有相當的改變。
 
-這邊，我們會解釋語言選擇的幾種狀況，並提供 ideas and code snippets ，so you’ll be able to pick what’s required and implement it in your project.
+這邊會解釋語言選擇的幾種狀況，並提供想法和範例程式碼。這樣，我們可以選擇對應的狀況並實做於自己的專案中。
 
 ## 如何設置網站語言 {#how-to-set-application-language}
 
@@ -21,7 +21,7 @@ return [
 ];
 ```
 
-注意that it should be done every request before any output in order for outputted content to be affected. Good places to consider are custom`UrlManager`, custom`UrlRule`, controller's or module's`beforeAction()`or application bootstrap.
+注意that it should be done every request before any output ，in order for outputted content to be affected。Good places to consider are custom`UrlManager`, custom`UrlRule`, controller's or module's`beforeAction()`o，或者應用的 bootstrap 階段。
 
 ## 自動偵測使用語言 {#detecting-language-automatically}
 
