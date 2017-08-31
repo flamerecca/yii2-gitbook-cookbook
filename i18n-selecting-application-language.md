@@ -1,8 +1,8 @@
 # Selecting application language {#selecting-application-language}
 
-當我們開發國際化網站時，總是需要支援多種語言。Yii 有內建的has built in solution for handling message translations ，但是沒有提供語言選項的方式，因為該需求的實做會隨著網站不同而有相當的改變。
+當我們開發國際化網站時，總是需要支援多種語言。Yii 有內建的訊息翻譯方式，但是沒有提供語言選項的方式，因為該需求的實做會隨著網站不同而有相當的改變。
 
-這邊，我們會解釋語言選擇的幾種狀況，and provide ideas and code snippets so you’ll be able to pick what’s required and implement it in your project.
+這邊，我們會解釋語言選擇的幾種狀況，並提供 ideas and code snippets ，so you’ll be able to pick what’s required and implement it in your project.
 
 ## 如何設置網站語言 {#how-to-set-application-language}
 
@@ -21,7 +21,7 @@ return [
 ];
 ```
 
-Note that it should be done every request before any output in order for outputted content to be affected. Good places to consider are custom`UrlManager`, custom`UrlRule`, controller's or module's`beforeAction()`or application bootstrap.
+注意that it should be done every request before any output in order for outputted content to be affected. Good places to consider are custom`UrlManager`, custom`UrlRule`, controller's or module's`beforeAction()`or application bootstrap.
 
 ## 自動偵測使用語言 {#detecting-language-automatically}
 
@@ -75,7 +75,7 @@ While it sounds like a great idea to always detect language, it’s usually not 
 2. 儲存該選擇
 3. 重複使用該選擇
 
-Let’s start with language selector widget. Overall it’s a simple select widget pre-filled with an array of language code =&gt; language name pairs.
+首先我們來看語言選擇的套件。 Overall it’s a simple select widget pre-filled with an array of language code =&gt; language name pairs.
 
 ```php
 <?= Html::beginForm() ?>
