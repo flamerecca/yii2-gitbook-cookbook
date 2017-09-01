@@ -150,7 +150,7 @@ class LanguageSelector implements BootstrapInterface
 <?= Html::a('DE', ['post/view', 'language' => 'de']); ?>
 ```
 
-Thanks to Yii ，we have an ability to replace default URL class with our own right from config file：
+由於 Yii 的機制，we have an ability to replace default URL class with our own right from config file：
 
 ```php
 return [
@@ -164,7 +164,7 @@ return [
 ];
 ```
 
-Here’s what language aware URL rule class could look like:
+下面是一個能處理語言的網址規則類別看起來的樣子：
 
 ```php
 class LanguageUrlRule extends UrlRule
@@ -173,7 +173,7 @@ class LanguageUrlRule extends UrlRule
     {
         if ($this->pattern !== null) {
             $this->pattern = '<language>/' . $this->pattern;
-            // for subdomain it should be:
+            // 子網域應該是：
             // $this->pattern =  'http://<language>.example.com/' . $this->pattern,
         }
         $this->defaults['language'] = Yii::$app->language;
