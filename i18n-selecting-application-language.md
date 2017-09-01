@@ -49,7 +49,7 @@ class LanguageSelector implements BootstrapInterface
 }
 ```
 
-要使用這個元件，我們還需要設置 config 檔如下：
+要使用這個元件，我們還需要設置 config 檔：
 
 ```php
 return [
