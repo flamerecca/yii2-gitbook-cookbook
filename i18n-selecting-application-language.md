@@ -25,7 +25,7 @@ return [
 
 ## 自動偵測使用語言 {#detecting-language-automatically}
 
-如果處理得好，自動偵測語言可以讓你的網站在國際市場更有競爭力。下面的程式碼 shows selecting a language using information supplied by user’s browser and a list of languages your application supports:
+如果處理得好，自動偵測語言可以讓你的網站在國際市場更有競爭力。下面的程式碼能讓我們透過使用者瀏覽器的資訊提供建議語言 ，以及如何提供我們建立網站支援的語言：
 
 ```php
 $supportedLanguages = ['en', 'ru'];
@@ -138,13 +138,13 @@ class LanguageSelector implements BootstrapInterface
 最好的方法是將使用的語言包含在網址裡面，像是`http://example.com/ru/about`。  
 或者使用子網域，像是 `http://ru.example.com/about`。
 
-最直接的實做方式，is about creating URL manager rules for each URL you have。我們在這些規則裡面定義語言出現的位置，像是：
+最直接的實做方式，是對每個使用的網址，建立網址處理器規則。我們在這些規則裡面，定義語言出現的位置，像是：
 
 ```php
 '<language>/<page>' => 'site/page',
 ```
 
-The con of this approach is that it is repetitive。 You have to define it for all URLs you have ，and you have to put current language to parameters list each time you’re creating an URL ，像是：
+這樣做的好處是可以重複利用。 You have to define it for all URLs you have ，and you have to put current language to parameters list each time you’re creating an URL ，像是：
 
 ```php
 <?= Html::a('DE', ['post/view', 'language' => 'de']); ?>
