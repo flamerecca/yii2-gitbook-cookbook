@@ -21,7 +21,7 @@ return [
 ];
 ```
 
-注意that it should be done every request before any output ，in order for outputted content to be affected。Good places to consider are custom`UrlManager`, custom`UrlRule`, controller's or module's`beforeAction()`o，或者應用的 bootstrap 階段。
+注意，要讓所有輸出資源都翻譯到，每個使用者提出的要求都必須這樣設置。設置的位置可以在客製的`UrlManager`、客製的`UrlRule`、控制器和模型的 `beforeAction()`，或者應用的 bootstrap 階段。
 
 ## 自動偵測使用語言 {#detecting-language-automatically}
 
@@ -67,7 +67,7 @@ return [
 
 ## 手動選擇支援的語言 {#support-selecting-language-manually}
 
-While it sounds like a great idea to always detect language, it’s usually not enough. 偵測可能失敗，並讓使用者導向他無法看懂的語言，或者將使用者導向他能看懂，但是不是首選的語言。for example, English for information about travelling. 這些問題 These problems could be solved by providing visible enough language selector that somehow remembers what was selected and uses it for the application further.
+雖然自動偵測語言聽起來是個好主意，不過實際上通常有一些問題。偵測可能會有錯誤，並讓使用者導向某種他無法看懂的語言，或者，將使用者導向某種他能看懂，但是不是首選的語言。比方說，在旅遊資訊的網站上面，將地名等資訊翻譯成英文。這些問題 These problems could be solved by providing visible enough language selector that somehow remembers what was selected and uses it for the application further.
 
 解決問題時，要處理三個部份：
 
@@ -135,15 +135,16 @@ class LanguageSelector implements BootstrapInterface
 
 目前為止，我們提到了偵測語言，手動選擇語言以及儲存的方法。 對內部網路的應用，或者搜尋引擎的排序不重要的時候來說， 這樣已經相當足夠了。不過有些時候，比方需要讓搜尋引擎好處理的時候，我們需要公開我們目前使用的語言。
 
-最好的方法是將使用的語言包含在網址裡面，像是`http://example.com/ru/about`。或者使用子網域，像是`http://ru.example.com/about`。
+最好的方法是將使用的語言包含在網址裡面，像是`http://example.com/ru/about`。  
+或者使用子網域，像是 `http://ru.example.com/about`。
 
-The most straightforward implementation is about creating URL manager rules for each URL you have. In these rules you need to define language part i.e.:
+最直接的實做方式，is about creating URL manager rules for each URL you have。In these rules you need to define language part ，像是：
 
 ```php
 '<language>/<page>' => 'site/page',
 ```
 
-The con of this approach is that it is repetitive. You have to define it for all URLs you have and you have to put current language to parameters list each time you’re creating an URL such as:
+The con of this approach is that it is repetitive. You have to define it for all URLs you have ，and you have to put current language to parameters list each time you’re creating an URL ，像是：
 
 ```php
 <?= Html::a('DE', ['post/view', 'language' => 'de']); ?>
