@@ -63,13 +63,13 @@ return [
 ];
 ```
 
-如上所述，it could be implemented in custom`UrlManager`, custom`UrlRule`or controller's / module's`beforeAction()`instead.
+上面的程式碼，也可以改成實做在自製的`UrlManager`、自製的`UrlRule`，以及控制器或模組的`beforeAction()`內。
 
 ## 手動選擇支援的語言 {#support-selecting-language-manually}
 
-雖然自動偵測語言聽起來是個好主意，不過實際上通常有一些問題。偵測可能會有錯誤，並讓使用者導向某種他無法看懂的語言，或者，將使用者導向某種他能看懂，但是不是首選的語言。比方說，在旅遊資訊的網站上面，將地名等資訊翻譯成英文。這些問題 These problems could be solved by providing visible enough language selector that somehow remembers what was selected and uses it for the application further.
+雖然自動偵測語言聽起來是個好主意，不過實際上通常有一些問題。偵測可能會有錯誤，並讓使用者導向某種他無法看懂的語言，或者，將使用者導向某種他能看懂，但是不是首選的語言。比方說，在旅遊資訊的網站上面，將地名等資訊翻譯成英文。這些問題 These problems could be solved by providing visible enough language selector， that somehow remembers what was selected ，and uses it for the application further.
 
-解決問題時，要處理三個部份：
+解決這個問題時，要處理三個部份：
 
 1. 語言選擇
 2. 儲存該選擇
@@ -144,7 +144,7 @@ class LanguageSelector implements BootstrapInterface
 '<language>/<page>' => 'site/page',
 ```
 
-這樣做的好處是可以重複利用。 You have to define it for all URLs you have ，and you have to put current language to parameters list each time you’re creating an URL ，像是：
+這樣做的缺點是重複性。我們需要重新定義所有的網址，並且每次建立網址時，都要在參數內加上現在使用的語言，像是：
 
 ```php
 <?= Html::a('DE', ['post/view', 'language' => 'de']); ?>
