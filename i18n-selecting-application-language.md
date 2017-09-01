@@ -49,7 +49,7 @@ class LanguageSelector implements BootstrapInterface
 }
 ```
 
-In order to use the component， you should specify it in the application config 如下：
+要使用這個元件，我們還需要設置 config 檔如下：
 
 ```php
 return [
@@ -63,7 +63,7 @@ return [
 ];
 ```
 
-As was mentioned above, it could be implemented in custom`UrlManager`, custom`UrlRule`or controller's / module's`beforeAction()`instead.
+如上所述，it could be implemented in custom`UrlManager`, custom`UrlRule`or controller's / module's`beforeAction()`instead.
 
 ## 手動選擇支援的語言 {#support-selecting-language-manually}
 
