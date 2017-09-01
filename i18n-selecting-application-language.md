@@ -67,7 +67,7 @@ return [
 
 ## 手動選擇支援的語言 {#support-selecting-language-manually}
 
-雖然自動偵測語言聽起來是個好主意，不過實際上通常有一些問題。偵測可能會有錯誤，並讓使用者導向某種他無法看懂的語言，或者，將使用者導向某種他能看懂，但是不是首選的語言。比方說，在旅遊資訊的網站上面，將地名等資料翻譯成英文，反而會讓人產生困惑。這些問題 These problems could be solved by providing visible enough language selector， that somehow remembers what was selected ，and uses it for the application further.
+雖然自動偵測語言聽起來是個好主意，不過實際上通常有一些問題。偵測可能會有錯誤，並讓使用者導向某種他無法看懂的語言，或者，將使用者導向某種他能看懂，但是不是首選的語言。比方說，在旅遊資訊的網站上面，將地名等資料翻譯成英文，反而會讓人產生困惑。這些問題可以透過在網頁上提供語言選擇來解決。該功能要能記住使用者選了什麼語言，並9在之後繼續使用.
 
 解決這個問題時，要處理三個部份：
 
@@ -84,7 +84,7 @@ return [
 <?= Html::endForm() ?>
 ```
 
-Form handling should be done in controller. A good place to do it is`SiteController::actionLanguage`:
+表單處理應該放在控制器裡面。一個很適合的地方是`SiteController::actionLanguage`：
 
 ```php
 $language = Yii::$app->request->post('language');
@@ -106,7 +106,7 @@ $user->language = $language;
 $user->save();
 ```
 
-Now we can improve`LanguageSelector`a bit:
+然後我們稍微改進`LanguageSelector`：
 
 ```php
 namespace app\components;
