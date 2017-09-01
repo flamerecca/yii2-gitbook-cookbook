@@ -67,7 +67,7 @@ return [
 
 ## 手動選擇支援的語言 {#support-selecting-language-manually}
 
-雖然自動偵測語言聽起來是個好主意，不過實際上通常有一些問題。偵測可能會有錯誤，並讓使用者導向某種他無法看懂的語言，或者，將使用者導向某種他能看懂，但是不是首選的語言。比方說，在旅遊資訊的網站上面，將地名等資訊翻譯成英文。這些問題 These problems could be solved by providing visible enough language selector， that somehow remembers what was selected ，and uses it for the application further.
+雖然自動偵測語言聽起來是個好主意，不過實際上通常有一些問題。偵測可能會有錯誤，並讓使用者導向某種他無法看懂的語言，或者，將使用者導向某種他能看懂，但是不是首選的語言。比方說，在旅遊資訊的網站上面，將地名等資料翻譯成英文，反而會讓人產生困惑。這些問題 These problems could be solved by providing visible enough language selector， that somehow remembers what was selected ，and uses it for the application further.
 
 解決這個問題時，要處理三個部份：
 
@@ -75,11 +75,11 @@ return [
 2. 儲存該選擇
 3. 重複使用該選擇
 
-首先我們來看語言選擇的套件。 基本上，it’s a simple select widget pre-filled with an array of language code =&gt; language name pairs.
+首先我們來看語言選擇的套件。 基本上，這是一個簡單的選擇元件 ，內容是「語言代碼 =&gt; 語言名稱」的陣列。
 
 ```php
 <?= Html::beginForm() ?>
-<?= Html::dropDownList('language', Yii::$app->language, ['en-US' => 'English', 'zh-CN' => 'Chinese']) ?>
+<?= Html::dropDownList('language', Yii::$app->language, ['en-US' => '英文', 'zh-CN' => '中文']) ?>
 <?= Html::submitButton('Change') ?>
 <?= Html::endForm() ?>
 ```
