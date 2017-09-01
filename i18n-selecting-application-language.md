@@ -138,7 +138,7 @@ class LanguageSelector implements BootstrapInterface
 最好的方法是將使用的語言包含在網址裡面，像是`http://example.com/ru/about`。  
 或者使用子網域，像是 `http://ru.example.com/about`。
 
-最直接的實做方式，is about creating URL manager rules for each URL you have。In these rules you need to define language part ，像是：
+最直接的實做方式，is about creating URL manager rules for each URL you have。我們在這些規則裡面定義語言出現的位置，像是：
 
 ```php
 '<language>/<page>' => 'site/page',
