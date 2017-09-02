@@ -67,7 +67,7 @@
 
 ## 國際化
 
-* [I18n selecting application language](i18n-selecting-application-language.md)
+* [設置應用語言（Selecting application language）](i18n-selecting-application-language.md)
 * [使用 ID 作為預設語言（Using IDs as translation source）](i18n-using-ids-as-translation-source.md)
 * [使用 yandex 作為翻譯來源（using yandex as translation source）](i18n-using-yandex-as-translation-source.md)
 

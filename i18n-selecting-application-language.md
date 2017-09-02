@@ -1,4 +1,4 @@
-# Selecting application language {#selecting-application-language}
+# 設置應用語言（Selecting application language） {#selecting-application-language}
 
 當我們開發國際化網站時，總是需要支援多種語言。Yii 有內建的訊息翻譯方式，但是沒有提供語言選項的方式，因為該需求的實做會隨著網站不同而有相當的改變。
 
@@ -67,7 +67,7 @@ return [
 
 ## 手動選擇支援的語言 {#support-selecting-language-manually}
 
-雖然自動偵測語言聽起來是個好主意，不過實際上通常有一些問題。偵測可能會有錯誤，並讓使用者導向某種他無法看懂的語言，或者，將使用者導向某種他能看懂，但是不是首選的語言。比方說，在旅遊資訊的網站上面，將地名等資料翻譯成英文，反而會讓人產生困惑。這些問題可以透過在網頁上提供語言選擇來解決。該功能要能記住使用者選了什麼語言，並9在之後繼續使用.
+雖然自動偵測語言聽起來是個好主意，不過實際上通常有一些問題。偵測可能會有錯誤，並讓使用者導向某種他無法看懂的語言，或者，將使用者導向某種他能看懂，但是不是首選的語言。比方說，在旅遊資訊的網站上面，將地名等資料翻譯成英文，反而會讓人產生困惑。這些問題可以透過在網頁上提供語言選擇來解決。該功能要能記住使用者選了什麼語言，並在之後繼續使用.
 
 解決這個問題時，要處理三個部份：
 
@@ -150,7 +150,7 @@ class LanguageSelector implements BootstrapInterface
 <?= Html::a('DE', ['post/view', 'language' => 'de']); ?>
 ```
 
-由於 Yii 的機制，we have an ability to replace default URL class with our own right from config file：
+由於 Yii 的機制，我們有辦法從 config 檔設定網址規則的類別：
 
 ```php
 return [
@@ -164,7 +164,7 @@ return [
 ];
 ```
 
-下面是一個能處理語言的網址規則類別看起來的樣子：
+一個能處理語言的網址規則類別看起來如下：
 
 ```php
 class LanguageUrlRule extends UrlRule
