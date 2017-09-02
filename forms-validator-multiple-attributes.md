@@ -1,12 +1,12 @@
 # Custom validator for multiple attributes {#custom-validator-for-multiple-attributes}
 
-Yii 2.0 教學裡面已經解釋了怎麼[設計自己的驗證](https://github.com/yiisoft/yii2/blob/master/docs/guide/input-validation.md#creating-validator-)，不過有些時候，你可能需要同時驗證多個參數。比方說，, it can be hard to choose which one is more relevant or you consider it misleading in rules.
+Yii 2.0 教學裡面已經解釋了怎麼[設計自己的驗證](https://github.com/yiisoft/yii2/blob/master/docs/guide/input-validation.md#creating-validator-)，不過有些時候，你可能需要同時驗證多個互相關聯的參數。比方說，, it can be hard to choose which one is more relevant ，或者規則比較複雜，參數之間會互相影響的時候。
 
 這邊，我們實做一個`CustomValidator`來同時驗證多個參數。
 
 ## 怎麼做 {#how-to-do-it}
 
-如果要檢查多個參數，預設會將所有的參數用相同的方式驗證。我們使用不同的特性（trait），並 override `yii\base\Validator:validateAttributes()`：
+如果要檢查多個參數，預設會將所有的參數用相同的方式驗證。我們使用不同的特性（trait），並覆蓋`yii\base\Validator:validateAttributes()`：
 
 ```php
 <?php
@@ -131,7 +131,7 @@ public static function createValidator($type, $model, $attributes, $params = [])
 }
 ```
 
-And finally to support our custom validator in model we can create the trait and override \[\[\yii\base\Model::createValidators\(\)\]\] like this:
+最後，要在模型中支援我們的驗證，我們建立自製的特性，並覆蓋 \[\[\yii\base\Model::createValidators\(\)\]\] 如下：
 
 ```php
 <?php
@@ -180,13 +180,13 @@ class ChildrenFundsValidator extends CustomValidator
 {
     public function validateAttribute($model, $attribute)
     {
-        // $attribute here is not a single attribute, it's an array containing all related attributes
+        // 這邊 $attribute 不是單一參數，而是包含所有相關參數的陣列
         $totalSalary = $this->personalSalary + $this->spouseSalary;
-        // Double the minimal adult funds if spouse salary is specified
+        // 如果有配偶薪資，成人最小需要量加倍
         $minAdultFunds = $this->spouseSalary ? self::MIN_ADULT_FUNDS * 2 : self::MIN_ADULT_FUNDS;
         $childFunds = $totalSalary - $minAdultFunds;
         if ($childFunds / $this->childrenCount < self::MIN_CHILD_FUNDS) {
-            $this->addError('*', 'Your salary is not enough for children.');
+            $this->addError('*', '這個家庭的薪資不足以育兒');
         }
     }
 }
@@ -196,11 +196,11 @@ class ChildrenFundsValidator extends CustomValidator
 
 ```php
 foreach ($attribute as $singleAttribute) {
-    $this->addError($attribute, 'Your salary is not enough for children.');
+    $this->addError($attribute, '這個家庭的薪資不足以育兒');
 }
 ```
 
-Now it's possible to specify all related attributes in according validation rule:
+現在 it's possible to specify all related attributes in according validation rule:
 
 ```php
 [
@@ -213,7 +213,7 @@ Now it's possible to specify all related attributes in according validation rule
 ],
 ```
 
-For inline validation the rule will be:
+行內驗證的程式碼則是：
 
 ```php
 [
@@ -231,13 +231,13 @@ And here is according validation method:
 ```php
 public function validateChildrenFunds($attribute, $params)
 {
-    // $attribute here is not a single attribute, it's an array containing all related attributes
+    // 這邊 $attribute 不是單一參數，而是包含所有相關參數的陣列
     $totalSalary = $this->personalSalary + $this->spouseSalary;
-    // Double the minimal adult funds if spouse salary is specified
+    // 如果有配偶薪資，成人最小需要量加倍
     $minAdultFunds = $this->spouseSalary ? self::MIN_ADULT_FUNDS * 2 : self::MIN_ADULT_FUNDS;
     $childFunds = $totalSalary - $minAdultFunds;
     if ($childFunds / $this->childrenCount < self::MIN_CHILD_FUNDS) {
-        $this->addError('childrenCount', 'Your salary is not enough for children.');
+        $this->addError('childrenCount', '這個家庭的薪資不足以育兒');
     }
 }
 ```
