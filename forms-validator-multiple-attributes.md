@@ -1,12 +1,12 @@
 # Custom validator for multiple attributes {#custom-validator-for-multiple-attributes}
 
-Yii 2.0 教學裡面已經解釋了怎麼[設計自己的驗證](https://github.com/yiisoft/yii2/blob/master/docs/guide/input-validation.md#creating-validator-)，不過有些時候，你可能需要同時驗證多個互相關聯的參數。比方說，, it can be hard to choose which one is more relevant ，或者規則比較複雜，參數之間會互相影響的時候。
+Yii 2.0 教學裡面已經解釋了怎麼[設計自己的驗證](https://github.com/yiisoft/yii2/blob/master/docs/guide/input-validation.md#creating-validator-)，不過有些時候，你可能需要同時驗證多個互相關聯的參數。比方說，參數可能都很重要，難以抉擇哪個更加重要；或者規則比較複雜，導致參數之間會互相影響。
 
-這邊，我們實做一個`CustomValidator`來同時驗證多個參數。
+這邊，我們實做一個`CustomValidator`，來同時驗證多個參數。
 
 ## 怎麼做 {#how-to-do-it}
 
-如果要檢查多個參數，預設會將所有的參數用相同的方式驗證。我們使用不同的特性（trait），並覆蓋`yii\base\Validator:validateAttributes()`：
+如果要檢查多個參數，預設會將所有的參數用相同的方式驗證。我們這邊使用不同的特性（trait），並覆蓋`yii\base\Validator:validateAttributes()`：
 
 ```php
 <?php
@@ -102,7 +102,7 @@ class CustomInlineValidator extends InlineValidator
 }
 ```
 
-之後，還有幾個地方又修改。
+之後，還有幾個地方要修改。
 
 首先，換掉原本的`InlineValidator`，使用自製的`CustomInlineValidator`，我們需要覆蓋`CustomValidator`的\[\[\yii\validators\Validator::createValidator\(\)\]\] 函式：
 
@@ -167,7 +167,7 @@ trait CustomValidationTrait
 }
 ```
 
-現在，我們可以透過繼承`CustomValidator`，實做我們自己的驗證器：
+現在，我們可以透過繼承`CustomValidator`，實做我們自己的驗證器`ChildrenFundsValidator`：
 
 ```php
 <?php
@@ -192,7 +192,7 @@ class ChildrenFundsValidator extends CustomValidator
 }
 ```
 
-因為`$attribute`包含 the list of all related attributes, we can use loop in case of adding errors for all attributes is needed:
+因為`$attribute`包含 the list of all related attributes，we can use loop in case of adding errors for all attributes is needed：
 
 ```php
 foreach ($attribute as $singleAttribute) {
@@ -200,7 +200,7 @@ foreach ($attribute as $singleAttribute) {
 }
 ```
 
-現在 it's possible to specify all related attributes in according validation rule:
+現在，我們可以在模型的驗證規則裡面，加上這個規則：
 
 ```php
 [
@@ -213,7 +213,7 @@ foreach ($attribute as $singleAttribute) {
 ],
 ```
 
-行內驗證的程式碼則是：
+即時驗證的程式碼則是：
 
 ```php
 [
@@ -246,13 +246,13 @@ public function validateChildrenFunds($attribute, $params)
 
 這樣做的好處：
 
-* It better reflects all attributes that participate in validation，規則可讀性更高。
-* 這種作法讓選項 \[\[yii\validators\Validator::skipOnError\]\] and \[\[yii\validators\Validator::skipOnEmpty\]\] for **each **used attribute \(not only for that you decided to choose as more relevant\).
+* 程式碼It better reflects all attributes that participate in validation，規則可讀性更高。
+* 這種作法讓選項 \[\[yii\validators\Validator::skipOnError\]\] 和 \[\[yii\validators\Validator::skipOnEmpty\]\] 適用於**每一個**使用的參數，不僅僅是某一個我們認為比較重要的參數。
 
 如果實做驗證的部份有問題，我們可以：
 
 * 結合 \[\[yii\widgets\ActiveForm::enableAjaxValidation\|enableClientValidation\]\] 和\[\[yii\widgets\ActiveForm::enableAjaxValidation\|enableAjaxValidation\]\] 選項，讓多個參數可以同時透過AJAX驗證，不需要重新載入頁面。
-* 因為 \[\[yii\validators\Validator::clientValidateAttribute\]\] 本來就是設計給單一參數驗證的，從頭實做自己的驗證方式。
+* 因為 \[\[yii\validators\Validator::clientValidateAttribute\]\] 本來就是設計給單一參數驗證的，所以從頭實做自己的驗證方式。
 
 
 
