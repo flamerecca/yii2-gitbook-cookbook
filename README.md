@@ -46,7 +46,7 @@ Yii 2.0 cookbook的翻譯。
 * [使用與客製化 CAPTCHA（Using and customizing CAPTCHA）](/forms-captcha.md)
 * [透過 JavaScript 操作 ActiveForm（Working with ActiveForm via JavaScript）](/forms-activeform-js.md)
 * [透過表單上傳檔案（Forms uploading files）](/forms-uploading-files.md)
-* Custom validator for multiple attributes
+* [自製多個參數驗證（Custom validator for multiple attributes\)](/forms-validator-multiple-attributes.md)
 
 ## 安全行 {#security}
 

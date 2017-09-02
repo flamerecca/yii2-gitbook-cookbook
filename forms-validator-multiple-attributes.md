@@ -1,4 +1,4 @@
-# Custom validator for multiple attributes {#custom-validator-for-multiple-attributes}
+# 自製多個參數驗證（Custom validator for multiple attributes\) {#custom-validator-for-multiple-attributes}
 
 Yii 2.0 教學裡面已經解釋了怎麼[設計自己的驗證](https://github.com/yiisoft/yii2/blob/master/docs/guide/input-validation.md#creating-validator-)，不過有些時候，你可能需要同時驗證多個互相關聯的參數。比方說，參數可能都很重要，難以抉擇哪個更加重要；或者規則比較複雜，導致參數之間會互相影響。
 
@@ -192,7 +192,7 @@ class ChildrenFundsValidator extends CustomValidator
 }
 ```
 
-因為`$attribute`包含 the list of all related attributes，we can use loop in case of adding errors for all attributes is needed：
+因為`$attribute`為相關參數的列表，我們可使用迴圈來為所有需要加上錯誤訊息的參數進行處理：
 
 ```php
 foreach ($attribute as $singleAttribute) {
@@ -226,7 +226,7 @@ foreach ($attribute as $singleAttribute) {
 ],
 ```
 
-And here is according validation method:
+以及對應的驗證函式：
 
 ```php
 public function validateChildrenFunds($attribute, $params)
@@ -246,13 +246,13 @@ public function validateChildrenFunds($attribute, $params)
 
 這樣做的好處：
 
-* 程式碼It better reflects all attributes that participate in validation，規則可讀性更高。
+* 程式碼能更清楚表示出所有相關的參數，規則可讀性更高。
 * 這種作法讓選項 \[\[yii\validators\Validator::skipOnError\]\] 和 \[\[yii\validators\Validator::skipOnEmpty\]\] 適用於**每一個**使用的參數，不僅僅是某一個我們認為比較重要的參數。
 
 如果實做驗證的部份有問題，我們可以：
 
 * 結合 \[\[yii\widgets\ActiveForm::enableAjaxValidation\|enableClientValidation\]\] 和\[\[yii\widgets\ActiveForm::enableAjaxValidation\|enableAjaxValidation\]\] 選項，讓多個參數可以同時透過AJAX驗證，不需要重新載入頁面。
-* 因為 \[\[yii\validators\Validator::clientValidateAttribute\]\] 本來就是設計給單一參數驗證的，所以從頭實做自己的驗證方式。
+* 從頭實做自己的驗證方式，畢竟 \[\[yii\validators\Validator::clientValidateAttribute\]\] 本來就是設計給單一參數驗證的。
 
 
 
