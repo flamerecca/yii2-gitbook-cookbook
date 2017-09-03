@@ -1,10 +1,10 @@
 # RBAC {#rbac}
 
-RBAC which stands for Role Based Access Control is an access management system built into Yii. Despite[being described well in official guide](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html#rbac)there's no complete example on how to use it. Let's fill the gap.
+以角色為基礎的存取控制（Role Based Access Control，RBAC） s an access management system built into Yii. Despite[being described well in official guide](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html#rbac) ，目前沒有提到如何使用的範例，所以這邊進行補充。
 
-As an example we'll take article publishing system such as[YiiFeed](http://yiifeed.com/).
+As an example we'll take article publishing system such as [YiiFeed](http://yiifeed.com/).
 
-## Configuring RBAC component {#configuring-rbac-component}
+## 設置 RBAC 元件 {#configuring-rbac-component}
 
 Initial configuration of authentication manager component follows the same pattern as[any other component configuration](http://www.yiiframework.com/doc-2.0/guide-structure-application-components.html): in the application config under`components`section we're adding section called`authManager`specifying a class and options for the object created. There are two backends available for authentication manager: PHP files and database. Both are using the same API so there's no difference besides how RBAC data is stored.
 
@@ -69,9 +69,9 @@ The first rule of successfully using RBAC is to use as simple hierarchy as possi
 
 ## 實做架構 {#filling-hierarchy}
 
-If your project uses database and you're already familiar with [migrations](http://www.yiiframework.com/doc-2.0/guide-db-migrations.html) it's better to build our hierarchy in migration.
+如果你的專案有使用資料庫，and you're already familiar with [migrations](http://www.yiiframework.com/doc-2.0/guide-db-migrations.html) it's better to build our hierarchy in migration.
 
-Open your console and type
+打開命令列，輸入
 
 ```
 ./yii migrate/create rbac_init
@@ -115,9 +115,9 @@ class m141204_121823_rbac_init extends Migration
 }
 ```
 
-In the above`createPermission()`and`createRole()`are creating new hierarchy objects but not yet saving them. In order to save them`add()`should be called.`addChild()`method is used to connect child object to their parents. When called this method saves connections immediately.
+上面的`createPermission()`和`createRole()`are creating new hierarchy objects but not yet saving them. In order to save them`add()`should be called.`addChild()`method is used to connect child object to their parents. When called this method saves connections immediately.
 
-> Note: It doesn't matter which backend you're using: PHP files or database. Authentication manager exposes exactly the same methods so hierarchy is built using exactly the same code.
+> 備註：It doesn't matter which backend you're using: PHP files or database. Authentication manager exposes exactly the same methods so hierarchy is built using exactly the same code.
 
 In case your application isn't using database at all or you don't want to use migrations, you can do the same in a console command. For basic project template that would be`commands\RbacController.php`:
 
@@ -256,7 +256,7 @@ Same simple checks via access control filter could be applied to`UserController`
 
 ### 手動檢查 {#doing-manual-checks}
 
-In some cases it's necessary to do manual checks. In our case it's checking if users is allowed to edit an article. We can't do it via access control filter because we need to allow editing for regular users owning an article and moderators at the same time:
+有些情況下，手動檢查是必要的。  In our case it's checking if users is allowed to edit an article. We can't do it via access control filter because we need to allow editing for regular users owning an article and moderators at the same time:
 
 ```php
 namespace app\controllers;
@@ -281,7 +281,4 @@ class ArticleController extends Controller
 ```
 
 In the code above we're checking if current user is either article owner or is allowed to manage articles. If either one is true, we're proceeding normally. Otherwise denying access.
-
-  
-
 
