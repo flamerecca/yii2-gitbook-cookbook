@@ -1,8 +1,8 @@
 # RBAC {#rbac}
 
-以角色為基礎的存取控制（Role Based Access Control，RBAC），是 s an access management system built into Yii. Despite [being described well in official guide](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html#rbac) ，目前沒有提到如何使用的範例，所以這邊進行補充。
+以角色為基礎的存取控制（Role Based Access Control，RBAC），是 Yii 裡面內建的一個權限管理系統。 雖然[官方教學已經有說明](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html#rbac) ，不過目前沒有提到如何使用的範例，這邊我們進行補充。
 
-we'll take article publishing system such as [YiiFeed](http://yiifeed.com/).，作為範例。
+我們使用文章發布系統，像是 [YiiFeed](http://yiifeed.com/)這樣的需求，作為此次的範例。
 
 ## 設置 RBAC 元件 {#configuring-rbac-component}
 
