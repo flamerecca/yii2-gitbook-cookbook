@@ -6,11 +6,11 @@
 
 ## 設置 RBAC 元件 {#configuring-rbac-component}
 
-Initial configuration of authentication manager component follows the same pattern as[any other component configuration](http://www.yiiframework.com/doc-2.0/guide-structure-application-components.html): in the application config under`components`section we're adding section called`authManager`specifying a class and options for the object created. There are two backends available for authentication manager: PHP files and database. Both are using the same API so there's no difference besides how RBAC data is stored.
+Initial configuration of authentication manager component follows the same pattern as [any other component configuration](http://www.yiiframework.com/doc-2.0/guide-structure-application-components.html)：in the application config under`components`section we're adding section called`authManager`specifying a class and options for the object created. There are two backends available for authentication manager: PHP files and database. Both are using the same API so there's no difference besides how RBAC data is stored.
 
 ### PHP 後端 {#php-backend}
 
-In order to configure PHP backend add the following to your config file:
+要設置 PHP 後端的部份，在 config 加上：
 
 ```php
 return [
@@ -25,13 +25,13 @@ return [
 ];
 ```
 
-> Note: If you are using`yii2-basic-app`template, there is a`config/console.php`configuration file where the`authManager`needs to be declared additionally to`config/web.php`. In case of`yii2-advanced-app`the`authManager`should be declared only once in`common/config/main.php`.
+> 備註：如果我們使用`yii2-basic-app`，there is a`config/console.php`configuration file where the`authManager`needs to be declared additionally to`config/web.php`. 如果是使用`yii2-advanced-app`的話，`authManager`should be declared only once in`common/config/main.php`.
 
-By default PHP file backend stores RBAC data under`@app/rbac`directory. That means`rbac`directory should be created directly in your application directory and web server process should have permissions to write files into this directory.
+PHP 檔案後端預設將 RBAC 資料存放於`@app/rbac`資料夾底下。 That means`rbac`directory should be created directly in your application directory，and web server process should have permissions to write files into this directory.
 
 ### 資料庫後端 {#database-backend}
 
-Setting up database backend is a bit more complex. First of all, add the following to your config file:
+設置資料庫後端比較複雜。首先，在 config 檔加入以下內容：
 
 ```php
 return [
@@ -45,7 +45,7 @@ return [
 ];
 ```
 
-> Note: If you are using`yii2-basic-app`template, there is a`config/console.php`configuration file where the`authManager`needs to be declared additionally to`config/web.php`. In case of`yii2-advanced-app`the`authManager`should be declared only once in`common/config/main.php`.
+> 備註：If you are using`yii2-basic-app`template, there is a`config/console.php`configuration file where the`authManager`needs to be declared additionally to`config/web.php`. In case of`yii2-advanced-app`the`authManager`should be declared only once in`common/config/main.php`.
 
 Make sure you have database configured for both web and console applications then open console and run migration that would create all the tables necessary to store RBAC data:
 
@@ -55,11 +55,11 @@ yii migrate --migrationPath=@yii/rbac/migrations
 
 ## 設計角色與權限架構 {#planning-roles-and-permissions-hierarchy}
 
-As an example we've chosen a publishing application. There are three types of users:
+As an example we've chosen a publishing application. 我們這邊設定三種使用者：There are three types of users:
 
-* Regular users who are reading and suggesting articles. They can edit their own articles as well.
-* Moderators who are editing, approving, deleting or denying articles. They have access to moderation queue.
-* Administrators who can do everything moderator can plus view list of users and edit their profiles.
+* 一般使用者： who are reading and suggesting articles. They can edit their own articles as well.
+* 板主：可以編輯、刪除、認可、拒絕所有的文章。板主也可以查看事件列表。
+* 管理員：擁有板主的所有權限，加上可以看使用者名單，以及編輯使用者資料
 
 At this point it's good to get pen and paper or software like[yEd](https://www.yworks.com/products/yed)and draw the hierarchy.
 
@@ -69,7 +69,7 @@ The first rule of successfully using RBAC is to use as simple hierarchy as possi
 
 ## 實做架構 {#filling-hierarchy}
 
-如果你的專案有使用資料庫，and you're already familiar with [migrations](http://www.yiiframework.com/doc-2.0/guide-db-migrations.html) it's better to build our hierarchy in migration.
+如果你的專案有使用資料庫，and you're already familiar with [migrations](http://www.yiiframework.com/doc-2.0/guide-db-migrations.html)，it's better to build our hierarchy in migration.
 
 打開命令列，輸入
 
