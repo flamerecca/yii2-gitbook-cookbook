@@ -45,7 +45,7 @@ return [
 ];
 ```
 
-> 備註：If you are using`yii2-basic-app`template, there is a`config/console.php`configuration file where the`authManager`needs to be declared additionally to`config/web.php`. In case of`yii2-advanced-app`the`authManager`should be declared only once in`common/config/main.php`.
+> 備註：如果我們使用`yii2-basic-app`，there is a`config/console.php`configuration file where the`authManager`needs to be declared additionally to`config/web.php`. 如果使用的是`yii2-advanced-app`，he`authManager`should be declared only once in`common/config/main.php`.
 
 Make sure you have database configured for both web and console applications then open console and run migration that would create all the tables necessary to store RBAC data:
 
@@ -65,15 +65,13 @@ yii migrate --migrationPath=@yii/rbac/migrations
 
 想成功使用 RBAC 的首要原則，是讓架構越簡單越好。我們的範例裡面，一般使用者的權限可視為預設值，並不需要特別設置角色。編輯、刪除、認可、拒絕文章可簡化為「管理文章」。看使用者名單、編輯使用者資料則可簡化為「管理使用者」這個權限。於是我們的架構可以設置如下：
 
-
-
 ![](/assets/Untitled Diagram.png)
 
 > 備註：本圖使用[draw.io](https://www.draw.io/)製作
 
 ## 實做架構 {#filling-hierarchy}
 
-如果你的專案有使用資料庫，and you're already familiar with [migrations](http://www.yiiframework.com/doc-2.0/guide-db-migrations.html)，it's better to build our hierarchy in migration.
+如果你的專案有使用資料庫，and you're already familiar with [migrations](http://www.yiiframework.com/doc-2.0/guide-db-migrations.html)，使用 migration 來建立架構會比較好。
 
 打開命令列，輸入
 
@@ -121,9 +119,9 @@ class m141204_121823_rbac_init extends Migration
 
 上面的`createPermission()`和`createRole()`are creating new hierarchy objects but not yet saving them. In order to save them`add()`should be called.`addChild()`method is used to connect child object to their parents. When called this method saves connections immediately.
 
-> 備註：It doesn't matter which backend you're using: PHP files or database. Authentication manager exposes exactly the same methods so hierarchy is built using exactly the same code.
+> 備註：It doesn't matter which backend you're using: PHP files or database. Authentication manager exposes exactly the same methods ，so hierarchy is built using exactly the same code.
 
-In case your application isn't using database at all or you don't want to use migrations, you can do the same in a console command. For basic project template that would be`commands\RbacController.php`:
+如果我們的網頁沒有使用資料庫，或者因為某些原因不使用 migrations，you can do the same in a console command. For basic project template that would be`commands\RbacController.php`:
 
 ```php
 <?php
@@ -164,7 +162,7 @@ class RbacController extends Controller
 }
 ```
 
-The command above could be called as`./yii rbac/init`.
+上面的指令可以使用`./yii rbac/init`進行呼叫。
 
 ## 分配使用者角色 {#assigning-role-to-user}
 
