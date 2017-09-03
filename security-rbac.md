@@ -1,8 +1,8 @@
 # RBAC {#rbac}
 
-以角色為基礎的存取控制（Role Based Access Control，RBAC） s an access management system built into Yii. Despite[being described well in official guide](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html#rbac) ，目前沒有提到如何使用的範例，所以這邊進行補充。
+以角色為基礎的存取控制（Role Based Access Control，RBAC），是 s an access management system built into Yii. Despite [being described well in official guide](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html#rbac) ，目前沒有提到如何使用的範例，所以這邊進行補充。
 
-As an example we'll take article publishing system such as [YiiFeed](http://yiifeed.com/).
+we'll take article publishing system such as [YiiFeed](http://yiifeed.com/).，作為範例。
 
 ## 設置 RBAC 元件 {#configuring-rbac-component}
 
@@ -164,7 +164,7 @@ The command above could be called as`./yii rbac/init`.
 
 ## 分配使用者角色 {#assigning-role-to-user}
 
-Since our default user doesn't have any role we don't need to worry about assigning it. User role management could be implemented either in admin panel or in console. Since our admins are cool guys, we'll create console contoller`commands\RbacController.php`:
+Since our default user doesn't have any role ，we don't need to worry about assigning it. User role management could be implemented either in admin panel or in console. Since our admins are cool guys, we'll create console contoller`commands\RbacController.php`:
 
 ```php
 <?php
@@ -256,7 +256,7 @@ Same simple checks via access control filter could be applied to`UserController`
 
 ### 手動檢查 {#doing-manual-checks}
 
-有些情況下，手動檢查是必要的。  In our case it's checking if users is allowed to edit an article. We can't do it via access control filter because we need to allow editing for regular users owning an article and moderators at the same time:
+有些情況下，手動檢查是必要的。 在我們的例子裡面，像是檢查使用者是否允許編輯文章的需求，就需要手動檢查。這需求無法透過一般的權限檢查滿足，We can't do it via access control filter because we need to allow editing for regular users owning an article and moderators at the same time:
 
 ```php
 namespace app\controllers;
