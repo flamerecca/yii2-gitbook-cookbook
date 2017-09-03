@@ -1,12 +1,12 @@
 # RBAC {#rbac}
 
-以角色為基礎的存取控制（Role Based Access Control，RBAC），是 Yii 裡面內建的一個權限管理系統。 雖然[官方教學已經有說明](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html#rbac) ，不過目前沒有提到如何使用的範例，這邊我們進行補充。
+以角色為基礎的存取控制（Role Based Access Control，RBAC）是 Yii 裡面內建的一個權限管理系統。 雖然[官方教學已經有說明](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html#rbac) ，不過目前沒有提到如何使用的範例，這邊我們進行補充。
 
 我們使用文章發布系統，像是 [YiiFeed](http://yiifeed.com/)這樣的需求，作為此次的範例。
 
 ## 設置 RBAC 元件 {#configuring-rbac-component}
 
-Initial configuration of authentication manager component follows the same pattern as [any other component configuration](http://www.yiiframework.com/doc-2.0/guide-structure-application-components.html)：in the application config under`components`section we're adding section called`authManager`specifying a class and options for the object created. There are two backends available for authentication manager: PHP files and database. Both are using the same API so there's no difference besides how RBAC data is stored.
+初始設置 of authentication manager component follows the same pattern as [any other component configuration](http://www.yiiframework.com/doc-2.0/guide-structure-application-components.html)：in the application config under`components`section，we're adding section called`authManager`specifying a class and options for the object created. There are two backends available for authentication manager：PHP files and database. Both are using the same API ，so there's no difference besides how RBAC data is stored.
 
 ### PHP 後端 {#php-backend}
 
@@ -55,13 +55,13 @@ yii migrate --migrationPath=@yii/rbac/migrations
 
 ## 設計角色與權限架構 {#planning-roles-and-permissions-hierarchy}
 
-As an example we've chosen a publishing application. 我們這邊設定三種使用者：There are three types of users:
+這裡我們使用文章發布系統作為範例。對應這個範例，需要設定三種使用者：
 
-* 一般使用者： who are reading and suggesting articles. They can edit their own articles as well.
+* 一般使用者：可以閱讀、推薦、發布文章。也可以編輯或者刪除自己發布的文章。
 * 板主：可以編輯、刪除、認可、拒絕所有的文章。板主也可以查看事件列表。
 * 管理員：擁有板主的所有權限，加上可以看使用者名單，以及編輯使用者資料
 
-At this point it's good to get pen and paper or software like[yEd](https://www.yworks.com/products/yed)and draw the hierarchy.
+這邊我們建議，可以拿出紙筆，或者使用 [yEd](https://www.yworks.com/products/yed) 之類的軟體來整理架構圖。
 
 The first rule of successfully using RBAC is to use as simple hierarchy as possible. In our case what regular user can do isn't really needed to be associated with any role since we can make it work by default. Editing, approving, deleting or denying articles could be expressed as "managing articles". Viewing list of users and editing their profiles could be expressed as "managing users". This simplification leads us to the following hierarchy:
 
