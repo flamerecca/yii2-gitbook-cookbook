@@ -2,11 +2,11 @@
 
 以角色為基礎的存取控制（Role Based Access Control，RBAC）是 Yii 裡面內建的一個權限管理系統。 雖然[官方教學已經有說明](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html#rbac) ，不過目前沒有提到如何使用的範例，這邊我們進行補充。
 
-我們使用文章發布系統，像是 [YiiFeed](http://yiifeed.com/)這樣的需求，作為此次的範例。
+我們使用文章發布系統，像是 [YiiFeed](http://yiifeed.com/) 這樣的需求，作為此次的範例。
 
 ## 設置 RBAC 元件 {#configuring-rbac-component}
 
-初始設置 of authentication manager component follows the same pattern as [any other component configuration](http://www.yiiframework.com/doc-2.0/guide-structure-application-components.html)：in the application config under`components`section，we're adding section called`authManager`specifying a class and options for the object created. There are two backends available for authentication manager：PHP files and database. Both are using the same API ，so there's no difference besides how RBAC data is stored.
+初始設置 of authentication manager component follows the same pattern as [any other component configuration](http://www.yiiframework.com/doc-2.0/guide-structure-application-components.html) ：在程式config 的`components`區塊，we're adding section called`authManager`specifying a class and options for the object created. There are two backends available for authentication manager：PHP files and database. Both are using the same API ，so there's no difference besides how RBAC data is stored.
 
 ### PHP 後端 {#php-backend}
 
