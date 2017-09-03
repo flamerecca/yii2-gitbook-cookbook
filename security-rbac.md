@@ -63,9 +63,13 @@ yii migrate --migrationPath=@yii/rbac/migrations
 
 這邊我們建議，可以拿出紙筆，或者使用 [yEd](https://www.yworks.com/products/yed) 之類的軟體來整理架構圖。
 
-The first rule of successfully using RBAC is to use as simple hierarchy as possible. In our case what regular user can do isn't really needed to be associated with any role since we can make it work by default. Editing, approving, deleting or denying articles could be expressed as "managing articles". Viewing list of users and editing their profiles could be expressed as "managing users". This simplification leads us to the following hierarchy:
+想成功使用 RBAC 的首要原則，是讓架構越簡單越好。我們的範例裡面，一般使用者的權限可視為預設值，並不需要特別設置角色。編輯、刪除、認可、拒絕文章可簡化為「管理文章」。看使用者名單、編輯使用者資料則可簡化為「管理使用者」這個權限。於是我們的架構可以設置如下：
 
-![](https://yii2-cookbook.readthedocs.io/images/rbac.png "RBAC hierarchy")
+
+
+![](/assets/Untitled Diagram.png)
+
+> 備註：本圖使用[draw.io](https://www.draw.io/)製作
 
 ## 實做架構 {#filling-hierarchy}
 
