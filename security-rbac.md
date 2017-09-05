@@ -6,7 +6,7 @@
 
 ## 設置 RBAC 元件 {#configuring-rbac-component}
 
-初始設置 of authentication manager component follows the same pattern 與[所有元件設置方式](http://www.yiiframework.com/doc-2.0/guide-structure-application-components.html)一樣：在程式 config 的`components`區塊，我們加上`authManager`部份，標記使用的類別以及元件的選項。驗證管理員有兩種後端可以選擇：PHP 檔案與資料庫。兩種方式使用的 API 相同，所以使用上差異不大，唯一的差別是 RBAC 資料儲存的方式。
+認證管理員元件的初始設置與[所有元件設置方式](http://www.yiiframework.com/doc-2.0/guide-structure-application-components.html)一樣：在程式 config 的`components`區塊，我們加上`authManager`部份，標記使用的類別以及元件的選項。驗證管理員有兩種後端可以選擇：PHP 檔案與資料庫。兩種方式使用的 API 相同，所以使用上差異不大，唯一的差別是 RBAC 資料儲存的方式。
 
 ### PHP 後端 {#php-backend}
 
@@ -45,7 +45,7 @@ return [
 ];
 ```
 
-> 備註：如果我們使用`yii2-basic-app`，there is a`config/console.php`configuration file where the`authManager`needs to be declared additionally to`config/web.php`. 如果使用的是`yii2-advanced-app`，he`authManager`should be declared only once in`common/config/main.php`.
+> 備註：如果我們使用`yii2-basic-app`，除了宣告在`config/console.php`以外，`authManager`必須要在`config/web.php`也宣告一次。如果是使用`yii2-advanced-app`的話，`authManager`只需要在`common/config/main.php`宣告一次。
 
 Make sure you have database configured for both web and console applications ，then open console and run migration that would create all the tables necessary to store RBAC data：
 
