@@ -6,7 +6,7 @@
 
 ## 設置 RBAC 元件 {#configuring-rbac-component}
 
-初始設置 of authentication manager component follows the same pattern as [所有元件設置方式](http://www.yiiframework.com/doc-2.0/guide-structure-application-components.html)一樣：在程式 config 的`components`區塊，我們加上`authManager`部份，標記使用的類別以及元件的選項。There are two backends available for authentication manager：PHP 檔案與資料庫。兩種方式使用的 API 相同，所以使用上差異不大，唯一的差別是 RBAC 資料儲存的方式。
+初始設置 of authentication manager component follows the same pattern 與[所有元件設置方式](http://www.yiiframework.com/doc-2.0/guide-structure-application-components.html)一樣：在程式 config 的`components`區塊，我們加上`authManager`部份，標記使用的類別以及元件的選項。驗證管理員有兩種後端可以選擇：PHP 檔案與資料庫。兩種方式使用的 API 相同，所以使用上差異不大，唯一的差別是 RBAC 資料儲存的方式。
 
 ### PHP 後端 {#php-backend}
 
