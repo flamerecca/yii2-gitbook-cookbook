@@ -207,7 +207,7 @@ Sign up three new users and assign two of them`admin`and`moderator`roles respect
 
 ## 檢查權限 {#checking-access}
 
-Now we have RBAC in place and three users: regular user, moderator and admin. Let's start using what we've created.
+Now we have RBAC in place and three users：一般使用者，板主，管理員。現在我們要使用這些角色了。
 
 ### 權限過濾 {#access-filter}
 
