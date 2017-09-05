@@ -27,7 +27,7 @@ return [
 
 > 備註：如果我們使用`yii2-basic-app`，除了宣告在`config/console.php`以外，`authManager`必須要在`config/web.php`也宣告一次。如果是使用`yii2-advanced-app`的話，`authManager`只需要在`common/config/main.php`宣告一次。
 
-PHP 檔案後端預設將 RBAC 資料存放於`@app/rbac`資料夾底下。所以`rbac`資料夾應該建立於應用資料夾裡面，並允許伺服器對該資料u夾有讀寫的權限。
+PHP 檔案後端預設將 RBAC 資料存放於`@app/rbac`資料夾底下。所以`rbac`資料夾應該建立於應用資料夾裡面，並允許伺服器對該資料夾有讀寫的權限。
 
 ### 資料庫後端 {#database-backend}
 
@@ -47,7 +47,7 @@ return [
 
 > 備註：如果我們使用`yii2-basic-app`，there is a`config/console.php`configuration file where the`authManager`needs to be declared additionally to`config/web.php`. 如果使用的是`yii2-advanced-app`，he`authManager`should be declared only once in`common/config/main.php`.
 
-Make sure you have database configured for both web and console applications then open console and run migration that would create all the tables necessary to store RBAC data:
+Make sure you have database configured for both web and console applications ，then open console and run migration that would create all the tables necessary to store RBAC data：
 
 ```
 yii migrate --migrationPath=@yii/rbac/migrations
@@ -166,7 +166,7 @@ class RbacController extends Controller
 
 ## 分配使用者角色 {#assigning-role-to-user}
 
-Since our default user doesn't have any role ，we don't need to worry about assigning it. User role management could be implemented either in admin panel or in console. Since our admins are cool guys, we'll create console contoller`commands\RbacController.php`:
+預設使用者沒有任何角色，所以不需要考慮怎麼分配。 User role management could be implemented either in admin panel or in console. Since our admins are cool guys, we'll create console contoller`commands\RbacController.php`:
 
 ```php
 <?php
@@ -194,7 +194,7 @@ class RbacController extends Controller
 }
 ```
 
-In the code above we're finding a user by username specified. Then getting role object by its name and assigning role to a user by ID. Again, it doesn't matter if PHP backend or database backend is used. It would look exactly the same.
+上面的程式碼內，we're finding a user by username specified. Then getting role object by its name and assigning role to a user by ID. Again, it doesn't matter if PHP backend or database backend is used. It would look exactly the same.
 
 Also it would be exactly the same assignment in case of implementing admin UI or in case when you need role right away and assigning it right after user is successfully singed up.
 
