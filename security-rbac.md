@@ -6,7 +6,7 @@
 
 ## 設置 RBAC 元件 {#configuring-rbac-component}
 
-初始設置 of authentication manager component follows the same pattern as [any other component configuration](http://www.yiiframework.com/doc-2.0/guide-structure-application-components.html) ：在程式config 的`components`區塊，we're adding section called`authManager`specifying a class and options for the object created. There are two backends available for authentication manager：PHP files and database. Both are using the same API ，so there's no difference besides how RBAC data is stored.
+初始設置 of authentication manager component follows the same pattern as [所有元件設置方式](http://www.yiiframework.com/doc-2.0/guide-structure-application-components.html)一樣：在程式 config 的`components`區塊，我們加上`authManager`部份，標記使用的類別以及元件的選項。There are two backends available for authentication manager：PHP 檔案與資料庫。兩種方式使用的 API 相同，所以使用上差異不大，唯一的差別是 RBAC 資料儲存的方式。
 
 ### PHP 後端 {#php-backend}
 
@@ -25,9 +25,9 @@ return [
 ];
 ```
 
-> 備註：如果我們使用`yii2-basic-app`，there is a`config/console.php`configuration file where the`authManager`needs to be declared additionally to`config/web.php`. 如果是使用`yii2-advanced-app`的話，`authManager`should be declared only once in`common/config/main.php`.
+> 備註：如果我們使用`yii2-basic-app`，除了宣告在`config/console.php`以外，`authManager`必須要在`config/web.php`也宣告一次。如果是使用`yii2-advanced-app`的話，`authManager`只需要在`common/config/main.php`宣告一次。
 
-PHP 檔案後端預設將 RBAC 資料存放於`@app/rbac`資料夾底下。 That means`rbac`directory should be created directly in your application directory，and web server process should have permissions to write files into this directory.
+PHP 檔案後端預設將 RBAC 資料存放於`@app/rbac`資料夾底下。所以`rbac`資料夾應該建立於應用資料夾裡面，並允許伺服器對該資料u夾有讀寫的權限。
 
 ### 資料庫後端 {#database-backend}
 
