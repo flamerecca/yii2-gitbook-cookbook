@@ -211,7 +211,7 @@ Now we have RBAC in place and three users：一般使用者，板主，管理員
 
 ### 權限過濾 {#access-filter}
 
-The very basic access checks could be done via access control filter which is[covered well in the official guide](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html#access-control-filter):
+The very basic access checks could be done via access control filter which is [官方教學有詳細說明](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html#access-control-filter)：
 
 ```php
 namespace app\controllers;
@@ -258,7 +258,7 @@ Same simple checks via access control filter could be applied to`UserController`
 
 ### 手動檢查 {#doing-manual-checks}
 
-有些情況下，手動檢查是必要的。 在我們的例子裡面，像是檢查使用者是否允許編輯文章的需求，就需要手動檢查。這需求無法透過一般的權限檢查滿足，We can't do it via access control filter because we need to allow editing for regular users owning an article and moderators at the same time:
+有些情況下，手動檢查是必要的。 在我們的例子裡面，像是檢查使用者是否允許編輯文章的需求，就需要手動檢查。這需求無法透過一般的權限檢查滿足，因為除了板主可以編輯以外，還有文章發布者可以編輯該文章：
 
 ```php
 namespace app\controllers;
@@ -276,7 +276,7 @@ class ArticleController extends Controller
         if (Yii::$app->user->id == $model->user_id || \Yii::$app->user->can('manageArticles')) {
             // ...
         } else {
-            throw new ForbiddenHttpException('You are not allowed to edit this article.');
+            throw new ForbiddenHttpException('您不被允許編輯此文章');
         }
     }
 }
