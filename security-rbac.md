@@ -47,7 +47,7 @@ return [
 
 > 備註：如果我們使用`yii2-basic-app`，除了宣告在`config/console.php`以外，`authManager`必須要在`config/web.php`也宣告一次。如果是使用`yii2-advanced-app`的話，`authManager`只需要在`common/config/main.php`宣告一次。
 
-Make sure you have database configured for both web and console applications ，then open console and run migration that would create all the tables necessary to store RBAC data：
+再次確認網頁以及終端都已經設置好資料庫，然後打開終端，並運行以下指令，讓資料庫建立 RBAC 資料所需要的表單：
 
 ```
 yii migrate --migrationPath=@yii/rbac/migrations
@@ -67,11 +67,11 @@ yii migrate --migrationPath=@yii/rbac/migrations
 
 ![](/assets/Untitled Diagram.png)
 
-> 備註：本圖使用[draw.io](https://www.draw.io/)製作
+> 備註：本圖使用 [draw.io](https://www.draw.io/) 製作
 
 ## 實做架構 {#filling-hierarchy}
 
-如果你的專案有使用資料庫，and you're already familiar with [migrations](http://www.yiiframework.com/doc-2.0/guide-db-migrations.html)，使用 migration 來建立架構會比較好。
+如果你的專案有使用資料庫，並且你對 [migrations](http://www.yiiframework.com/doc-2.0/guide-db-migrations.html) 很熟悉的話，使用 migration 來建立架構會比較好。
 
 打開命令列，輸入
 
@@ -79,7 +79,7 @@ yii migrate --migrationPath=@yii/rbac/migrations
 ./yii migrate/create rbac_init
 ```
 
-That would create new migration class with`up()`method in which we'd build the hierarchy and`down()`in which we'll destroy it.
+That would create new migration class ，with`up()`method in which we'd build the hierarchy ，and`down()`in which we'll destroy it.
 
 ```php
 use yii\db\Migration;
@@ -117,7 +117,7 @@ class m141204_121823_rbac_init extends Migration
 }
 ```
 
-上面的`createPermission()`和`createRole()`are creating new hierarchy objects but not yet saving them. In order to save them`add()`should be called.`addChild()`method is used to connect child object to their parents. When called this method saves connections immediately.
+上面的`createPermission()`和`createRole()`可以用來建立層級物件，但是沒有儲存。要儲存物件時，應該要呼叫`add()`。`addChild()`則是在連接子物件至父物件時呼叫。When called this method saves connections immediately.
 
 > 備註：It doesn't matter which backend you're using: PHP files or database. Authentication manager exposes exactly the same methods ，so hierarchy is built using exactly the same code.
 
@@ -207,7 +207,7 @@ Sign up three new users and assign two of them`admin`and`moderator`roles respect
 
 ## 檢查權限 {#checking-access}
 
-Now we have RBAC in place and three users：一般使用者，板主，管理員。現在我們要使用這些角色了。
+現在 RBAC 已經上線，而且我們有三種使用者：一般使用者，板主，管理員。現在我們要使用這些角色了。
 
 ### 權限過濾 {#access-filter}
 
