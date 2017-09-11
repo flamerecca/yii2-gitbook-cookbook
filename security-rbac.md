@@ -79,7 +79,7 @@ yii migrate --migrationPath=@yii/rbac/migrations
 ./yii migrate/create rbac_init
 ```
 
-That would create new migration class ，with`up()`method in which we'd build the hierarchy ，and`down()`in which we'll destroy it.
+這會建立一個新的 migration 類別，使用`up()`函式來建立架構，使用`down()`函式來刪除架構。 
 
 ```php
 use yii\db\Migration;
@@ -117,11 +117,11 @@ class m141204_121823_rbac_init extends Migration
 }
 ```
 
-上面的`createPermission()`和`createRole()`可以用來建立層級物件，但是沒有儲存。要儲存物件時，應該要呼叫`add()`。`addChild()`則是在連接子物件至父物件時呼叫。When called this method saves connections immediately.
+上面的`createPermission()`和`createRole()`可以用來建立層級物件，但是沒有儲存。要儲存物件時，應該要呼叫`add()`。`addChild()`則是在連接子物件至父物件時呼叫。呼叫這些函式之後，應該要馬上儲存連接。
 
-> 備註：It doesn't matter which backend you're using: PHP files or database. Authentication manager exposes exactly the same methods ，so hierarchy is built using exactly the same code.
+> 備註：不管你使用哪種後端：PHP檔案或者資料庫，驗證管理員使用的是相同的函式。所以，建立架構的函式是一模一樣的。
 
-如果我們的網頁沒有使用資料庫，或者因為某些原因不使用 migrations，you can do the same in a console command. For basic project template that would be`commands\RbacController.php`:
+如果我們的網頁沒有使用資料庫，或者因為某些原因不使用 migration，我們也可以使用 console command。For basic project template that would be`commands\RbacController.php`：
 
 ```php
 <?php
