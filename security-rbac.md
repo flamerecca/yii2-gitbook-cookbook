@@ -79,7 +79,7 @@ yii migrate --migrationPath=@yii/rbac/migrations
 ./yii migrate/create rbac_init
 ```
 
-這會建立一個新的 migration 類別，使用`up()`函式來建立架構，使用`down()`函式來刪除架構。 
+這會建立一個新的 migration 類別，使用`up()`函式來建立架構，使用`down()`函式來刪除架構。
 
 ```php
 use yii\db\Migration;
@@ -121,7 +121,7 @@ class m141204_121823_rbac_init extends Migration
 
 > 備註：不管你使用哪種後端：PHP檔案或者資料庫，驗證管理員使用的是相同的函式。所以，建立架構的函式是一模一樣的。
 
-如果我們的網頁沒有使用資料庫，或者因為某些原因不使用 migration，我們也可以使用 console command。For basic project template that would be`commands\RbacController.php`：
+如果我們的網頁沒有使用資料庫，或者因為某些原因不使用 migration，我們也可以使用 console command。如果使用 basic template 的話，應該修改 `commands\RbacController.php`如下：
 
 ```php
 <?php
@@ -166,7 +166,7 @@ class RbacController extends Controller
 
 ## 分配使用者角色 {#assigning-role-to-user}
 
-預設使用者沒有任何角色，所以不需要考慮怎麼分配。 User role management could be implemented either in admin panel or in console. Since our admins are cool guys, we'll create console contoller`commands\RbacController.php`:
+預設使用者沒有任何角色，所以不需要考慮怎麼分配。 User role management could be implemented either in admin panel or in console. Since our admins are cool guys, 我們建立 `commands\RbacController.php`如下：
 
 ```php
 <?php
@@ -282,5 +282,5 @@ class ArticleController extends Controller
 }
 ```
 
-In the code above we're checking if current user is either article owner or is allowed to manage articles. If either one is true, we're proceeding normally. Otherwise denying access.
+上面的程式碼裡面，我們分別檢查了使用者的權限是否可以編輯文章，以及使用者是否為文章作者。如果滿足其中一個條件，我們就允許編輯文章；反之則丟出`ForbiddenHttpException`。
 
