@@ -71,7 +71,7 @@ yii migrate --migrationPath=@yii/rbac/migrations
 
 ## 實做架構 {#filling-hierarchy}
 
-如果你的專案有使用資料庫，並且你對 [migrations](http://www.yiiframework.com/doc-2.0/guide-db-migrations.html) 很熟悉的話，使用 migration 來建立架構會比較好。
+如果你的專案有使用資料庫，並且你對 [migration](http://www.yiiframework.com/doc-2.0/guide-db-migrations.html) 很熟悉的話，使用 migration 來建立架構會比較好。
 
 打開命令列，輸入
 
@@ -166,7 +166,7 @@ class RbacController extends Controller
 
 ## 分配使用者角色 {#assigning-role-to-user}
 
-預設使用者沒有任何角色，所以不需要考慮怎麼分配。 User role management could be implemented either in admin panel or in console. Since our admins are cool guys, 我們建立 `commands\RbacController.php`如下：
+預設使用者沒有任何角色，所以不需要考慮怎麼分配。角色管理可以在 admin panel 或者 console 裡面實做。因為我們的管理員都很帥，我們建立 `commands\RbacController.php`如下：
 
 ```php
 <?php
@@ -211,7 +211,7 @@ Sign up three new users and assign two of them`admin`and`moderator`roles respect
 
 ### 權限過濾 {#access-filter}
 
-The very basic access checks could be done via access control filter which is [官方教學有詳細說明](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html#access-control-filter)：
+基本的權限過濾可以透過 access control filter 實做，[官方教學有詳細說明](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html#access-control-filter)：
 
 ```php
 namespace app\controllers;
