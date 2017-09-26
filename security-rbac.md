@@ -207,7 +207,7 @@ Sign up three new users and assign two of them`admin`and`moderator`roles respect
 
 ## 檢查權限 {#checking-access}
 
-現在 RBAC 已經上線，而且我們有三種使用者：一般使用者，板主，管理員。現在我們要使用這些角色了。
+現在 RBAC 已經上線，而且我們有三種使用者：一般使用者、板主、管理員。現在我們要使用這些角色了。
 
 ### 權限過濾 {#access-filter}
 
@@ -252,7 +252,7 @@ class ArticleController extends Controller
     // ...
 ```
 
-We're allowing any authenticated user to suggest articles. Same applied to editing articles \(it's explained in the next section\). Viewing moderation queue and deleting articles are available only to roles which have`manageArticles`permission. In our case it's both`admin`and`moderator`since`admin`inherits all`moderator`permissions.
+上面的程式碼，我們允許已認證的使用者推薦文章，同樣的條件也適用編輯文章上面。這邊已認證使用者的定義比較特殊，於後面詳述。Viewing moderation queue and deleting articles are available only to roles which have`manageArticles`權限。 In our case it's both`admin`and`moderator`since`admin`inherits all`moderator`permissions.
 
 Same simple checks via access control filter could be applied to`UserController`which handles admin actions regarding users.
 
