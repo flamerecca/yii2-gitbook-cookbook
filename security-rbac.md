@@ -194,7 +194,7 @@ class RbacController extends Controller
 }
 ```
 
-上面的程式碼內，we're finding a user by username specified. Then getting role object by its name and assigning role to a user by ID. Again, it doesn't matter if PHP backend or database backend is used. It would look exactly the same.
+上面的程式碼內，我們透過`username`找出對應使用者。Then getting role object by its name and assigning role to a user by ID. Again, it doesn't matter if PHP backend or database backend is used. It would look exactly the same.
 
 Also it would be exactly the same assignment in case of implementing admin UI or in case when you need role right away and assigning it right after user is successfully singed up.
 
@@ -254,7 +254,7 @@ class ArticleController extends Controller
 
 上面的程式碼，我們允許已認證的使用者推薦文章，同樣的條件也適用編輯文章上面。這邊已認證使用者的定義比較特殊，於後面詳述。Viewing moderation queue and deleting articles are available only to roles which have`manageArticles`權限。 In our case it's both`admin`and`moderator`since`admin`inherits all`moderator`permissions.
 
-Same simple checks via access control filter could be applied to`UserController`which handles admin actions regarding users.
+一樣透過使用 access control filter 的簡單檢查，Same simple checks via access control filter could be applied to`UserController`which handles admin actions regarding users.
 
 ### 手動檢查 {#doing-manual-checks}
 
