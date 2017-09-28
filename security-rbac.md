@@ -252,9 +252,11 @@ class ArticleController extends Controller
     // ...
 ```
 
-上面的程式碼，我們允許已認證的使用者推薦文章，同樣的條件也適用編輯文章上面。這邊已認證使用者的定義比較特殊，於後面詳述。Viewing moderation queue and deleting articles are available only to roles which have`manageArticles`權限。 In our case it's both`admin`and`moderator`since`admin`inherits all`moderator`permissions.
+上面的程式碼，我們允許已認證的使用者推薦文章，同樣的條件也適用編輯文章上面。這邊已認證使用者的定義比較特殊，於後面詳述。
 
-一樣透過使用 access control filter 的簡單檢查，Same simple checks via access control filter could be applied to`UserController`which handles admin actions regarding users.
+Viewing moderation queue and deleting articles are available only to roles which have`manageArticles`權限。 In our case it's both`admin`and`moderator`since`admin`inherits all`moderator`permissions.
+
+要處理管理員權限的使用者，一樣可以簡單的透過`UserController`使用 access control filter 檢查來達成。
 
 ### 手動檢查 {#doing-manual-checks}
 
